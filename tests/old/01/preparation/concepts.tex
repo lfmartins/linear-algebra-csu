@@ -1,0 +1,378 @@
+\documentclass[12pt]{article}
+
+\input{../../../../../fimacros.tex}
+
+\setheadings{MTH 288 --- Linear Algebra --- Test 1 Concepts}
+
+\begin{document}
+
+\section{Questions}
+For each of the following statements determine if it is true or false, and provide a brief justification for your answer.
+
+It is \emph{guaranteed} that one or more of these questions will be in the test, in \emph{exactly the same form} as they appear below.
+
+
+\begin{enumerate}
+
+\item A linear system with 3 equations and 2 unknowns cannot have solutions.
+
+\item A linear system with 3 equations and 5 unknowns always has solutions.
+
+\item Every matrix can be transformed into an unique equivalent matrix in row echelon form.
+
+\item Every matrix can be transformed into an unique equivalent matrix in reduced row echelon form.
+
+
+\item A homogeneous linear system always has at least one solution.
+
+\item It is possible for a linear system to have exactly 10 solutions.
+
+\item If a homogeneous system has 5 equations and 8 unknowns, then it must have infinitely many solutions.
+
+\item Suppose that a vector $\mathbf{v}$ satisfies the following identity:
+\[
+\mathbf{v} = 2(\mathbf{u}_1-\mathbf{u}_2) + 3(\mathbf{u}_2-\mathbf{u}_3) - 4(\mathbf{u}_3-\mathbf{u}_1)
+\]
+Then, $\mathbf{v}$ is in the span of $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\}$.
+
+
+\item Let $\mathbf{u}_1$, $\mathbf{u}_2$ and $\mathbf{u}_3$ be three arbitrary vectors. Then $\mathbf{v}=\mathbf{u}_1+\mathbf{u}_2$ is in the span of $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$. 
+
+\item A set of 4 vectors, $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$, can span the whole euclidean space $\R^7$.
+
+\item The vector $\mathbf{u}_1$ is always in the span of $\{\mathbf{u}_1, \mathbf{u}_2\}$
+
+\item Let $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots, \mathbf{u}_8\}$ be a set of vectors in $\R^5$, and let 
+$\mathbf{A}=[\begin{matrix} \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 & \cdots & \mathbf{u}_8\end{matrix}]$ be the matrix that has the given vectors as columns. 
+Suppose that, given an arbitrary vector $\mathbf{b}$, the augmented matrix of the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ is equivalent to the following reduced row echelon matrix: 
+\[
+\left[\begin{matrix}
+1&0&0&2&0&0&0&-1 & b_1'\\ 
+0&0&1&3&0&0&0&2 & b_2'\\ 
+0&0&0&0&1&0&0&0& b_3'\\ 
+0&0&0&0&0&1&0&4& b_4'\\ 
+0&0&0&0&0&0&1&-3& b_5'\\ 
+\end{matrix}\right]
+\]
+where $b_1',b_2',\ldots,b_5'$ are real numbers. Then, the vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots, \mathbf{u}_8\}$ span $\R^5$.
+
+\item Let $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$ be a set of vectors in $\R^4$, and let 
+$\mathbf{A}=[\begin{matrix} \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 & \mathbf{u}_4\end{matrix}]$ be the matrix that has the given vectors as columns. Given an arbitrary vector $\mathbf{b}$, the augmented matrix of the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ is equivalent to the following reduced row echelon matrix: 
+\[
+\left[\begin{matrix}
+1&0&0&4 & b_1'\\ 
+0&1&0&-2& b_2'\\ 
+0&0&1& 2& b_3'\\ 
+0&0&0&0& b_4'\\ 
+\end{matrix}\right]
+\]
+where $b_1',b_2',b_3',b_4'$ are real numbers. Then, the vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\mathbf{u}_4\}$ span $\R^4$.
+
+\item To span the whole euclidean space $\R^9$, we need at least 10 vectors.
+
+\item The zero vector, $\mathbf{0}$, is always in the span of the set of vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots ,\mathbf{u}_m\}$
+
+\item The vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots ,\mathbf{u}_m\}$ are linearly independent if and only if there are scalars $x_1, x_2,\ldots x_m$ such that:
+\[
+x_1\mathbf{u}_1+x_2\mathbf{u}_2+\cdots+x_m\mathbf{u}_m=\mathbf{0}
+\]
+
+\item The vectors $\mathbf{u}$, $\mathbf{v}$ and $\mathbf{u}+\mathbf{v}$ are always linearly dependent.
+
+\item A set of $6$ vectors in the euclidean space $\R^4$ is always linearly dependent.
+
+\item A set of $3$ vectors in the euclidean space $\R^4$ is always linearly independent. 
+
+\item Suppose that the set of vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots ,\mathbf{u}_m\}$ spans the euclidean space $\R^n$. Then, this set of vectors must be linearly independent.
+
+\item If $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ is linearly dependent, then so is $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$.
+
+\item If $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ is linearly independent, then so is $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$.
+
+\item If $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$
+is linearly independent, then so is $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$.
+
+\item The set of vectors $\{\mathbf{u}_1, \mathbf{u}_2, 2\mathbf{u}_1\}$ is linearly independent.
+
+\item The set of vectors $\{\mathbf{0}, \mathbf{u}_2, \mathbf{u}_3\}$ is linearly dependent.
+
+\item Let $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ be a set of vectors in $\R^5$, and let
+$\mathbf{A}=[\begin{matrix} \mathbf{u}_1&\mathbf{u}_2&\mathbf{u}_3\end{matrix}]$ be the matrix that has these vectors as columns. 
+Suppose that the augmented matrix of the system $\mathbf{A}\mathbf{x}=\mathbf{0}$ is equivalent to the following reduced row echelon matrix:
+\[
+\left[\begin{matrix}
+1&0&0&0\\ 
+0&1&0&0\\ 
+0&0&1&0\\ 
+0&0&0&0\\ 
+0&0&0&0\\ 
+\end{matrix}\right]
+\]
+Then, the vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ are linearly independent.
+
+\item Let $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ be a set of vectors in $\R^5$, and let
+$\mathbf{A}=[\begin{matrix} \mathbf{u}_1&\mathbf{u}_2&\mathbf{u}_3\end{matrix}]$ be the matrix that has these vectors as columns. 
+Suppose that the augmented matrix of the system $\mathbf{A}\mathbf{x}=\mathbf{0}$ is equivalent to the following reduced row echelon matrix:
+\[
+\left[\begin{matrix}
+1&0&0&0\\ 
+0&0&0&0\\ 
+0&0&1&0\\ 
+0&0&0&0\\ 
+0&0&0&0\\ 
+\end{matrix}\right]
+\]
+Then, the vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ are linearly independent.
+
+\item Suppose that the homogeneous system $\mathbf{A}\mathbf{x}=\mathbf{0}$ only has the trivial solution. Then, for any vector $\mathbf{b}$, the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ has exactly one solution.
+
+\item Suppose that the homogeneous system $\mathbf{A}\mathbf{x}=\mathbf{0}$ has infinitely many solutions. Then, for any vector $\mathbf{b}$, the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ always has infinitely many solutions.
+
+\item Suppose that the homogeneous system $\mathbf{A}\mathbf{x}=\mathbf{0}$ only has the trivial solution. Then, there may exist vectors $\mathbf{b}$, such that the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ does not have any solution.
+
+\end{enumerate}
+
+\clearpage
+
+\section{Answers}
+
+\begin{enumerate}
+
+\item A linear system with 3 equations and 2 unknowns cannot have solutions.\\
+\textbf{False}. Consider the system:
+\[
+\begin{matrix}
+x_1=1\\
+x_2=2\\
+x_1+x_2=3
+\end{matrix}
+\]
+If the first two equations are true, than the third one is also obviously true. So this system has the solution $x_1=1$, $x_2=2$.
+
+\item A linear system with 3 equations and 5 unknowns always has solutions.\\
+\textbf{False}. Consider the (rather silly) linear system:
+\[
+\begin{matrix}
+x_1+x_2+x_3+x_4+x_5=1\\
+x_1+x_2+x_3+x_4+x_5=2\\
+x_1+x_2+x_3+x_4+x_5=3\\
+\end{matrix}
+\]
+Since these equalities are obviously contradictory, the system has no solutions.
+
+\item Every matrix can be transformed into an unique equivalent matrix in row echelon form.
+\textbf{False}. Different sequences of row operations can lead to different row echelon forms.
+
+\item Every matrix can be transformed into an unique equivalent matrix in reduced row echelon form.\\
+\textbf{True}. This is Theorem 1.6 (page 23) of the textbook.
+
+\item A homogeneous linear system always has at least one solution.\\
+\textbf{True}. A $m\times n$ homogeneous linear system always has the trivial solution $x_1=x_2=\cdots=x_n=0$
+
+\item It is possible for a linear system to have exactly 10 solutions.\\
+\textbf{False}. A linear system can have zero, one or infinitely many solutions.
+
+\item If a homogeneous system has 5 equations and 8 unknowns, then it must have infinitely many solutions.\\
+\textbf{True}. A homogeneous system that has more unknowns than equations always has infinitely many solutions.  
+
+\item Suppose that a vector $\mathbf{v}$ satisfies the following identity:
+\[
+\mathbf{v} = 2(\mathbf{u}_1-\mathbf{u}_2) + 3(\mathbf{u}_2-\mathbf{u}_3) - 4(\mathbf{u}_3-\mathbf{u}_1)
+\]
+Then, $\mathbf{v}$ is in the span of $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\}$.\\
+\textbf{True}. Using the rules for vector operations, the equality above can be written as:
+\[
+\mathbf{v}=6\mathbf{u}_1+\mathbf{u}_2-7\mathbf{u}_3,
+\]
+so that $\mathbf{v}$ is a linear combination of $\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3$.
+
+
+\item Let $\mathbf{u}_1$, $\mathbf{u}_2$ and $\mathbf{u}_3$ be three arbitrary vectors. Then $\mathbf{v}=\mathbf{u}_1+\mathbf{u}_2$ is in the span of $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$.\\
+\textbf{True}. We can write $\mathbf{v}=\mathbf{u}_1+\mathbf{u}_2+0\mathbf{u_3}$, so $\mathbf{v}$ is a linear combination of $\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3$.
+
+\item A set of 4 vectors, $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$ can span the whole euclidean space $\R^7$.\\
+\textbf{False}. To span $\R^7$, we need at least 7 vectors.
+
+\item The vector $\mathbf{u}_1$ is always in the span of $\{\mathbf{u}_1, \mathbf{u}_2\}$\\
+\textbf{True}. We can write $\mathbf{u}_1$ as the linear combination $1\mathbf{u}_1+0\mathbf{u}_2$.
+
+\item Let $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots, \mathbf{u}_8\}$ be a set of vectors in $\R^5$, and let 
+$\mathbf{A}=[\begin{matrix} \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 & \cdots & \mathbf{u}_8\end{matrix}]$ be the matrix that has the given vectors as columns. 
+Suppose that, given an arbitrary vector $\mathbf{b}$, the augmented matrix of the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ is equivalent to the following reduced row echelon matrix: 
+\[
+\left[\begin{matrix}
+1&0&0&2&0&0&0&-1 & b_1'\\ 
+0&0&1&3&0&0&0&2 & b_2'\\ 
+0&0&0&0&1&0&0&0& b_3'\\ 
+0&0&0&0&0&1&0&4& b_4'\\ 
+0&0&0&0&0&0&1&-3& b_5'\\ 
+\end{matrix}\right]
+\]
+where $b_1',b_2',\ldots,b_5'$ are real numbers. Then, the vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots, \mathbf{u}_8\}$ span $\R^5$.\\
+\textbf{True}. The matrix above corresponds to the system:
+\[
+\begin{matrix}
+x_1+2x_4-x_8=b_1'\\
+x_3+3x_4+2x_8=b_2'\\
+x_5=b_3'\\
+x_6+4x_8=b_4'\\
+x_7-3x_8=b_5'
+\end{matrix}
+\]
+In this system, the variables $x_2$, $x_4$ and $x_8$ are free, and can be chosen arbitrarily. Once $x_2$, $x_4$ and $x_8$ are chosen, the other variables are uniquely determined, so that the system always has solutions.
+
+\item Let $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$ be a set of vectors in $\R^5$, and let 
+$\mathbf{A}=[\begin{matrix} \mathbf{u}_1 & \mathbf{u}_2 & \mathbf{u}_3 & \mathbf{u}_4 \end{matrix}]$ be the matrix that has the given vectors as columns. Given an arbitrary vector $\mathbf{b}$, the augmented matrix of the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ is equivalent to the following reduced row echelon matrix: 
+\[
+\left[\begin{matrix}
+1&0&0&4 & b_1'\\ 
+0&1&0&-2& b_2'\\ 
+0&0&1& 2& b_3'\\ 
+0&0&0&0& b_4'\\ 
+\end{matrix}\right]
+\]
+where $b_1',b_2',b_3',b_4'$ are real numbers. Then, the vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\mathbf{u}_4\}$ span $\R^5$.\\
+\textbf{False}. The last equation of the system corresponding to the matrix above is $0=b_4'$, which cannot be satisfied if $b_4'$ is not zero.
+
+
+\item To span the whole euclidean space $\R^9$, we need at least 10 vectors.\\
+\textbf{False}. 9 vectors are sufficient to span $\R^9$.
+
+\item The zero vector, $\mathbf{0}$, is always in the span of any set of vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots ,\mathbf{u}_m\}$\\
+\textbf{True}. We can write the zero vector as a linear combination of any set of vectors:
+\[
+0\mathbf{u}_1+0\mathbf{u}_2+0\mathbf{u}_3+\cdots+0\mathbf{u}_m=\mathbf{0}
+\]
+
+\item The vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots ,\mathbf{u}_m\}$ are linearly independent if and only if there are scalars $x_1, x_2,\ldots x_m$ such that:
+\[
+x_1\mathbf{u}_1+x_2\mathbf{u}_2+\cdots+x_m\mathbf{u}_m=\mathbf{0}
+\]\\
+\textbf{False}. We can always write the zero vector as a linear combination of any set of vectors. The vectors are linearly independent if the only possible such linear combination is the trivial one, in which all scalars are zero.
+
+\item The vectors $\mathbf{u}$, $\mathbf{v}$ and $\mathbf{u}+\mathbf{v}$ are always linearly dependent.\\
+\textbf{True}. The following gives a nontrivial linear combination of these three vectors that is equal to the zero vector:
+\[
+1\mathbf{u}+1\mathbf{v}+(-1)(\mathbf{u}+\mathbf{v})=\mathbf{0}
+\]
+
+\item A set of $6$ vectors in the euclidean space $\R^4$ is always linearly dependent.\\
+\textbf{True}. If $m>n$, then any set of $m$ vectors in $\R^n$ is linearly dependent.
+
+\item A set of $3$ vectors in the euclidean space $\R^4$ is always linearly independent.\\
+\textbf{False}. Consider the vectors:
+\[
+\left[\begin{matrix} 1 \\ 0 \\ 0 \\ 0 \end{matrix}\right]\quad
+\left[\begin{matrix} 0 \\ 1 \\ 0 \\ 0 \end{matrix}\right]\quad
+\left[\begin{matrix} 1 \\ 1 \\ 0 \\ 0 \end{matrix}\right]
+\]
+Since the third vector is the sum of the first two, they are not linearly independent.
+
+\item Suppose that the set of vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3,\ldots ,\mathbf{u}_m\}$ spans the euclidean space $\R^n$. Then, this set of vectors must be linearly independent.\\
+\textbf{False}. The following set of four vectors spans $\R^3$:
+\[
+\left[\begin{matrix} 1 \\ 0 \\ 0 \end{matrix}\right]\quad
+\left[\begin{matrix} 0 \\ 1 \\ 0 \end{matrix}\right]\quad
+\left[\begin{matrix} 0 \\ 0 \\ 1 \end{matrix}\right]\quad
+\left[\begin{matrix} 1 \\ 1 \\ 1 \end{matrix}\right]\quad
+\]
+(In fact, it is enough to use the first three vectors to span $\R^3$.) However, the fourth vector is a linear combination of the first three, so the set is linearly dependent.
+
+\item If $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ is linearly dependent, then so is $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$.\\
+\textbf{True}. Suppose that we have a nontrivial linear combination of the three first vectors that is equal to the zero vector:
+\[
+x_1\mathbf{u}_1+x_2\mathbf{u}_2+x_3\mathbf{u}_3=\mathbf{0},\quad\text{where $x_1, x_2, x_3$ are not all zero}.
+\]
+Then, the following is a nontrivial linear combination of the four vectors that is equal to zero:
+\[
+x_1\mathbf{u}_1+x_2\mathbf{u}_2+x_3\mathbf{u}_3+0\mathbf{u}_4=\mathbf{0}.
+\]
+Notice that the fact that the coefficient of $\mathbf{u}_4$ is zero does not matter, because one of the scalars $x_1,x_2,x_3$ must be nonzero.
+
+\item If $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ is linearly independent, then so is $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$.
+\textbf{False}. If we let $\mathbf{u}_4$ be any linear combination of the other three vectors, then the second set is linearly dependent.
+
+\item If $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$
+is linearly independent, then so is $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$.\\
+\textbf{True}. Suppose that we have a linear combination of $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ that is equal to the zero vector:
+\[
+x_1\mathbf{u}_1+x_2\mathbf{u}_2+x_3\mathbf{u}_3=\mathbf{0}
+\]
+Then, the following is also true:
+\[
+x_1\mathbf{u}_1+x_2\mathbf{u}_2+x_3\mathbf{u}_3+0\mathbf{u}_4=\mathbf{0}.
+\]
+Since the set of four vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$ is linearly independent, all coefficients in the above equation must be zero. But this shows that only a trivial linear combination of the set of three vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ can be equal to the zero vector.
+
+\item The set of vectors $\{\mathbf{u}_1, \mathbf{u}_2, 2\mathbf{u}_1\}$ is linearly independent.\\
+\textbf{False}. The third vector is a linear combination of the first two:
+\[
+2\mathbf{u}_1=2\mathbf{u}_1+0\mathbf{u_2}
+\]
+Thus, the vectors are linearly dependent.
+
+\item The set of vectors $\{\mathbf{0}, \mathbf{u}_2, \mathbf{u}_3\}$ is linearly dependent.\\
+\textbf{True}. The following nontrivial linear combination of the vectors is equal to the zero vector:
+\[
+1\cdot\mathbf{0}+0\cdot\mathbf{u}_3+0\cdot\mathbf{u}_3=\mathbf{0}
+\]
+
+\item Let $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ be a set of vectors in $\R^5$, and let
+$\mathbf{A}=[\begin{matrix} \mathbf{u}_1&\mathbf{u}_2&\mathbf{u}_3\end{matrix}]$ be the matrix that has these vectors as columns. 
+Suppose that the augmented matrix of the system $\mathbf{A}\mathbf{x}=\mathbf{0}$ is equivalent to the following reduced row echelon matrix:
+\[
+\left[\begin{matrix}
+1&0&0&0\\ 
+0&1&0&0\\ 
+0&0&1&0\\ 
+0&0&0&0\\ 
+0&0&0&0\\ 
+\end{matrix}\right]
+\]
+Then, the vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ are linearly independent.\\
+\textbf{True}. The matrix above is equivalent to the system:
+\[
+\begin{matrix}
+x_1=0\\x_2=0\\x_3=0
+\end{matrix}
+\]
+Since the system has only the trivial solution, the vectors are linearly independent.
+
+\item Let $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ be a set of vectors in $\R^5$, and let
+$\mathbf{A}=[\begin{matrix} \mathbf{u}_1&\mathbf{u}_2&\mathbf{u}_3\end{matrix}]$ be the matrix that has these vectors as columns. 
+Suppose that the augmented matrix of the system $\mathbf{A}\mathbf{x}=\mathbf{0}$ is equivalent to the following reduced row echelon matrix:
+\[
+\left[\begin{matrix}
+1&0&0&0\\ 
+0&0&0&0\\ 
+0&0&1&0\\ 
+0&0&0&0\\ 
+0&0&0&0\\ 
+\end{matrix}\right]
+\]
+Then, the vectors $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4\}$ are linearly independent.\\
+\textbf{False}. The matrix above is equivalent to the system:
+\[
+\begin{matrix}
+x_1=0\\x_3=0
+\end{matrix}
+\]
+Notice that the variable $x_2$ is free, since it does not appear in any of the equations above. So, we can choose any nonzero value for $x_2$ and obtain a nontrivial solution for the system. It follows that the vectors are linearly dependent.
+
+\item Suppose that the homogeneous system $\mathbf{A}\mathbf{x}=\mathbf{0}$ only has the trivial solution. Then, for any vector $\mathbf{b}$, the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ has exactly one solution.\\
+\textbf{False}. The system $\mathbf{A}\mathbf{x}=\mathbf{b}$ could have either no solutions or one solution.
+
+\item Suppose that the homogeneous system $\mathbf{A}\mathbf{x}=\mathbf{0}$ has infinitely many solutions. Then, for any vector $\mathbf{b}$, the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ always has infinitely many solutions.\\
+\textbf{False}. The system $\mathbf{A}\mathbf{x}=\mathbf{b}$ may have no solutions. (However, if it has solutions, there must be infinitely many of them.)
+
+\item Suppose that the homogeneous system $\mathbf{A}\mathbf{x}=\mathbf{0}$ only has the trivial solution. Then, there may exist vectors $\mathbf{b}$, such that the system $\mathbf{A}\mathbf{x}=\mathbf{b}$ does not have any solutions.\\
+\textbf{True}. If $\mathbf{A}\mathbf{x}=\mathbf{0}$ only has the trivial solution, then $\mathbf{A}\mathbf{x}=\mathbf{b}$
+may have either zero solutions or exactly one solution.
+
+\end{enumerate}
+
+
+
+\end{document}
+
+\sffamily

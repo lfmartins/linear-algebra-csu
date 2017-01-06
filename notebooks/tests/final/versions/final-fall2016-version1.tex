@@ -1,0 +1,190 @@
+\documentclass[12pt]{article}
+
+\input{../../../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Linear Algebra --- Final Exam}
+
+
+\begin{document}
+
+Name: \hrulefill
+
+\bigskip
+Student ID: \hrulefill
+
+\bigskip
+\textbf{Instructions.} All solutions must be justified, unless otherwise stated. Show all work leading to your answer in each problem. Solutions without appropriate work that supports it will receive no credit. All work must be written in the test. Do not attach computer printouts to the test. If not enough space is provided for an answer, continue it in the back of the page. All answers must be given as exact values, decimal approximations will not be accepted.
+
+Please identify your final answer to each problem by surrounding it with a rectangle.
+
+\vfill
+\hfill$\diamondsuit$
+
+\clearpage
+
+% Problem 1
+\textbf{Problem 1.} (15 points)
+Answer the following items for the system below. Please read carefully what is being asked in each item!
+\begin{alignat*}{15}
+x_{1} &{}-{}& 2 x_{2} &{}-{}& 5 x_{3} &{}-{}& 3 x_{4} &{}-{}& 2 x_{5} &{}+{}& 5 x_{6} &{}={}&-14\\ 
+- 3 x_{1}&{}{}& &{}-{}& 3 x_{3} &{}-{}& 2 x_{4} &{}-{}& 2 x_{5} &{}+{}& 13 x_{6} &{}={}&7\\ 
+&{}{}&- 2 x_{2} &{}-{}& 6 x_{3} &{}-{}& x_{4}&{}{}& &{}+{}& 4 x_{6} &{}={}&-9\\ 
+- x_{1} &{}-{}& x_{2} &{}-{}& 4 x_{3} &{}+{}& x_{4}&{}{}& &{}+{}& 2 x_{6} &{}={}&0\\ 
+\end{alignat*}
+
+\textbf{Part (a).} (2 points) Write in the space below the augmented matrix corresponding to this system.
+
+\vskip1.5in
+
+\textbf{Part (b).} (5 points) Use elementary row operations to find the RREF of the augmented matrix. In the space below, enter both the sequence of row operations used and the resulting matrix in RREF. If you do not write the sequence of row operations you used, you will get no credit for this part of the problem.
+
+\clearpage
+
+\textbf{Part (c).} (3 points) Write the system of equations that correspond to the RREF matrix from the previous item.
+
+\vskip2in
+
+\textbf{Part (d).} (5 points) Write the solution set of the system. The solution should be given as a set of vectors, using a parametric representation, with one parameter for each free variable. Explain in detail how you obtained the parametric representation from the RREF system.
+
+\clearpage
+
+
+% Problem 2
+\textbf{Problem 2.} (15 points) Answer the following items for the square matrix $A$ given below. Please read carefully what is being asked in each item!
+\[
+\begin{bmatrix*}[r]3&-5&-1&1\\5&2&-5&-3\\1&-3&0&1\\1&-1&-1&0\\\end{bmatrix*}
+\]
+\textbf{Part (a).} (2 points) Write the augmented matrix used to compute the inverse of the matrix A.
+
+\vskip1.5in
+
+\textbf{Part (b).} (10 points) Use elementary row operations to find the RREF of the augmented matrix.
+In the space below, write both the sequence of row operations and the resulting matrix in RREF.
+
+\vskip3.5in
+
+\textbf{Part (c).} (3 points) In the space below, enter the inverse of the matrix $A$.
+
+\clearpage
+
+% Problem 3
+\textbf{Problem 3.} (10 points) Find all values of $k$ for which the following matrix is singular. To receive full credit, you must provide a full explanation of the method you used to solve the problem.
+\[
+\begin{bmatrix*}[r]2&k&-3\\4&-6&4\\2&-3&k\\\end{bmatrix*}
+\]
+
+\clearpage
+
+% Problem 4
+\textbf{Problem 4.} (10 points) Find the coordinates of the vector:
+\[
+\begin{bmatrix*}[r]7\\ 24\\ -18\\ 13\\ \end{bmatrix*}
+\]
+in the following basis of $\R^4$:
+\[
+B=\left\{
+\begin{bmatrix*}[r]-5\\ -21\\ 17\\ -11\\ \end{bmatrix*},\begin{bmatrix*}[r]-7\\ -20\\ 17\\ -11\\ \end{bmatrix*},\begin{bmatrix*}[r]-5\\ -17\\ 14\\ -9\\ \end{bmatrix*},\begin{bmatrix*}[r]3\\ 11\\ -9\\ 6\\ \end{bmatrix*}
+\right\}
+\]
+It is not necessary to verify that $B$ is a basis.
+
+\clearpage
+
+% Problem 5
+\textbf{Problem 5.} (10 points) Answer the following items for the matrix:
+\[
+A = \begin{bmatrix*}[r]-2&2&-2&8&-14\\-1&1&-1&4&-7\\-2&2&1&5&-5\\0&0&-2&2&-6\\\end{bmatrix*}
+\]
+
+\textbf{Part (a).} (4 points) Find a basis for the range of $A$.
+
+\clearpage
+
+\textbf{Part (b).} (6 points) Find a basis for the kernel of $A$.
+
+\clearpage
+
+% Problem 6
+\textbf{Problem 6.} (15 points) Find an orthonormal basis $B$ of $\R^4$ consisting of eigenvectors of the symmetric matrix:
+\[
+A = \begin{bmatrix*}[r]-5&-3&-3&3\\-3&-5&3&-3\\-3&3&-5&-3\\3&-3&-3&-5\\\end{bmatrix*}
+\]
+Let $P$ be the matrix that has the vectors of the basis $B$ on its columns. Verify that $P^TAP$ is a diagonal matrix.
+
+\vfill
+
+(There is more space for this problem on the next page)
+
+\clearpage
+
+(Extra space for problem 6)
+
+\clearpage
+
+% Problem 7
+\textbf{Problem 7.} (15 points) The table below lists the height $h$ (in cm), age $a$ (in years), the gender $g$ (1=``Male'', 0=``Female''), and the weight $w$ (in kg) of a sample of college students:
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+Height & Age & Gender & Weight\\\hline
+181 & 21 & 1 & 91\\
+158 & 20 & 0 & 78\\
+175 & 23 & 0 & 82\\
+179 & 22 & 1 & 85\\
+170 & 24 & 1 & 80\\
+152 & 19 & 0 & 68\\
+\end{tabular}
+\end{center}
+
+We wish to fit a linear function of the form:
+\[
+w=c_0+c_1h+c_2a+c_3g
+\]
+which predicts the weight from the rest of the data. Find the best approximation of this function, using a least squares solution to the appropriate linear system. Provide a full explanation of the method you used.
+
+\vfill
+
+(There is more space for this problem on the next page)
+
+\clearpage
+
+(Extra space for problem 7)
+
+\clearpage
+
+% Problem 8
+\textbf{Problem 8.} (10 points) Let $\mathbf{u}$ and $\mathbf{v}$ be nonzero vectors in $\R^n$.
+
+Suppose that $\mathbf{u}+5\mathbf{v}$ and $\mathbf{u}-5\mathbf{v}$ are orthogonal.
+
+Using properties of the dot product, find the value of:
+\[
+\frac{||\mathbf{u}||}{||\mathbf{v}||}
+\]
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,209 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH 288 --- Linear Algebra --- Test 2 Solution}
+
+\begin{document}
+
+% Basis for subspace
+\textbf{Problem 1.}(20 points.) 
+Find a basis for the subspace of $\R^3$ spanned by the vectors:
+
+$$
+\mathbf{u}_1=\left[\begin{matrix}1\\-1\\2\end{matrix}\right]\quad
+\mathbf{u}_2=\left[\begin{matrix}-4\\4\\-8\end{matrix}\right]\quad
+\mathbf{u}_3=\left[\begin{matrix}2\\0\\-3\end{matrix}\right]\quad
+\mathbf{u}_4=\left[\begin{matrix}-4\\-2\\13\end{matrix}\right]\quad
+$$
+
+\emph{Solution}: Form the matrix with the given vectors in it's columns and find its reduced row echelon form:
+\[
+\left[\begin{matrix}1 & -4 & 2 & -4\\-1 & 4 & 0 & -2\\2 & -8 & -3 & 13\end{matrix}\right]\sim
+\left[\begin{matrix}1 & -4 & 0 & 2\\0 & 0 & 1 & -3\\0 & 0 & 0 & 0\end{matrix}\right]
+\]
+
+The reduced row echelon matrix has two pivot columns, column 1 and column 3. So, the corresponding vectors, $\mathbf{u}_1$ and $\mathbf{u}_2$ are a basis of the subspace:
+\[
+\left\{
+\left[\begin{matrix}1\\-1\\2\end{matrix}\right],
+\left[\begin{matrix}2\\0\\-3\end{matrix}\right]
+\right\}
+\]
+\proofend
+
+
+\textbf{Problem 2.}(20 points.)
+Answer the following items for the matrix:
+\[
+A=
+\begin{bmatrix}1&3&2&0\\3&11&7&1\\1&1&4&0\end{bmatrix}
+\] 
+
+\textbf{(a)} (10 points.) Find a basis for the range of $A$, and determine the dimension of the range.
+
+\emph{Solution}: The reduced row echelon form of $A$ is:
+\[
+\left[\begin{matrix}1 & 0 & 0 & - \frac{5}{3}\\0 & 1 & 0 & \frac{1}{3}\\0 & 0 & 1 & \frac{1}{3}\end{matrix}\right]
+\]
+
+
+A basis for the range is given by the columns of $A$ corresponding to pivot columns in the reduced row echelon form, that is, columns $1$, $2$ and $3$. So, a basis for the range is:
+\[
+\left\{
+\begin{bmatrix}1\\3\\1\end{bmatrix},
+\begin{bmatrix}3\\11\\1\end{bmatrix},
+\begin{bmatrix}2\\7\\4\end{bmatrix}
+\right\}
+\]
+
+Since a basis for the range has two vectors, the range has dimension 3.
+\proofend
+
+\textbf{(b)} (10 points.) Find a basis for the kernel of $A$, and determine the dimension of the kernel.
+
+\emph{Solution}: From the reduced row echelon form, we conclude that vectors $\mathbf{x}$ in the kernel satisfy the equations:
+\begin{align*}
+x_1-\frac{5}{3}x_4&=0\\
+x_2+\frac{1}{3}x_4&=0\\
+x_3+\frac{1}{3}x_4&=0
+\end{align*}
+The only free variable is $x_4$, so, letting $s=x_4$ we get the following representation for the kernel:
+\[
+\left\{
+\begin{bmatrix}\frac{5}{3}s\\-\frac{1}{3}s\\-\frac{1}{3}s\\s\end{bmatrix} : x\in\R
+\right\}
+\]
+By choosing an arbitrary $s\ne 0$ we get a basis for the kernel. With $s=1$ we get the basis:
+\[
+\left\{
+\begin{bmatrix}\frac{5}{3}\\-\frac{1}{3}\\-\frac{1}{3}\\1\end{bmatrix}
+\right\}
+\]
+Since the basis has one vector, the kernel has dimension 1.
+\proofend
+
+\textbf{Problem 3.} (16 points.) Find scalars $a$ and $b$ that make the following matrix identity true.
+\[
+\left[\begin{matrix}a & 1 & 2\\2 & 2 & b\\-1 & 4 & 1\end{matrix}\right]
+\left[\begin{matrix}2 & 2\\1 & -1\\3 & -2\end{matrix}\right]=
+\left[\begin{matrix}8 & -4\\11 & - \frac{4}{3}\\5 & -8\end{matrix}\right]
+\] 
+
+\emph{Solution}: The product of the matrices is:
+\[
+\left[\begin{matrix}2 a + 7 & 2 a - 5\\3 b + 6 & - 2 b + 2\\5 & -8\end{matrix}\right]
+\]
+So, we must have:
+\begin{align*}
+2 a + 7 &= 8\\
+3 b + 6 &=11\\
+2 a - 5 &=-4\\
+- 2 b + 2 &= -\frac{4}{3}
+\end{align*}
+The first equation gives:
+\[
+a = \frac{8-7}{2}=\frac{1}{2}.
+\]
+The second equation gives:
+\[
+b = \frac{11-6}{3}=\frac{5}{3}.
+\]
+Plugging in these values in the third and fourth equation, we see that all equations are satisfied, so we get the solution:
+\[
+a =\frac{1}{2},\quad b=\frac{5}{3}.
+\]
+\proofend
+
+\textbf{Problem 4.} (16 points.) Find the determinants for the following matrices. Explain the method you used to find the determinant, showing all computations. Do not use Python for this problem.
+
+\textbf{(a)} (8 points.)
+$
+\det\begin{bmatrix}1&0&3\\2&-2&1\\3&4&1\end{bmatrix}
+$
+
+\emph{Solution}: Using the ``shortcut'' for $3\times3$ determinants we get:
+\[
+1\times(-2)\times 1 + 0\times 1 \times 3+ 3\times 2 \times 4 - 3\times(-2)\times3 - 1\times1\times4 -0\times2\times1= -2+0+24+12-4+0=36
+\]
+\proofend
+
+\textbf{(b)} (8 points.)
+$
+\det\begin{bmatrix}
+2&3&-5&9&0\\
+0&-1&3&-4&2\\
+0&0&3&7&-11\\
+0&0&0&\frac{1}{2}&-1\\
+0&0&0&0&10\\
+\end{bmatrix} 
+$
+
+\emph{Solution}: The matrix is triangular, so the determinant is the product of the diagonal entries:
+\[
+2\times(-1)\times3\times\frac{1}{2}\times10=-30
+\]
+\proofend
+
+\textbf{Problem 5.} (18 points.) Determine if each of the following statements is true or false, and provide a brief justification for your answer.
+
+\textbf{(a)} (3 points.) A linear transformation $T:\R^8\to\R^4$ must be onto.
+
+\emph{Solution}: False. The range of $T$ is a subspace of $\R^4$ with dimension at most $4$. If the dimension of the range is less than $4$, then the linear transformation is not onto.
+
+\textbf{(b)} (3 points.) A linear transformation $T:\R^8\to\R^4$ can be one-to-one.
+\proofend
+
+\emph{Solution}: False. Since the dimension of the domain is $8$ and the dimension of the codomain is $4$, and $8>4$, the transformation can't be one-to-one. 
+\proofend
+
+\textbf{(c)} (3 points.) There is exactly one value of $a$ for which the matrix below is singular:
+\[
+\begin{bmatrix}a&2\\2&a\end{bmatrix}
+\]
+
+\emph{Solution}: False. The matrix is singular if and only if:
+\[
+\det\begin{bmatrix}a&2\\2&a\end{bmatrix}=a^2-4=0.
+\]
+This equation has two solutions, $a=2$ and $a=-2$.
+\proofend
+
+\textbf{(d)} (3 points.) The two matrices below have the same determinant.
+\[
+\begin{bmatrix}a&b&c\\d&f&g\\h&i&j\end{bmatrix}\quad
+\begin{bmatrix}a&b+2a&c\\d&f+2d&g\\h&i+2h&j\end{bmatrix}
+\]
+
+emph{Solution}: True. The second matrix is obtained from the first by adding to the second column the first columns multiplied by $2$.
+\proofend
+
+\textbf{(e)} (3 points.) If $\mathbf{u}_1$, $\mathbf{u}_2$ and $\mathbf{u}_3$ are distinct vectors in $\R^4$, then the subspace spanned by $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\}$ has dimension 3.
+
+\emph{Solution}: False. If the vectors are linearly dependent, the spanned subspace will have dimension \emph{less} than $3$.
+\proofend
+
+\textbf{(f)} (3 points.) If all entries of a matrix are positive, then the matrix is invertible.
+
+\emph{Solution}: False. The matrix:
+\[
+\begin{bmatrix}1&2\\2&4\end{bmatrix}
+\]
+has all entries positive but its determinant is $1\times4-2\times2=0$, so it is not invertible.
+\proofend
+
+\textbf{Problem 6.} (10 points.) Find the area of the parallelogram in $\R^2$ determined by the vectors
+\[
+\begin{bmatrix}2\\3\end{bmatrix}\quad\text{and}\quad\begin{bmatrix}-2\\4\end{bmatrix}
+\]
+
+\emph{Solution}: The area is:
+\[
+\left|
+\det\begin{bmatrix}
+2&-2\\3&4
+\end{bmatrix}\right|=
+|2\times4 - 3\times(-2)|=14
+\]
+
+\end{document}

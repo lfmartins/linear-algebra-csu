@@ -1,0 +1,198 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH 288 --- Linear Algebra --- Matrix Powers}
+
+\begin{document}
+
+In this handout we explore a first application of eigenvalues and eigenvectors: computing matrix powers. To give a concrete example, let's consider a simple (and somewhat artificial) population model. We observe the population at discrete times $n=0,1,2,\ldots$, and denote the population at time $n$ by $P_n$. We assume that $P_n$ satisfies the following relations:
+\begin{align*}
+P_0&=1\\
+P_1&=1\\
+P_{n+1}&=P_{n}+P_{n-1}\text{ for $n\ge1$}
+\end{align*}
+The last equation above is called a \emph{recursion}, and we can use it to predict the population at any future time, as illustrated below:
+\begin{align*}
+P_2&=P_1+P_0=2\\
+P_3&=P_2+P_1=3\\
+P_4&=P_3+P_2=5\\
+P_5&=P_4+P_3=8\\
+P_6&=P_5+P_4=13\\
+P_7&=P_6+P_5=21\\
+\vdots&
+\end{align*}
+The question we ask is the following: how can we find the size of the population $P_n$ for a given large  value  of $n$ without having to compute all previous values? We will see that we can use eigenvalues and eigenvectors to find the answer.
+
+We introduce the following vector representation for the state of the system:
+\[
+\mathbf{x}_n=
+\begin{bmatrix}P_{n}\\P_{n-1}\end{bmatrix}
+\]
+We call $\mathbf{x}_n$ the \emph{state vector} of the model. We can now try to find a recursion for the state vector:
+\[
+\mathbf{x}_{n+1}=
+\begin{bmatrix}P_{n+1}\\P_{n}\end{bmatrix}=
+\begin{bmatrix}P_{n}+P_{n-1}\\P_{n}\end{bmatrix}=
+\begin{bmatrix}1\times P_{n}+1\times P_{n-1}\\1\times P_{n}+0\times P_{n-1}\end{bmatrix}=
+\begin{bmatrix}1&1\\1&0\end{bmatrix} \begin{bmatrix}P_{n}\\P_{n-1}\end{bmatrix}=
+\begin{bmatrix}1&1\\1&0\end{bmatrix} \mathbf{x}_n.
+\]
+We define the matrix $A$ by:
+\[
+A=\begin{bmatrix}1&1\\1&0\end{bmatrix},
+\]
+and problem can then be translated into the following matrix formulation:
+\[
+\mathbf{x}_{n+1}=A\mathbf{x}_n
+\]
+We also introduce the following \emph{initial condition}:
+\[
+\mathbf{x}_0=\begin{bmatrix}0\\1\end{bmatrix}
+\]
+Notice that, with this choice, we have:
+\[
+\mathbf{x}_1=A\mathbf{x_0}=\begin{bmatrix}1&1\\1&0\end{bmatrix}\begin{bmatrix}0\\1\end{bmatrix}=
+\begin{bmatrix}0\\1\end{bmatrix}\begin{bmatrix}P_1\\P_0\end{bmatrix},
+\]
+which is the correct value for $\mathbf{x_1}$.
+
+It is now very easy to write a formula for the vector $\mathbf{x}_n$:
+\begin{align*}
+\mathbf{x}_{1}&=A\mathbf{x}_0\\
+\mathbf{x}_{2}&=A\mathbf{x}_1=A\cdot A\mathbf{x}_0=A^2\mathbf{x}_0\\
+\mathbf{x}_{3}&=A\mathbf{x}_2=A\cdot A^2\mathbf{x}_0=A^3\mathbf{x}_0\\
+\mathbf{x}_{4}&=A\mathbf{x}_3=A\cdot A^3\mathbf{x}_0=A^4\mathbf{x}_0\\
+\vdots&
+\end{align*}
+and it is easy to see that the general formula is:
+\[
+\mathbf{x}_{n}=A^n\mathbf{x}_0.
+\]
+Thus, if we have an efficient way to compute the matrix power $A^n$, we will have a way to find the population for any future time. This can be achieved by diagonalizing the matrix $A$. To understand why, recall that the diagonalization procedure yields a matrix $P$ such that:
+\[
+D = P^{-1}AP
+\]
+is a diagonal matrix. Now notice that:
+\begin{align*}
+D^2&=P^{-1}APP^{-1}AP=P^{-1}A^2P\\
+D^3&=DD^2=P^{-1}APP^{-1}APP^{-1}AP=P^{-1}A^3P
+\end{align*}
+In general:
+\[
+D^n=P^{-1}A^nP
+\]
+from which we get:
+\[
+A^n=PD^np^{-1}
+\]
+The key point is that powers of a diagonal matrix are very easy to compute. If
+$$
+D=\begin{bmatrix}a&0\\0&b\end{bmatrix}
+$$
+then
+$$
+D^n=\begin{bmatrix}a^n&0\\0&b^n\end{bmatrix}
+$$
+
+Going back to the problem of finding an expression for $\mathbf{x}_n$, let's diagonalize the matrix $A$.
+We start by finding the eigenvalues of $A$. The characteristic equation is:
+\[
+\det(A-\lambda I)=\det\begin{bmatrix}1-\lambda&1\\1&-\lambda\end{bmatrix}=(1-\lambda)(-\lambda)-1=\lambda^2-\lambda-1=0,
+\]
+which has solutions
+\[
+\lambda=\frac{1\pm\sqrt{1-4(1)(-1)}}{2}=\frac{1\pm\sqrt{5}}{2},
+\]
+and we get two eigenvalues:
+\[
+\lambda_1=\frac{1+\sqrt{5}}{2}\text{ and } \lambda_2=\frac{1-\sqrt{5}}{2}.
+\]
+
+Notice that $\lambda_1$ is the famous \emph{Golden Ratio}, and $\lambda_2$ is its inverse. This fact no doubt appealed Fibonacci.
+
+We now need to find one eigenvalue for each eigenvector. For each eigenvalue $\lambda$ we have to solve the system:
+\[
+\begin{bmatrix}1-\lambda & 1\\1 & -\lambda\end{bmatrix}
+\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}0\\0\end{bmatrix},
+\]
+which gives the system:
+\begin{align*}
+(1-\lambda)x+y&=0\\
+x-\lambda y=0
+\end{align*}
+We know that this system will have infinitely many solutions, so we can discard one of the equations. Since the second equation is simpler, we use it, which is equivalent to:
+\[
+x=\lambda y.
+\]
+Since we can choose any nonzero solution, we let $y=1$ and $x=\lambda$, and get the eigenvector:
+\[
+\begin{bmatrix}\lambda\\1\end{bmatrix}
+\]
+Applying this to the eigenvectors $\lambda_1$ and $\lambda_2$ we get:
+\begin{align*}
+\lambda_1&=(1+\sqrt{5})/2\quad\text{Eigenvector: }\mathbf{v}_1=\begin{bmatrix}(1+\sqrt{5})/2\\1\end{bmatrix}\\
+\lambda_2&=(1-\sqrt{5})/2\quad\text{Eigenvector: }\mathbf{v}_2=\begin{bmatrix}(1-\sqrt{5})/2\\1\end{bmatrix}
+\end{align*}
+Given this information, we construct the matrix that diagonalizes $A$:
+\[
+P=\begin{bmatrix}(1+\sqrt{5})/2&(1-\sqrt{5})/2\\1&1\end{bmatrix},\quad
+P^{-1}=\frac{1}{\sqrt{5}}
+\begin{bmatrix}1&-(1-\sqrt{5})/2\\-1&(1+\sqrt{5})/2\end{bmatrix}
+\]
+Then:
+\[
+P^{-1}AP=\begin{bmatrix}(1+\sqrt{5})/2&0\\0&(1-\sqrt{5})/2\end{bmatrix}
+\]
+Putting all together, we get the following formula for the powers of $A$:
+\[
+A^n=
+\frac{1}{\sqrt{5}}\begin{bmatrix}(1+\sqrt{5})/2&(1-\sqrt{5})/2\\1&1\end{bmatrix}
+\begin{bmatrix}[(1+\sqrt{5})/2]^n&0\\0&[(1-\sqrt{5})/2]^n\end{bmatrix}
+\begin{bmatrix}1&-(1-\sqrt{5})/2\\-1&(1+\sqrt{5})/2\end{bmatrix}
+\]
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

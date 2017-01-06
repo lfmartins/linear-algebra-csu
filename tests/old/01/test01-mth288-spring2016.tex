@@ -1,0 +1,152 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH 288 --- Linear Algebra --- Test 1}
+
+\begin{document}
+
+Name and Student ID: \hrulefill
+
+
+\textbf{Instructions.} All solutions must be justified, unless otherwise stated. Show all work leading to your answer in each problem. Solutions without appropriate work that supports it will receive no credit. All work must be written in the test. Do not attach computer printouts to the test. If not enough space is provided for an answer, continue it in the back of the page.
+
+Please identify your final answer to each problem by surrounding it with a rectangle.
+
+
+\clearpage
+
+\textbf{Problem 1.} (42 points.) Answer the following items based on the linear system below:
+\begin{alignat*}{5}
+ 2x_1 & {}+{} &  6x_2  & {}-{} & 9x_3  & {}-{} & 4x_4 & {}={} &  0 \\
+-3x_1 & {}-{} &  11x_2 & {}+{} & 9x_3  & {}-{} &  x_4 & {}={} &  0 \\
+  x_1 & {}+{} &   4x_2 & {}-{} & 2x_3  & {}+{} &  x_4 & {}={} &  0
+\end{alignat*}
+
+\textbf{(a)} (8 points.) Write the augmented matrix corresponding to this system.
+
+\clearpage
+
+\textbf{(b)} (16 points) Use a sequence of elementary row operations to find a matrix in reduced row echelon form that is equivalent to the matrix in Part (a). Write, in the space provided below, all row operations and intermediate matrices in your computations.
+
+\clearpage
+
+(Extra space for Problem 1, Part b.)
+
+\clearpage
+
+\textbf{(c)} (8 points.) Write the linear system that corresponds to the reduced row echelon form matrix from the previous item.
+
+\vskip4in
+
+\textbf{(d)} (10 points) Determine the set of solution of the system. If there are infinitely many solutions, write the solutions in parametric form, that is, using a set of independent variables ($s_1$, \dots, etc.) to express the values of $x_1$, $x_2$, $x_3$ and $x_4$. Finally, determine if the system has zero, one or infinitely many solutions.
+
+\clearpage
+
+\textbf{Problem 2.} (10 points.)
+When propane burns in oxygen, it produces carbon dioxide and water:
+\[
+\text{C}_3\text{H}_8 + \text{O}_2 \longrightarrow \text{C}\text{O}_2+\text{H}_2\text{O}
+\]
+We want to balance this chemical equation. Write a system of linear equations that can be used to solve this problem, using the following variables:
+\begin{align*}
+x_1 &= \text{(amount of propane $\text{C}_3\text{H}_8$ in the reagents)}\\
+x_2 &= \text{(amount of oxygen $\text{O}_2$ in the reagents})\\
+x_3 &= \text{(amount of carbon dioxide $\text{C}\text{O}_2$ in the products)}\\
+x_4 &= \text{(amount of water $\text{H}_2\text{O}$ in the products)}
+\end{align*}
+
+\emph{It is not necessary to solve the linear system}.
+
+\clearpage
+
+\textbf{Problem 3.} (18 points.) Determine if each of the following statements is true or false, and provide a brief justification for your answer.
+
+\textbf{(a)} (3 points.) A linear system with 3 equations and 3 unknowns always has exactly one solution.
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ False
+
+Justification:
+\vskip1.5in
+
+\textbf{(b)} (3 points.) If a homogeneous system has 5 equations and 8 unknowns, then it must have infinitely many solutions.
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+\vskip1.5in
+
+\textbf{(c)} (3 points.) The matrix below is in reduced row echelon form:
+\[
+\left[
+\begin{matrix}
+1 & 2 & 0 & -1 & 0 & 4\\
+0 & 0 & 1 &  1 & 0 & -2\\
+0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{matrix}
+\right]
+\]
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+\clearpage
+
+\textbf{(d)} (3 points.) If a set of vectors $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3,\mathbf{u}_4\}$ are linearly dependent and $\mathbf{u}_5$ is an arbitrary vector, then the vectors  $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3,\mathbf{u}_4,\mathbf{u}_5\}$ also are linearly dependent.
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+\vskip2in
+
+\textbf{(e)} (3 points.) A set of 8 vectors can span $\R^5$.
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+\vskip2in
+
+\textbf{(f)} (3 points.) Any set of 8 vectors spans $\R^5$.
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+\clearpage
+
+
+\textbf{Problem 4.} (20 points.) To answer the following items, consider the following 3 vectors in $\R^3$:
+
+\[
+\textbf{u}_1=\left[\begin{matrix}  1 \\ 2\\ -3\end{matrix}\right]\quad
+\textbf{u}_2=\left[\begin{matrix}  3 \\ 4\\ 2\end{matrix}\right]\quad
+\textbf{u}_3=\left[\begin{matrix} 7 \\ 8\\ 12\end{matrix}\right]
+\]
+
+\textbf{(a)} (10 points.) Determine if these vectors are linearly independent in $\R^3$. Show all computations, and explain your solution in terms of the definition of linear independence.
+
+\clearpage
+
+\textbf{(b)} (10 points.) Determine if the vector
+\[
+\textbf{v}=\left[\begin{matrix}  1 \\ 4\\ -14\end{matrix}\right]
+\]
+is in the span of the vectors $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\}$. Show all computations, and explain your solution in terms of the definition of span.
+
+\clearpage
+
+\textbf{Problem 5.} (10 points.) Suppose that $\mathbf{v}$ is in the span of the vectors $\{\mathbf{u_1},\mathbf{u}_2\}$. In other words, we are assuming that $\mathbf{v}$ can be written as a linear combination of $\mathbf{u}_1$ and $\mathbf{u}_2$:
+\[
+\mathbf{v}=c_1\mathbf{u}_1+c_2\mathbf{u}_2.
+\]
+
+Show that $v$ is in the span of $\{\mathbf{u}_1+\mathbf{u_2}, \mathbf{u_1}-\mathbf{u_2}\}$. 
+
+%\textbf{Problem .}( points.) 
+
+%\textbf{Problem .}( points.) 
+
+%\textbf{Problem .}( points.) 
+
+
+\end{document}

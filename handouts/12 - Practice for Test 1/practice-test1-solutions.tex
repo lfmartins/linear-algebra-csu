@@ -1,0 +1,981 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Practice for Test 1 --- Solutions to Selected Problems}
+
+\begin{document}
+
+\emph{Note}: The computations used in these solutions are available in the file 
+\[
+\text{\texttt{Solutions-Practice-Test1.ipynb}}
+\] 
+which can be downloaded from the Computing Resources folder in Blackboard.
+
+\textbf{Exercise 1.} Find the solution set for the following systems. To receive full credit, your must include the following:
+\begin{itemize}
+\item The augmented matrix corresponding to the system.
+\item The elementary row operations used to find the RREF equivalent to the augmented matrix. Write the row operations in the order they were used and the final RREF matrix. It is not necessary to write the intermediate matrix.
+\item The solution set, a set of vectors represented as a set of vectors represented in parametric form.
+\end{itemize} 
+
+\begin{enumerate}
+\item \begin{alignat*}{15}
+&{}{}&&{}{}&x_{3} &{}-{}& x_{4} &{}+{}& x_{5} &{}+{}& 5 x_{6} &{}={}&0\\ 
+x_{1} &{}-{}& 2 x_{2} &{}+{}& x_{3} &{}-{}& x_{4}&{}{}& &{}+{}& x_{6} &{}={}&-8\\ 
+- 3 x_{1} &{}+{}& 6 x_{2} &{}+{}& 2 x_{3} &{}-{}& 2 x_{4} &{}-{}& x_{5} &{}+{}& 10 x_{6} &{}={}&6\\ 
+- 2 x_{1} &{}+{}& 4 x_{2}&{}{}&&{}{}& &{}-{}& 3 x_{5} &{}-{}& 2 x_{6} &{}={}&1 
+\end{alignat*}
+
+\end{enumerate}
+
+\emph{Solution}: The augmented matrix for the system is:
+\[
+\left[\begin{matrix*}[r]0 & 0 & 1 & -1 & 1 & 5 & 0\\1 & -2 & 1 & -1 & 0 & 1 & -8\\-3 & 6 & 2 & -2 & -1 & 10 & 6\\-2 & 4 & 0 & 0 & -3 & -2 & 1\end{matrix*}\right]
+\]
+
+Using the following sequence of row operations:
+\[
+\begin{matrix*}[l]
+\mathtt{R1<=>R2}\\
+\mathtt{R1*(3)+R3=>R3}\\
+\mathtt{R1*(2)+R4=>R4}\\
+\mathtt{R2*(-1)+R1=>R1}\\
+\mathtt{R2*(-5)+R3=>R3}\\
+\mathtt{R2*(-2)+R4=>R4}\\
+\mathtt{R3*(-1/6)=>R3}\\
+\mathtt{R3*(1)+R1=>R1}\\
+\mathtt{R3*(-1)+R2=>R2}\\
+\mathtt{R3*(5)+R4=>R4}\\
+\end{matrix*}
+\]
+we obtain the following RREF:
+\[
+\left[\begin{matrix*}[r]1 & -2 & 0 & 0 & 0 & -2 & -5\\0 & 0 & 1 & -1 & 0 & 3 & -3\\0 & 0 & 0 & 0 & 1 & 2 & 3\\0 & 0 & 0 & 0 & 0 & 0 & 0\end{matrix*}\right]
+\]
+
+The system corresponding to the RREF is:
+
+\begin{alignat*}{15}
+x_1 &{}-{}& 2x_2 &{}{}&        &{}{}&        &{}{}&       &{}-{}& 2x_{6} &{}={}& -5\\ 
+    &{}{}&       &{}{}&  x_{3} &{}-{}& x_{4} &{}{}&       &{}+{}& 3x_{6} &{}={}& -3\\ 
+    &{}{}&       &{}{}&        &{}{}&        &{}{}& x_{5} &{}+{}& 2x_{6} &{}={}&  3\\ 
+    &{}{}&       &{}{}&        &{}{}&        &{}{}&       &{}{}&       0 &{}={}&  0 
+\end{alignat*}
+
+\begin{itemize}
+\item Pivot variables: $x_1$, $x_3$, $x_4$.
+\item Free variables: $x_2$, $x_4$, $x_6$.
+\end{itemize}
+
+Pivot variables in terms of free variables:
+\begin{alignat*}{5}
+x_1 &{}={}& -5 &{}+{}& 2x_2 &{}{}&      &{}+{}& 2x_6\\
+x_3 &{}={}& -3 &{}{}&       &{}+{}& x_4 &{}-{}& 3x_6\\
+x_5 &{}={}&  3 &{}{}&       &{}{}&      &{}-{}& 2x_6
+\end{alignat*}
+
+Parameter definitions:
+\begin{itemize}
+\item $\lambda_1=x_2$
+\item $\lambda_2=x_4$
+\item $\lambda_3=x_6$
+\end{itemize}
+
+Solution in term of parameters:
+\begin{alignat*}{5}
+x_1 &{}={}& -5 &{}+{}& 2\lambda_1 &{}{}&            &{}+{}& 2\lambda_3\\
+x_2 &{}={}&    &{}{}&   \lambda_1 &{}{}&            &{}{}&            \\
+x_3 &{}={}& -3 &{}{}&             &{}+{}& \lambda_2 &{}-{}& 3\lambda_3\\
+x_4 &{}={}&    &{}{}&             &{}{}&  \lambda_2 &{}{}&            \\
+x_5 &{}={}&  3 &{}{}&             &{}{}&            &{}-{}& 2\lambda_3\\
+x_6 &{}={}&    &{}{}&             &{}{}&             &{}{}&  \lambda_3\\
+\end{alignat*}
+
+Solution set in vector-parametric form:
+\[
+\left\{
+\begin{bmatrix*}[r] -5 \\ 0\\ -3\\ 0\\ 3\\ 0\end{bmatrix*}+
+\lambda_1\begin{bmatrix*}[r] 2\\ 1\\ 0\\ 0\\ 0\\ 0\end{bmatrix*}+
+\lambda_2\begin{bmatrix*}[r] 0\\ 0\\ 1\\ 1\\ 0\\ 0\end{bmatrix*}+
+\lambda_3\begin{bmatrix*}[r] 2\\ 0\\ -3\\ 0\\ -2\\ 1\end{bmatrix*}
+\;:\; \lambda_1,\lambda_2,\lambda_3\in\R
+\right\}
+\]
+\proofend
+
+\textbf{Exercise 2.} Determine the geometric nature of the subset of $\R^3$ represented by each of the following set of equations. Show work justifying your solution, including details of the solution of the linear systems.
+
+\begin{enumerate}
+\setcounter{enumi}{1}
+\item 
+\begin{alignat*}{6}
+-3x &{}-{}& 3y &{}-{}& 2z &{}={}& -3\\
+-8x &{}-{}& 5y &{}-{}& 2z &{}={}&  4\\
+ 5x &{}+{}& 3y &{}+{}&  z &{}={}& -8
+\end{alignat*}
+\end{enumerate}
+
+\emph{Solution}:
+
+The augmented matrix for the system is:
+\[
+\left[\begin{matrix*}[r]-3 & -3 & -2 & -3\\-8 & -5 & -2 & 4\\5 & 3 & 1 & -8\end{matrix*}\right]
+\]
+Performing the following sequence of elementary row operations:
+\[
+\begin{matrix*}[l]
+\mathtt{R1*(-1/3)=>R1}\\
+\mathtt{R1*(8)+R2=>R2}\\
+\mathtt{R1*(-5)+R3=>R3}\\
+\mathtt{R2*(1/3)=>R2}\\
+\mathtt{R2*(-1)+R1=>R1}\\
+\mathtt{R2*(2)+R3=>R3}\\
+\mathtt{R3*(-9)=>R3}\\
+\mathtt{R3*(4/9)+R1=>R1}\\
+\mathtt{R3*(-10/9)+R2=>R2}\\
+\end{matrix*}
+\]
+we get the following RREF:
+\[
+\left[\begin{matrix*}[r]1 & 0 & 0 & 17\\0 & 1 & 0 & -46\\0 & 0 & 1 & 45\end{matrix*}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+x_1&=17\\
+x_2&=-46\\
+x_3&=45,
+\end{align*}
+or, in vector form:
+\[
+\left\{
+\begin{bmatrix*}[r] 17\\-46\\45\end{bmatrix*}
+\right\}
+\]
+Since the solution set has only one element, geometrically this is a single point in three-dimensional euclidean space.
+\proofend
+
+\textbf{Exercise 3.} Find, if possible, the inverse of each of the following matrices. To receive full credit, your solution must include the following:
+\begin{itemize}
+\item The given matrix, augmented by the identity of the same order.
+\item The sequence of row operations used to obtain the RREF of the matrix. Write the row operations in the order they were used and the final matrix. It is not necessary to write the intermediate matrices.
+\item If the matrix is invertible, your answer must consist of the inverse of the given matrix (which is a square matrix). If the matrix is not invertible, explain how you came to this conclusion.
+\end{itemize}
+
+\begin{enumerate}
+\item 
+\[
+\left[\begin{matrix*}[r]-31 & -16 & 4 & 2\\4 & 3 & 0 & 1\\13 & 4 & -3 & -4\\-5 & -2 & 1 & 1\end{matrix*}\right]
+\]
+\end{enumerate}
+
+\emph{Solution}:
+
+Augment the given matrix with the $4\times4$ identity:
+\[
+\left[\begin{matrix*}[r]-31 & -16 & 4 & 2 & 1 & 0 & 0 & 0\\4 & 3 & 0 & 1 & 0 & 1 & 0 & 0\\13 & 4 & -3 & -4 & 0 & 0 & 1 & 0\\-5 & -2 & 1 & 1 & 0 & 0 & 0 & 1\end{matrix*}\right]
+\]
+
+Do the following sequence of row operations:
+\[
+\begin{matrix*}[r]
+\mathtt{R1*(-1/31)=>R1}\\
+\mathtt{R1*(-4)+R2=>R2}\\
+\mathtt{R1*(-13)+R3=>R3}\\
+\mathtt{R1*(5)+R4=>R4}\\
+\mathtt{R2*(31/29)=>R2}\\
+\mathtt{R2*(-16/31)+R1=>R1}\\
+\mathtt{R2*(84/31)+R3=>R3}\\
+\mathtt{R2*(-18/31)+R4=>R4}\\
+\mathtt{R3*(29/5)=>R3}\\
+\mathtt{R3*(12/29)+R1=>R1}\\
+\mathtt{R3*(-16/29)+R2=>R2}\\
+\mathtt{R3*(-1/29)+R4=>R4}\\
+\mathtt{R4*(-5)=>R4}\\
+\mathtt{R4*(-2/5)+R1=>R1}\\
+\mathtt{R4*(1/5)+R2=>R2}\\
+\mathtt{R4*(-14/5)+R3=>R3}\\
+\end{matrix*}
+\]
+We get the following RREF:
+\[
+\left[\begin{matrix*}[r]1 & 0 & 0 & 0 & 1 & 4 & 2 & 2\\0 & 1 & 0 & 0 & -2 & -7 & -3 & -1\\0 & 0 & 1 & 0 & -1 & 0 & 3 & 14\\0 & 0 & 0 & 1 & 2 & 6 & 1 & -5\end{matrix*}\right]
+\]
+Since we are able to get the identity matrix on the left half of the augmented matrix, the given matrix is invertible, and its inverse is given by:
+\[
+\left[\begin{matrix*}[r]
+1 & 4 & 2 & 2\\
+-2 & -7 & -3 & -1\\
+-1 & 0 & 3 & 14\\
+2 & 6 & 1 & -5\end{matrix*}
+\right]
+\]
+\proofend
+
+
+\textbf{Exercise 4.} Find a value of $k$ for which the system below is consistent. You must show all work, including the row operations you used to obtain the RREF of the augmented matrix.
+\[
+\left[\begin{matrix*}[r]1 & 2 & -3 & 0 \\2 & 2 & -1 & 2 \\3 & -1 & 2 & -2 \\0 & 5 & -6 & 4 & \end{matrix*}\right]
+\begin{bmatrix}x\\y\\z\\t\end{bmatrix}=
+\begin{bmatrix*}[r] k\\5\\3\\4\end{bmatrix*}
+\]
+
+\emph{Solution}:
+
+The augmented matrix of the system is:
+\[
+\left[\begin{matrix*}[r]1 & 2 & -3 & 0 & k\\2 & 2 & -1 & 2 & 5\\3 & -1 & 2 & -2 & 3\\0 & 5 & -6 & 4 & 4\end{matrix*}\right]
+\]
+Do the following row operations:
+\[
+\begin{matrix*}[l]
+\mathtt{R1*(-2)+R2=>R2}\\
+\mathtt{R1*(-3)+R3=>R3}\\
+\mathtt{R2*(-1/2)=>R2}\\
+\mathtt{R2*(-2)+R1=>R1}\\
+\mathtt{R2*(7)+R3=>R3}\\
+\mathtt{R2*(-5)+R4=>R4}\\
+\mathtt{R3*(-2/13)=>R3}\\
+\mathtt{R3*(-2)+R1=>R1}\\
+\mathtt{R3*(5/2)+R2=>R2}\\
+\mathtt{R3*(-13/2)+R4=>R4}\\
+\end{matrix*}
+\]
+We get the following RREF:
+\[
+\left[\begin{matrix*}[r]1 & 0 & 0 & - \frac{10}{13} & \frac{3 k}{13} + \frac{7}{13}\\0 & 1 & 0 & \frac{32}{13} & - \frac{7 k}{13} + \frac{40}{13}\\0 & 0 & 1 & \frac{18}{13} & - \frac{8 k}{13} + \frac{29}{13}\\0 & 0 & 0 & 0 & - k + 2\end{matrix*}\right]
+\]
+This corresponds to a system where the last equation is:
+\[
+0=-k+2
+\]
+This equation is possible if and only if: \[k=2\].
+\proofend
+
+\textbf{Exercise 5.} Determine if each of the following is a linear transformation. Your answer must be justified in terms of the definition of linear transformation.
+
+\begin{enumerate}
+\item
+\[
+L_1\;:\;\R^3\to\R^2
+\]
+\[
+L_1\left(\begin{bmatrix}x\\y\\z\end{bmatrix}\right)=\begin{bmatrix}2x-y+z\\y-z\end{bmatrix}
+\]
+\end{enumerate}
+
+\emph{Solution}
+We must check if, for an arbitrary pair of vectors:
+\[
+\mathbf{u}=\begin{bmatrix} u_1\\ u_2\\ u_3\end{bmatrix},\quad
+\mathbf{v}=\begin{bmatrix} v_1\\ v_2\\ v_3\end{bmatrix},
+\]
+the linearity relationship is true:
+\[
+L_1(a\mathbf{u}+b\mathbf{v})=aL_1(\mathbf{u})+bL_1(\mathbf{v})
+\]
+for arbitrary scalars $a$ and $b$.
+
+Computation of left-hand side of linearity relationship:
+\begin{align*}
+L_1(a\mathbf{u}+b\mathbf{v})&=
+L_1\left(\begin{bmatrix} au_1+bv_1\\ au_2+bv_2\\ au_3+bv_3\\ \end{bmatrix}\right)\\
+&=\begin{bmatrix}
+2(au_1+bv_1)-(au_2+bv_2)+(au_3+bv_3)\\
+(au_2+bv_2) - (au_3+bv_3)
+\end{bmatrix}\\
+&=\begin{bmatrix}
+2au_1+2bv_1-au_2-bv_2+au_3+bv_3\\
+au_2+bv_2 - au_3-bv_3
+\end{bmatrix}
+\end{align*}
+
+Computation of right-hand side of linearity relationship:
+\begin{align*}
+aL_1(\mathbf{u})+bL_1(\mathbf{v})&=
+aL_1\left(\begin{bmatrix} u_1\\ u_2\\ u_3\\ \end{bmatrix}+
+\right)
+bL_1\left(\begin{bmatrix} v_1\\ bv_2\\ bv_3\\ \end{bmatrix}+
+\right)\\
+&=
+a\begin{bmatrix}2u_1-u_2+u_3\\u_2-u_3\end{bmatrix}+
+b\begin{bmatrix}2v_1-v_2+v_3\\v_2-v_3\end{bmatrix}
+\\
+&=
+\begin{bmatrix} 
+a(2u_1-u_2+u_3)+b(2v_1-v_2+v_3)\\
+a(u_2-u_3)+b(v_2-v_3)
+\end{bmatrix}\\
+&=\begin{bmatrix}
+2au_1-au_2+au_3+2bv_1-bv_2+bv_3\\
+au_2-au_3+bv_2-bv_3\\
+\end{bmatrix}
+\end{align*}
+We must thus check if:
+\[
+\begin{bmatrix}
+2au_1+2bv_1-au_2-bv_2+au_3+bv_3\\
+au_2+bv_2 - au_3-bv_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+2au_1-au_2+au_3+2bv_1-bv_2+bv_3\\
+au_2-au_3+bv_2-bv_3
+\end{bmatrix}
+\]
+Since each of the components of these vectors contains the same terms (in different order), we conclude that the vectors are equal. So, we conclude that:
+\begin{center}
+The function $L_1$ is a linear transformation.
+\end{center}
+\proofend
+
+\textbf{Exercise 6.} The values of a mystery linear operator $L\;:\;\R^3\to\R^2$ are known for the vectors indicated below:
+\[
+L\left(\begin{bmatrix*}[r] 1\\ -1\\ 1\end{bmatrix*}\right)=\begin{bmatrix*}[r] 2\\ 0\end{bmatrix*},\quad
+L\left(\begin{bmatrix*}[r] -1\\ 0\\-1\end{bmatrix*}\right)=\begin{bmatrix*}[r] -3\\ -1\end{bmatrix*},\quad
+L\left(\begin{bmatrix*}[r] 3\\ -2\\ 2\end{bmatrix*}\right)=\begin{bmatrix*}[r] 0\\ 0\end{bmatrix*}.
+\]
+
+\textbf{Part (a).} Find how to represent an arbitrary vector of $\R^3$ as:
+\[
+\begin{bmatrix}x\\y\\c\end{bmatrix}=
+c_1\begin{bmatrix*}[r] 1\\ -1\\ 1\end{bmatrix*}+
+c_2\begin{bmatrix*}[r] -1\\ 0\\-1\end{bmatrix*}+
+c_3\begin{bmatrix*}[r] 3\\ -2\\ 2\end{bmatrix*}
+\]
+Your answer must show how to find $c_1$, $c_2$ and $c_3$ in terms of $x$, $y$, $z$. To receive full credit, you must justify your solution method, and specify all the steps of your computations.
+
+\emph{Solution}:
+This is equivalent to the system:
+\[
+\begin{bmatrix*}[r]
+1&-1&3\\
+-1&0&-2\\
+1&-2&2\\ 
+\end{bmatrix*}
+\begin{bmatrix}c_1\\c_2\\c_3\end{bmatrix}=
+\begin{bmatrix}x\\y\\z\end{bmatrix}
+\]
+where the unknowns are $c_1$, $c_2$ and $c_3$. The augmented matrix for this system is:
+\[
+\left[\begin{matrix*}[r]1 & -1 & 3 & x\\-1 & 0 & -2 & y\\1 & -1 & 2 & z\end{matrix*}\right]
+\]
+The following sequence of elementary row operations:
+\[
+\begin{matrix*}[r]
+\mathtt{R1*(1)+R2=>R2}\\
+\mathtt{R1*(-1)+R3=>R3}\\
+\mathtt{R2*(-1)=>R2}\\
+\mathtt{R2*(1)+R1=>R1}\\
+\mathtt{R3*(-1)=>R3}\\
+\mathtt{R3*(-2)+R1=>R1}\\
+\mathtt{R3*(1)+R2=>R2}\\
+\end{matrix*}
+\]
+yields the RREF:
+\[
+\left[\begin{matrix}1 & 0 & 0 & - 2 x - y + 2 z\\0 & 1 & 0 & - y - z\\0 & 0 & 1 & x - z\end{matrix}\right]
+\]
+Thus, the solution of the system is:
+\begin{align*}
+c_1&=- 2 x - y + 2 z\\
+c_2&=- y - z\\
+c_3&= x - z
+\end{align*}
+\proofend
+
+\textbf{Part (b).} Use the solution to Part (a) and the fact that $L$ is a linear transformation to compute:
+\[
+L\left(\begin{bmatrix*}[r] 3 \\ 11 \\ -5\end{bmatrix*}\right)=? 
+\]
+
+\emph{Solution}:
+We first find a representation:
+\[
+\begin{bmatrix*}[r]3\\11\\-5\end{bmatrix*}=
+c_1\begin{bmatrix*}[r] 1\\ -1\\ 1\end{bmatrix*}+
+c_2\begin{bmatrix*}[r] -1\\ 0\\-1\end{bmatrix*}+
+c_3\begin{bmatrix*}[r] 3\\ -2\\ 2\end{bmatrix*}
+\]
+Using the result from Part (a), with $x=3$, $y=11$, $z=-5$:
+\begin{align*}
+c_1&=(-2)(3)-11+(2)(-5)=-27\\
+c_2&=-11-(-5)=-6\\
+c_3&=3-(-5)=8
+\end{align*}
+So, we have:
+\[
+\begin{bmatrix*}[r]3\\11\\-5\end{bmatrix*}=
+-27\begin{bmatrix*}[r] 1\\ -1\\ 1\end{bmatrix*}
+-6\begin{bmatrix*}[r] -1\\ 0\\-1\end{bmatrix*}+
+8\begin{bmatrix*}[r] 3\\ -2\\ 2\end{bmatrix*}
+\]
+Applying $L$ and using linearity:
+\begin{align*}
+L\left(\begin{bmatrix*}[r]3\\11\\-5\end{bmatrix*}\right)&=L\left(
+-27\begin{bmatrix*}[r] 1\\ -1\\ 1\end{bmatrix*}
+-6\begin{bmatrix*}[r] -1\\ 0\\-1\end{bmatrix*}+
+8\begin{bmatrix*}[r] 3\\ -2\\ 2\end{bmatrix*}\right)\\
+&=
+-27L\left(\begin{bmatrix*}[r] 1\\ -1\\ 1\end{bmatrix*}\right)
+-6L\left(\begin{bmatrix*}[r] -1\\ 0\\-1\end{bmatrix*}\right)+
+8L\left(\begin{bmatrix*}[r] 3\\ -2\\ 2\end{bmatrix*}\right)\\
+&=-27\begin{bmatrix*}[r] 2\\0 \end{bmatrix*}
+-6\begin{bmatrix*}[r] -3\\-1 \end{bmatrix*}
++8\begin{bmatrix*}[r] 0\\0 \end{bmatrix*}\\
+&=
+\begin{bmatrix*}[r] -36\\6 \end{bmatrix*}
+\end{align*}
+\proofend
+
+\textbf{Part (c).} Find the value of $L$ for a generic vector in $\R^3$:
+\[
+L\left(\begin{bmatrix*}[r] x \\ y \\ z\end{bmatrix*}\right)=?
+\]
+Write your solution in terms of a matrix multiplication.
+
+\emph{Solution}:
+We follow the same procedure as in the previous item, but with a generic vector. Recall from Part (a) that we can represent:
+\[
+\begin{bmatrix}x\\y\\c\end{bmatrix}=
+c_1\begin{bmatrix*}[r] 1\\ -1\\ 1\end{bmatrix*}+
+c_2\begin{bmatrix*}[r] -1\\ 0\\-1\end{bmatrix*}+
+c_3\begin{bmatrix*}[r] 3\\ -2\\ 2\end{bmatrix*}
+\]
+where
+\begin{align*}
+c_1&=- 2 x - y + 2 z\\
+c_2&=- y - z\\
+c_3&= x - z
+\end{align*}
+Now, using the linearity property:
+\begin{align*}
+L\left(\begin{bmatrix}x\\y\\z\end{bmatrix}\right)&=
+L\left(
+c_1\begin{bmatrix*}[r] 1\\ -1\\ 1\end{bmatrix*}+
+c_2\begin{bmatrix*}[r] -1\\ 0\\-1\end{bmatrix*}+
+c_3\begin{bmatrix*}[r] 3\\ -2\\ 2\end{bmatrix*}
+\right)\\
+&=
+c_1L\left(\begin{bmatrix*}[r] 1\\ -1\\ 1\end{bmatrix*}\right)+
+c_2L\left(\begin{bmatrix*}[r] -1\\ 0\\-1\end{bmatrix*}\right)+
+c_3L\left(\begin{bmatrix*}[r] 3\\ -2\\ 2\end{bmatrix*}\right)\\
+&=
+c_1\begin{bmatrix*}[r] 2\\0 \end{bmatrix*}
++c_2\begin{bmatrix*}[r] -3\\-1 \end{bmatrix*}
++c_3\begin{bmatrix*}[r] 0\\0 \end{bmatrix*}\\
+&=
+\begin{bmatrix} 2c_1-3c_2\\-c_2\end{bmatrix}\\
+&=
+\begin{bmatrix} 
+2(- 2 x - y + 2 z)-3(- y - z)\\
+-(- y - z) 
+\end{bmatrix}\\
+&=
+\begin{bmatrix}
+-4x+y+7z \\ y+z
+\end{bmatrix}\\
+&=
+\begin{bmatrix*}[r] -4 & 1 & 7 \\ 0 & 1 & 1\end{bmatrix*}
+\begin{bmatrix}x\\y\\z\end{bmatrix}
+\end{align*}
+\proofend
+
+\textbf{Exercise 7.} Answer the following items based on the following vectors in $\R^3$:
+\[
+\mathbf{u}=\begin{bmatrix*}[r] 2\\ -3\\ 0\end{bmatrix*},\quad
+\mathbf{v}=\begin{bmatrix*}[r] 2\\ 2\\ -3\end{bmatrix*},\quad
+\mathbf{w}=\begin{bmatrix*}[r] 1\\ 0\\  2\end{bmatrix*}.
+\]
+
+\begin{enumerate} 
+
+\item Compute the vector $2\mathbf{u}-\mathbf{v}-3\mathbf{w}$.
+
+\emph{Solution}:
+\begin{align*}
+2\mathbf{u}-\mathbf{v}-3\mathbf{w}&=
+2\begin{bmatrix*}[r] 2\\ -3\\ 0\end{bmatrix*}
+-\begin{bmatrix*}[r] 2\\ 2\\ -3\end{bmatrix*}
+-3\begin{bmatrix*}[r] 1\\ 0\\  2\end{bmatrix*}\\
+&=
+\begin{bmatrix}
+(2)(2)-2-(3)(1)\\(2)(-3)-2-(3)(0)\\(2)(0)-(-3)-(3)(2)
+\end{bmatrix}\\
+&=\begin{bmatrix*}[r]-1\\-8\\-3\end{bmatrix*}
+\end{align*}
+\proofend
+
+\item Find $||\mathbf{u}+\mathbf{w}||$.
+
+\emph{Solution}:
+\[
+\mathbf{u}+\mathbf{w}=
+\begin{bmatrix} 2+1\\-3+0\\0+2\end{bmatrix}=
+\begin{bmatrix*}[r] 3\\-3\\2\end{bmatrix*}
+\]
+\[
+||\mathbf{u}+\mathbf{w}||=\sqrt{(3)^2+(-3)^2+(2)^2}=\sqrt{22}
+\]
+\proofend
+
+\item Find the cosine of the angle between $\mathbf{u}$ and $\mathbf{v}$.
+
+\emph{Solution}: Use the formula:
+\[
+\cos\theta = \frac{\mathbf{u}\cdot\mathbf{v}}{||\mathbf{u}||||\mathbf{v}||}
+\]
+We have:
+\[
+\mathbf{u}\cdot\mathbf{v}=(2)(2)+(-3)(2)+(0)(-3)=-2
+\]
+\[
+||\mathbf{u}||=\sqrt{(2)^2+(-3)^2+(0)^2}=\sqrt{13}
+\]
+\[
+||\mathbf{v}||=\sqrt{(2)^2+(2)^2+(-3)^2}=\sqrt{17}
+\]
+So:
+\[
+\cos\theta =\frac{-2}{\sqrt{13}\sqrt{17}}\frac{-2}{\sqrt{221}}
+\]
+\proofend
+
+\item Find, if possible, scalars $a$ and $b$ such that $\mathbf{w}=a\mathbf{u}+b\mathbf{v}$. If it is not possible to find such scalars, explain why.
+
+\emph{Solution}:
+We need to solve:
+\[
+\begin{bmatrix*}[r] 1\\ 0\\  2\end{bmatrix*}=
+a\begin{bmatrix*}[r] 2\\ -3\\ 0\end{bmatrix*}+
+b\begin{bmatrix*}[r] 2\\ 2\\ -3\end{bmatrix*}
+\]
+We can write this as a system:
+\[
+\begin{bmatrix*}[r] 2&2\\-3&2\\0&-3\end{bmatrix*}
+\begin{bmatrix}a\\b\end{bmatrix}=
+\begin{bmatrix*}1\\0\\2\end{bmatrix*}
+\]
+The augmented matrix for this system is:
+\[
+\left[\begin{matrix*}[r]2 & 2 & 1\\-3 & 2 & 0\\0 & -3 & 2\end{matrix*}\right]
+\]
+Doing the following sequence of row operations:
+\[
+\begin{matrix*}[l]
+\mathtt{R1*(1/2)=>R1}\\
+\mathtt{R1*(3)+R2=>R2}\\
+\mathtt{R2*(1/5)=>R2}\\
+\mathtt{R2*(-1)+R1=>R1}\\
+\mathtt{R2*(3)+R3=>R3}\\
+\end{matrix*}
+\]
+yields the following RREF:
+\[
+\left[\begin{matrix*}[r]1 & 0 & \frac{1}{5}\\0 & 1 & \frac{3}{10}\\0 & 0 & \frac{29}{10}\end{matrix*}\right]
+\]
+The last equation in the system corresponding to this augmented matrix is:
+\[
+0=\frac{29}{10}
+\]
+Since this is impossible, the system is inconsistent, and it is not possible to find the required scalars $a$ and $b$.
+\proofend
+\item Find a vector:
+\[
+\begin{bmatrix}x\\y\\z\end{bmatrix}
+\]
+that is orthogonal to both $\mathbf{u}$ and $\mathbf{v}$. How many such vectors exist?
+
+\emph{Solution}:
+Let
+\[
+\mathbf{r}=\begin{bmatrix}x\\y\\z\end{bmatrix}
+\]
+The condition for orthogonality is:
+\[
+\mathbf{u}\cdot\mathbf{r}=0\quad\text{and}\quad\mathbf{u}\cdot\mathbf{r}=0
+\]
+This implies the equations:
+\begin{align*}
+2x-3y&=0\\
+2x+3y-3z&=0
+\end{align*}
+The augmented matrix corresponding to this system is:
+\[
+\left[\begin{matrix*}[r]2 & -3 & 0 & 0\\2 & 3 & -3 & 0\end{matrix*}\right]
+\]
+Doing the sequence of row operations:
+\[
+\begin{matrix*}[l]
+\mathtt{R1*(1/2)=>R1}\\
+\mathtt{R1*(-2)+R2=>R2}\\
+\mathtt{R2*(1/6)=>R2}\\
+\mathtt{R2*(3/2)+R1=>R1}\\
+\end{matrix*}
+\]
+results the RREF:
+\[
+\left[\begin{matrix*}[r]1 & 0 & - \frac{3}{4} & 0\\0 & 1 & - \frac{1}{2} & 0\end{matrix*}\right]
+\]
+The system corresponding to this augmented matrix is:
+\begin{align*}
+x-\frac{3}{4}z&=0\\
+y-\frac{1}{2}z&=0
+\end{align*}
+Expressing the pivot variables $x$, $y$ in terms of the free variable $z$:
+\begin{align*}
+x&=\frac{3}{4}z\\
+y&=\frac{1}{2}z
+\end{align*}
+Define the parameter $\lambda=z$. Then, the solution can be written as:
+\begin{align*}
+x&=\frac{3}{4}\lambda\\
+y&=\frac{1}{2}\lambda\\
+z&=\lambda
+\end{align*}
+In vector form:
+\[
+\left\{
+\lambda\begin{bmatrix}\frac{3}{4}\\\frac{1}{2}\\1\end{bmatrix}
+\;:\;\lambda\in\R
+\right\}
+\]
+We conclude that there are infinitely many vectors that are orthogonal to $\mathbf{u}$ and $\mathbf{v}$ simultaneously. These vectors are all contained in a line that goes through the origin in three-dimensional space.
+\proofend
+
+\end{enumerate}
+
+\textbf{Exercise 8.} Let $\mathbf{u}$ and $\mathbf{v}$ be two arbitrary vectors of $\R^3$:
+\[
+\mathbf{u}=\begin{bmatrix} u_1\\u_2\\u_3 \end{bmatrix}, \quad
+\mathbf{v}=\begin{bmatrix} v_1\\v_2\\v_3 \end{bmatrix}.
+\]
+The \emph{cross product} of $\mathbf{u}$ and $\mathbf{v}$ is defined by:
+\[
+\mathbf{u}\times\mathbf{v} =
+\begin{bmatrix}u_2v_3-u_3v_2 \\ u_3v_1-u_1v_3\\ u_1v_2-u_2v_1\end{bmatrix}
+\]
+Show that $\mathbf{u}\times\mathbf{v}$ is orthogonal to both $u$ and $v$.
+
+\emph{Solution}:
+\begin{align*}
+\mathbf{u}\cdot (\mathbf{u}\times\mathbf{v}) &= 
+u_1(u_2v_3-u_3v_2)+u_2(u_3v_1-u_1v_3)+u_3(u_1v_2-u_2v_1)\\
+&=
+u_1u_2v_3-u_1u_3v_2 + u_2u_3v_1 - u_2u_1v_3 + u_3u_1v_2-u_3u_2v_1\\
+&=(u_1u_2v_3-u_2u_1v_3) + (-u_1u_3v_2+ u_3u_1v_2) + (u_2u_3v_1-u_3u_2v_1)\\
+&=0+0+0=0
+\end{align*}
+This shows that $\mathbf{u}$ and $\mathbf{u}\times\mathbf{v}$ are orthogonal. To complete the solution, use the same method to show that $\mathbf{v}$ and $\mathbf{u}\times\mathbf{v}$ are also orthogonal.
+\proofend
+
+\textbf{Exercise 9.} In the following items, determine if the given set of vectors is a basis of the corresponding vector space. If the set is a basis, show how to represent an arbitrary vector in terms of the basis. If the set is not a basis, explain why.
+
+\begin{enumerate} 
+
+\item In $\R^4$:
+\[
+\mathbf{v}_1=\begin{bmatrix*}[r] 1\\ 3\\ -8\\ 5\end{bmatrix*},\quad
+\mathbf{v}_2=\begin{bmatrix*}[r] 1\\ 2\\ -3\\ 2\end{bmatrix*},\quad
+\mathbf{v}_3=\begin{bmatrix*}[r] -8\\ -3\\ 2\\ -1\end{bmatrix*},\quad
+\mathbf{v}_4=\begin{bmatrix*}[r] 5\\ 2\\ -1\\ 1\end{bmatrix*}.
+\]
+
+\end{enumerate}
+
+\emph{Solution}:
+We must check if it is possible to represent an arbitrary vector of $\R^4$ as:
+\[
+\begin{bmatrix}x\\y\\z\\t\end{bmatrix}=
+c_1\begin{bmatrix*}[r] 1\\ 3\\ -8\\ 5\end{bmatrix*}
++c_2\begin{bmatrix*}[r] 1\\ 2\\ -3\\ 2\end{bmatrix*}
++c_3\begin{bmatrix*}[r] -8\\ -3\\ 2\\ -1\end{bmatrix*}
++c_4\begin{bmatrix*}[r] 5\\ 2\\ -1\\ 1\end{bmatrix*}.
+\]
+In matrix notation, we have to solve the system:
+\[
+\left[\begin{matrix*}[r]
+1 & 1 & -8 & 5 \\
+3 & 2 & -3 & 2 \\
+-8 & -3 & 2 & -1 \\5 & 2 & -1 & 1 
+\end{matrix*}\right]
+\begin{bmatrix}x\\y\\z\\t\end{bmatrix}=
+\begin{bmatrix}c_1\\c_2\\c_3\\c_4\end{bmatrix}
+\]
+The augmented matrix for the system is:
+\[
+\left[\begin{matrix*}[r]1 & 1 & -8 & 5 & x\\3 & 2 & -3 & 2 & y\\-8 & -3 & 2 & -1 & z\\5 & 2 & -1 & 1 & t\end{matrix*}[r]\right]
+\] 
+Now, do the following sequence of row operations:
+\[
+\begin{matrix*}[l]
+\mathtt{R1*(-3)+R2=>R2}\\
+\mathtt{R1*(8)+R3=>R3}\\
+\mathtt{R1*(-5)+R4=>R4}\\
+\mathtt{R2*(-1)=>R2}\\
+\mathtt{R2*(-1)+R1=>R1}\\
+\mathtt{R2*(-5)+R3=>R3}\\
+\mathtt{R2*(3)+R4=>R4}\\
+\mathtt{R3*(1/43)=>R3}\\
+\mathtt{R3*(-13)+R1=>R1}\\
+\mathtt{R3*(21)+R2=>R2}\\
+\mathtt{R3*(24)+R4=>R4}\\
+\mathtt{R4*(43/21)=>R4}\\
+\mathtt{R4*(6/43)+R1=>R1}\\
+\mathtt{R4*(-13/43)+R2=>R2}\\
+\mathtt{R4*(26/43)+R3=>R3}\\
+\end{matrix*}
+\]
+This yields the RREF:
+\[
+\left[\begin{matrix}1 & 0 & 0 & 0 & \frac{2 t}{7} + \frac{x}{7} - \frac{4 y}{7} - \frac{z}{7}\\0 & 1 & 0 & 0 & - \frac{13 t}{21} - \frac{10 x}{21} + \frac{11 y}{7} + \frac{z}{7}\\0 & 0 & 1 & 0 & \frac{26 t}{21} - \frac{x}{21} - \frac{y}{7} + \frac{5 z}{7}\\0 & 0 & 0 & 1 & \frac{43 t}{21} + \frac{4 x}{21} - \frac{3 y}{7} + \frac{8 z}{7}\end{matrix}\right]
+\]
+It follows that the system always have a unique solution:
+\begin{align*}
+\begin{bmatrix}c_1\\c_2\\c_3\\c_4\end{bmatrix}
+\left[\begin{matrix}\frac{2 t}{7} + \frac{x}{7} - \frac{4 y}{7} - \frac{z}{7}\\- \frac{13 t}{21} - \frac{10 x}{21} + \frac{11 y}{7} + \frac{z}{7}\\\frac{26 t}{21} - \frac{x}{21} - \frac{y}{7} + \frac{5 z}{7}\\\frac{43 t}{21} + \frac{4 x}{21} - \frac{3 y}{7} + \frac{8 z}{7}\end{matrix}\right]
+\end{align*}
+We conclude that the given set of vectors \emph{is a basis} of $\R^4$.
+\proofend
+
+\textbf{Exercise 10.} Find the matrix representation of each of the linear transformations below, using the standard basis as both the input and output basis.
+
+\begin{enumerate}
+
+\setcounter{enumi}{1}
+
+\item 
+\[
+L_2\;:\;\R^3\to\R^4
+\]
+\[
+L_2\left(\begin{bmatrix} x\\y\\z\end{bmatrix}\right) = \begin{bmatrix} z\\x+2y\\0\\x+y+3z\end{bmatrix}
+\]
+\end{enumerate}
+
+\emph{Solution}:
+\[
+L_2\left(\begin{bmatrix} x\\y\\z\end{bmatrix}\right)=
+\begin{bmatrix*}[r]
+0 & 0 & 1\\
+1 & 2 & 0\\
+0 & 0 & 0\\
+1 & 1 & 3
+\end{bmatrix*}
+\begin{bmatrix}x\\y\\z\end{bmatrix}
+\]
+\proofend
+
+\textbf{Exercise 11.} The set  $B=\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3\}$, where:
+\[
+\mathbf{v}_1=\begin{bmatrix*}[r] 1\\ 0\\ 1\end{bmatrix*},\quad
+\mathbf{v}_2=\begin{bmatrix*}[r] 1\\ 1\\ 1\end{bmatrix*},\quad
+\mathbf{v}_3=\begin{bmatrix*}[r] 0\\ 1\\ 1\end{bmatrix*}
+\]
+is a basis of $\R^3$ (this is given, you don't need to verify it). Denote by $E$ the standard basis of $\R^3$. Based on this information, answer the following items:
+
+\begin{enumerate}
+\item Find a matrix $P$ that, given any vector representation in base $B$, finds the corresponding representation in base $E$, that is, a matrix such that:
+\[
+\begin{bmatrix}x\\y\\z\end{bmatrix}_E = P \begin{bmatrix}a\\b\\c\end{bmatrix}_B
+\]
+
+\emph{Solution}:
+The representation of an arbitrary vector in terms of the basis is:
+\[
+\begin{bmatrix}x\\y\\z\end{bmatrix}_E=
+a\begin{bmatrix*}[r] 1\\ 0\\ 1\end{bmatrix*}+
+b\begin{bmatrix*}[r] 1\\ 1\\ 1\end{bmatrix*}+
+c\begin{bmatrix*}[r] 0\\ 1\\ 1\end{bmatrix*}=
+\begin{bmatrix*}1&1&0\\0&1&1\\1&1&1\end{bmatrix*}
+\begin{bmatrix}a\\b\\c\end{bmatrix}_B
+\]
+So:
+\[
+P = \begin{bmatrix*}1&1&0\\0&1&1\\1&1&1\end{bmatrix*}
+\]
+\proofend
+
+\item Find a matrix $Q$ that, given any vector representation in base $E$, finds the corresponding representation in base $B$, that is, a matrix such that:
+\[
+\begin{bmatrix}a\\b\\c\end{bmatrix}_B = Q \begin{bmatrix}x\\y\\z\end{bmatrix}_E 
+\]
+
+\emph{Solution}:
+From the previous item, we have:
+\[
+\begin{bmatrix}x\\y\\z\end{bmatrix}_E=
+\begin{bmatrix*}1&1&0\\0&1&1\\1&1&1\end{bmatrix*}
+\begin{bmatrix}a\\b\\c\end{bmatrix}_B
+\]
+So:
+\[
+\begin{bmatrix}a\\b\\c\end{bmatrix}_B=
+\begin{bmatrix*}1&1&0\\0&0&1\\1&1&1\end{bmatrix*}^{-1}
+\begin{bmatrix}x\\y\\z\end{bmatrix}_E
+\]
+To compute the inverse, define the augmented matrix:
+\[
+\left[\begin{matrix}1 & 1 & 0 & 1 & 0 & 0\\0 & 1 & 1 & 0 & 1 & 0\\1 & 1 & 1 & 0 & 0 & 1\end{matrix}\right]
+\]
+Do the following sequence of row operations:
+\[
+\begin{matrix*}[l]
+\mathtt{R1*(-1)+R3=>R3}\\
+\mathtt{R2*(-1)+R1=>R1}\\
+\mathtt{R3*(1)+R1=>R1}\\
+\mathtt{R3*(-1)+R2=>R2}\\
+\end{matrix*}
+\]
+This yields the matrix:
+\[
+\left[\begin{matrix*}[r]1 & 0 & 0 & 0 & -1 & 1\\0 & 1 & 0 & 1 & 1 & -1\\0 & 0 & 1 & -1 & 0 & 1\end{matrix*}\right]
+\]
+We conclude that:
+\[
+\begin{bmatrix}a\\b\\c\end{bmatrix}_B=
+\left[\begin{matrix*}[r] 0 & -1 & 1\\ 1 & 1 & -1\\ -1 & 0 & 1\end{matrix*}\right]
+\begin{bmatrix}x\\y\\z\end{bmatrix}_E
+\]
+\proofend
+
+\item A linear transformation $L\;:\;\R^3\to\R^3$ is given by:
+\[
+L\left(\begin{bmatrix}x\\y\\z\end{bmatrix}\right)=\begin{bmatrix}x+y\\y-2z\\3x-y+z\end{bmatrix}
+\]
+Find the matrix representation of $L$ from the input basis $B$ to the output basis $E$. Recall that this is a matrix $A$ such that, given any vector $\mathbf{u}$,
+we can find $L(\mathbf{u})$ by matrix multiplication:
+\[
+[L(\mathbf{u})]_E=A[\mathbf{u}]_B
+\]
+
+\emph{Solution}:
+To find the required matrix, evaluate the transformation $L$ at the vectors of the basis:
+\[
+L\left(\begin{bmatrix*}[r] 1\\ 0\\ 1\end{bmatrix*}\right)=
+\begin{bmatrix}1+0\\0-(2)(1)\\(3)(1)-0+1\end{bmatrix}=
+\begin{bmatrix*}[r]1\\-2\\3\end{bmatrix*}
+\]
+\[
+L\left(\begin{bmatrix*}[r] 1\\ 1\\ 1\end{bmatrix*}\right)=
+\begin{bmatrix}1+2\\1-(2)(1)\\(3)(1)-1+1\end{bmatrix}=
+\begin{bmatrix*}[r]3\\-1\\3\end{bmatrix*}
+\]
+\[
+L\left(\begin{bmatrix*}[r] 0\\ 1\\ 1\end{bmatrix*}\right)=
+\begin{bmatrix}0+1\\1-(2)(1)\\(3)(0)-1+1\end{bmatrix}=
+\begin{bmatrix*}[r]1\\-1\\0\end{bmatrix*}
+\]
+The matrix we want is obtained by letting its columns be the vectors computed above:
+\[
+A = \begin{bmatrix*}[r]1&3&1\\-2&-1&-1\\3&3&0\end{bmatrix*}
+\]
+\proofend
+
+\item Find the matrix representation of the linear transformation $L$ from the previous item from the input basis $B$ to the input basis $B$.
+
+\emph{Hint}: This can be solved very quickly if you put together items (2) and (3).
+\end{enumerate}
+
+\emph{Solution}: We want a matrix f{$M$ such that, for every vector $\mathbf{u}$:
+\[
+[L(\mathbf{u})]_B=M[\mathbf{u}]_B
+\]
+From Part 3, we have:
+\[
+[L(\mathbf{u})]_E=\begin{bmatrix*}[r]1&3&1\\-2&-1&-1\\3&3&0\end{bmatrix*}[\mathbf{u}]_B
+\]
+From Part 2, to get the coordinates on base $B$ of any vector, we have to left-multiply it by the matrix:
+\[
+\left[\begin{matrix*}[r] 0 & -1 & 1\\ 1 & 1 & -1\\ -1 & 0 & 1\end{matrix*}\right]
+\]
+So:
+\[
+[L(\mathbf{u})]_B = \left[\begin{matrix*}[r] 0 & -1 & 1\\ 1 & 1 & -1\\ -1 & 0 & 1\end{matrix*}\right]
+[L(\mathbf{u})]_E=\left[\begin{matrix*}[r] 0 & -1 & 1\\ 1 & 1 & -1\\ -1 & 0 & 1\end{matrix*}\right]
+\begin{bmatrix*}[r]1&3&1\\-2&-1&-1\\3&3&0\end{bmatrix*}[\mathbf{u}]_B=
+\left[\begin{matrix*}[r]5 & 4 & 1\\-4 & -1 & 0\\2 & 0 & -1\end{matrix*}\right][\mathbf{u}]_B
+\]
+We conclude that the matrix we are looking for is:
+\[
+M = \left[\begin{matrix*}[r]5 & 4 & 1\\-4 & -1 & 0\\2 & 0 & -1\end{matrix*}\right]
+\]
+\proofend
+
+\textbf{Exercise 12.} Let $A$ be the matrix:
+\[
+\begin{bmatrix} 1 & a & b \\ 0 & 1 & c \\ 0 & 0 & 1\end{bmatrix},
+\] 
+where $a$, $b$ and $c$ are arbitrary real numbers. Show that this matrix is invertible, and find $A^{-1}$. Your answer will be a matrix in terms of $a$, $b$ and $c$. Provide a full justification with your solution.
+
+\emph{Solution}:
+Augment the given matrix with the $3\times3$ identity:
+\[
+\begin{bmatrix}
+1 & a & b & 1 & 0 & 0\\
+0 & 1 & c & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 0 & 1
+\end{bmatrix}
+\]
+Then, use elementary row operations to find the RREF of the matrix:
+\begin{align*}
+\begin{bmatrix}
+1 & a & b & 1 & 0 & 0\\
+0 & 1 & c & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 0 & 1
+\end{bmatrix}
+&\xrightarrow{\mathtt{R2*(-a)+R1=>R1}}\\
+\begin{bmatrix}
+1 & 0 & b-ac & 1 & -a & 0\\
+0 & 1 & c    & 0 &  1 & 0\\
+0 & 0 & 1    & 0 &  0 & 1
+\end{bmatrix}
+&\xrightarrow{\mathtt{R3*(ac-b)+R1=>R1}}\\
+\begin{bmatrix}
+1 & 0 & 0 & 1 & -a & ac-b\\
+0 & 1 & c & 0 &  1 & 0\\
+0 & 0 & 1 & 0 &  0 & 1
+\end{bmatrix}
+&\xrightarrow{\mathtt{R3*(-c)+R2=>R2}}\\
+\begin{bmatrix}
+1 & 0 & 0 & 1 & -a & ac-b\\
+0 & 1 & 0 & 0 &  1 & -c\\
+0 & 0 & 1 & 0 &  0 & 1
+\end{bmatrix}
+\end{align*}
+It follows that the inverse of the given matrix is:
+\[
+\begin{bmatrix}
+ 1 & -a & ac-b\\
+ 0 &  1 & -c\\
+ 0 &  0 & 1
+\end{bmatrix}
+\]
+\proofend
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

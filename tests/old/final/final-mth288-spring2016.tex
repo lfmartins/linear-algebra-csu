@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH 288 --- Linear Algebra --- Final}
+
+\begin{document}
+
+Name and Student ID: \hrulefill
+
+
+\textbf{Instructions.} All solutions must be justified, unless otherwise stated. Show all work leading to your answer in each problem. Solutions without appropriate work that supports it will receive no credit. All work must be written in the test. Do not attach computer printouts to the test. If not enough space is provided for an answer, continue it in the back of the page.
+
+Please identify your final answer to each problem by surrounding it with a rectangle.
+
+
+\textbf{Problem 1.} (15 points.) Determine the set of solutions of the system:
+\[
+\left[\begin{matrix}1 & 2 & 2 & 2 & -3\\2 & 0 & -3 & 3 & 2\\5 & 3 & 4 & 1 & -2\\4 & 9 & 16 & 1 & -15\\7 & 4 & 9 & -3 & -3\end{matrix}\right]
+\begin{bmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{bmatrix}=
+\left[\begin{matrix}14\\-32\\37\\143\\92\end{matrix}\right]
+\]
+Solve this problem by using elementary row operations to find the reduced row echelon form the system's augmented matrix. You can use the compute to perform the row operations, but \emph{you must report all the row operations performed and the resulting matrix of each step of the solution process}.  
+Finally, determine if the system has zero, one or infinitely many solutions.
+
+\vfill
+\clearpage
+(Extra space for Problem 1.)
+
+\clearpage
+
+\textbf{Problem 2.} (10 points.) 
+Determine if the vectors below linearly independent. Show all computations, and explain your solution in terms of the definition of linear independence.
+\[
+\left[\begin{matrix}2\\-3\\2\\4\end{matrix}\right],\quad
+\left[\begin{matrix}1\\-1\\2\\2\end{matrix}\right],\quad
+\left[\begin{matrix}-2\\5\\2\\-4\end{matrix}\right]
+\]
+
+\clearpage
+
+\textbf{Problem 3.} (15 points) Let:
+\[
+\mathbf{u}=\begin{bmatrix}1\\2\\1\end{bmatrix},\quad
+\mathbf{v}=\begin{bmatrix}-1\\3\\2\end{bmatrix},\quad
+\mathbf{w}=\begin{bmatrix}4\\k\\k\end{bmatrix}
+\]
+Find a value of $k$ such that $\mathbf{w}$ is in the span of $\mathbf{u}$, $\mathbf{v}$. Your solution must contain an explanation of how you found $k$.
+
+\clearpage
+
+\textbf{Problem 4.} (15 points.) Find all values of the scalar $a$ for which the matrix below is singular:
+\[
+\left[\begin{matrix}a & 2 & 1\\3 & 1 & -2\\2 & 1 & a\end{matrix}\right]
+\]
+
+\clearpage
+
+\textbf{Problem 5.} (12 points.) Determine if each of the following statements is true or false, and provide a brief justification for your answer. \emph{Solutions without justivication will receive no credit}.
+
+\textbf{(a)} (2 points.) A homogeneous linear system with 3 equations and 5 unknowns always has infinitely many solutions.
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ False
+
+Justification:
+\vfill
+
+\textbf{(b)} (3 points.) The columns space of the matrix below has dimension 3:
+\[
+\begin{bmatrix}
+1 & 2 & 0 & 2\\
+0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0
+\end{bmatrix}
+\]
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+\vfill
+
+\textbf{(c)} (2 points.) The matrix below has rank 2:
+\[
+\left[
+\begin{matrix}
+1 & 2 & 0 & -1 & 0 & 4\\
+0 & 0 & 1 &  1 & 0 & -2\\
+0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{matrix}
+\right]
+\]
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+
+\vfill
+\clearpage
+
+\textbf{(d)} (2 points.) If a set of vectors $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3,\mathbf{u}_4\}$ are linearly dependent and $\mathbf{u}_5$ is an arbitrary vector, then the vectors  $\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3,\mathbf{u}_4,\mathbf{u}_5\}$ also are linearly dependent.
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+\vfill
+
+\textbf{(e)} (2 points.) If $\{\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3\}$ is a basis of $\R^3$ and $A$ is a $3\times 3$ matrix, then $\{A\mathbf{u}_1, A\mathbf{u}_2, A\mathbf{u}_3\}$ is also a basis of $\R^3$
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+\vfill
+
+\textbf{(f)} (2 points.) The two matrices below have the same determinant.
+\[
+\begin{bmatrix}a&b&c\\d&f&g\\h&i&j\end{bmatrix}\quad
+\begin{bmatrix}b+2a&a&c\\f+2d&d&g\\i+2h&h&j\end{bmatrix}
+\]
+
+Circle one:\ \ \ \ \  True\ \ \ \ \ \ \ False
+
+Justification:
+\vfill
+\clearpage
+
+\textbf{Problem 6.} (10 points) Find a basis for the range of the matrix:
+\[
+\left[\begin{matrix}1 & -1 & 2 & 0\\-1 & 1 & 2 & -4\end{matrix}\right]
+\]
+\clearpage
+
+\textbf{Problem 7.} (15 points) Determine if the matrix below is diagonalizable:
+\[
+\left[\begin{matrix}2 & 0 & -4 & 0\\-4 & -2 & 4 & 0\\0 & 0 & -2 & 0\\2 & 2 & -2 & 2\end{matrix}\right]
+\]
+If the matrix is diagonalizable, find a diagonal matrix $D$ and a matrix $P$ such that $P^{-1}AP=D$.
+
+\clearpage
+
+\textbf{Problem 8.} (8 points) Find the general solution of the system of differential equations:
+\begin{align*}
+\mathbf{y}'(t)=
+\begin{bmatrix}-2&-2\\0&3\end{bmatrix}\mathbf{y}(t)
+\end{align*}
+
+
+\end{document}

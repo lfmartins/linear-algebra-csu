@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Vector Spaces}
+
+\begin{document}
+
+\section{Definition of Vector Space}
+
+A \emph{vector space} over $\R$ is a set $V$ with two operations:
+\begin{itemize}
+\item \emph{Vector addition} takes as input two elements of $u\in V$ and $v\in V$, and returns an element $u+v\in V$.
+\item \emph{Multiplication by scalar} takes as input an element $c\in\R$ and an element $v\in V$ and returns an element $cv\in V$.
+\end{itemize}
+The following properties must be satisfied, where $u$, $v$, $w$ are arbitrary elements of $V$ and $a$, $b$, $c$ are arbitrary elements of $\R$:
+\begin{enumerate}
+\item \emph{Commutative property of vector addition}: $u+v=v+y$.
+\item \emph{Associative property of vector addition}: $(u+v)+w=u+(v+w)$.
+\item \emph{Additive Zero} There is a special element $0\in V$ such that $u+0=0$ for all $u\in V$.
+\item \emph{Additive Inverse} For every $v\in V$, there is an element $-v\in V$ such that $v+(-v)=0$. \item \emph{Distributive Law 1} $(a+b)v=av+bv$.
+\item \emph{Distributive Law 2} $a(u+v)=au+av$.
+\item \emph{Associative property} $a(bv)=(ab)v$.
+\item \emph{Unity} $1v=v$. 
+\end{enumerate}
+
+The properties above are known as the vector space \emph{axioms}. Vector spaces are the kind of mathematical structure where we can do linear algebra. Notice that not all properties of vectors are listed above. For example, there is no property that states that $0v=0$ (multiplying the real number $0$ by any vector results in the zero vector). This property, however, can be deduced from the axioms, as follows:
+\[
+0v = (0+0)v=0v+0v
+\]
+Adding the additive inverse of $0v$ to both sides we get $0=0v$, QED.
+
+\section{Examples of Vector Spaces}
+
+\subsection{Euclidean Space}
+The \emph{$n$-dimensional euclidean space} over $\R$ is the set:
+\[
+\R^n=\left\{
+\begin{bmatrix}v_1\\v_2\\\vdots\\v_n\end{bmatrix}
+\;:\; v_i\in\R\text{ for } i=1,2,\ldots,n
+\right\}
+\]
+The vector space operations are defined by:
+\[
+\begin{bmatrix}v_1\\v_2\\\vdots\\v_n\end{bmatrix}+
+\begin{bmatrix}w_1\\w_2\\\vdots\\w_n\end{bmatrix}=
+\begin{bmatrix}v_1+w_1\\v_2+w_2\\\vdots\\v_n+w_n\end{bmatrix}
+\quad\text{and}\quad
+c\begin{bmatrix}v_1\\v_2\\\vdots\\v_n\end{bmatrix}=
+\begin{bmatrix}cv_1\\cv_2\\\vdots\\cv_n\end{bmatrix}
+\]
+
+\subsection{Polynomials with Real Coefficients}
+The \emph{space of polynomials with real coefficients} is
+\[
+\mathbb{P}=
+\left\{
+a_0+a_1x+a_2x^2+\cdots+a_nx^n
+\;:\;
+n\in\N\text{ and } a_i\in\R \text{ for } i=1,2,\ldots,n
+\right\}
+\]
+The vector space operations are defined as follows:
+\[
+(a_0+a_1x+a_2x^2+\cdots+a_nx^n)+
+(b_0+b_1x+b_2x^2+\cdots+b_nx^n)=
+(a_0+b_0)+(a_1+b_1)x+(a_2+b_2)x^2+\cdots+(a_n+b_n)x^n
+\]
+\[
+c(a_0+a_1x+a_2x^2+\cdots+a_nx^n)=(ca_0)+(ca_1)x+(ca_2)x^2+\cdots+(ca_n)x^n
+\]
+
+\subsection{Differentiable Functions}
+
+The \emph{space of differentiable functions} over an interval $I$ is the set of functions:
+\[
+D=\left\{
+f:I\to\R 
+\;:\;
+f'(x)\text{ exists for every } x\in I
+\right\}
+\]
+The vector space operations are defined by:
+\[
+(f+g)(x)=f(x)+g(x)\text{ and }(cf)(x)=c(f(x)).
+\]
+This space is relevant when we study \emph{first order differential equations}.
+
+\end{document}

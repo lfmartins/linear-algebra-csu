@@ -1,0 +1,404 @@
+\documentclass[12pt]{article}
+
+\usepackage{mathtools}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Reduced Row Echelon Exercises}
+
+\begin{document}
+Each of the items below is the augmented matrix of a linear system of equations. Your task is, for each matrix:
+\begin{enumerate}
+\item Identify if the matrix is in reduced row echelon form.
+\item If the matrix is not in RREF, explain why.
+\item If the matrix is in RREF, write the solution of the system using set notation.
+\end{enumerate}
+
+\begin{enumerate}
+\item
+$\begin{bmatrix*}[r]
+1 & 0 & 0 &  2 & -3\\
+0 & 1 & 0 & -2 & 1\\
+0 & 0 & 1 &  1 & 0\\
+\end{bmatrix*}$
+
+\emph{Solution}:
+We first rewrite the augmented matrix as a system. The augmented matrix has 5 columns, so there are 4 variables, since the last column corresponds to the right-hand side of the system. We choose the names $x$, $y$, $z$, $t$ for the variables:
+\begin{alignat*}{8}
+x &{}\quad{}&   &{}\quad{}&   &{}+{}& 2t &{}={}& -3\\
+  &{}{}& y &{}{}&   &{}-{}& 2t &{}={}&  1\\
+  &{}{}&   &{}{}& z &{}+{}&  t &{}={}&  0 
+\end{alignat*}
+There is a standard way to interpret the structure of the system for a RREF:
+\begin{enumerate}
+\item Variables that correspond to columns with pivots are called \emph{pivot variables}. In our example, these are $x$, $y$ and $z$.
+\item Variables that correspond to columns that do not have pivots are called \emph{free variables}. In this example, the only free variable is $t$. 
+\end{enumerate}
+The RREF yields an easy way to express the pivot variables in terms of the free variables:
+\begin{alignat*}{4}
+x &{}={}& -3 &{}-{}& 2t\\
+y &{}={}&  1 &{}+{}& 2t\\
+z &{}={}&    &{}-{}& t
+\end{alignat*}
+The above is one way to express the solutions of the system. We can freely choose the value of $t$, and then compute $x$, $y$ and $z$. We now want to express the solution as a vector:
+\[
+\begin{bmatrix}x\\y\\z\\t\end{bmatrix}
+\]
+We choose a parameter to represent the free variable $t$:
+\[
+t=\lambda_1
+\]
+We can then represent the whole solution (including the free variable $t$) in terms of the parameters $\lambda_1$
+\begin{alignat*}{4}
+x &{}={}& -3 &{}-{}& 2\lambda_1\\
+y &{}={}&  1 &{}+{}& 2\lambda_1\\
+z &{}={}&    &{}-{}&  \lambda_1\\
+t &{}={}&    &{}+{}&  \lambda_1
+\end{alignat*}
+The vector form of the solution can be directly read from this representation:
+\[
+\begin{bmatrix}x\\y\\z\\t\end{bmatrix}=
+\begin{bmatrix*}[r]3\\1\\0\\0\end{bmatrix*}+
+\lambda_1
+\begin{bmatrix*}[r]-2\\2\\-1\\1\end{bmatrix*}
+\]
+The \emph{solution set} is the set of all vectors that are solutions of the system, which, in this case, is:
+\[
+\left\{
+\begin{bmatrix*}[r]3\\1\\0\\0\end{bmatrix*}+
+\lambda_1
+\begin{bmatrix*}[r]-2\\2\\-1\\1\end{bmatrix*}
+\;:\,\lambda_1\in\R\right\}
+\]
+
+We read the above notation as follows:
+
+``\emph{The set of all vectors of the form
+\[
+\begin{bmatrix*}[r]3\\1\\0\\0\end{bmatrix*}+
+\lambda_1
+\begin{bmatrix*}[r]-2\\2\\-1\\1\end{bmatrix*}
+\]
+where $\lambda_1$ is a real number}''
+\proofend
+
+
+\bigskip
+\item
+$\begin{bmatrix*}[r]
+1 & 2 & 0 &  3 & 5\\
+0 & 1 & 0 & -2 & 1\\
+0 & 0 & 1 & -4 & 3\\
+0 & 0 & 0 &  3  & 2\\
+\end{bmatrix*}$
+
+\emph{Solution}: This matrix is not in RREF because the leading element of the last row is 3, not 1.
+\proofend
+
+\bigskip
+\item
+$\begin{bmatrix*}[r]
+1 & 0 & 2 & 0 & 3 & 0 & -5\\
+0 & 0 & 0 & 1 & 4 & 0 & 7\\
+0 & 0 & 0 & 0 & 0 & 1 & 12\\
+0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\end{bmatrix*}$
+
+\emph{Solution}: The system that corresponds to this matrix, using the variables $a$, $b$,\dots, $f$ is:
+\begin{alignat*}{12}
+ a  &{}{}& &{}+{}& 2c&{}{}&   &{}+{}& 3e &{}{}&    &{}={}& -5\\
+    &{}{}& &{}{}&    &{}{}& d &{}+{}& 4e &{}{}&    &{}={}&  7\\
+    &{}{}& &{}{}&    &{}{}&   &{}{}&     &{}{}&  f &{}={}&  12\\
+    &{}{}& &{}{}&    &{}{}&   &{}{}&     &{}{}&  0 &{}={}&  0\\
+    &{}{}& &{}{}&    &{}{}&   &{}{}&     &{}{}&  0 &{}={}&  0
+\end{alignat*}
+Notice that this system has a peculiarity: the second column of the RREF, corresponding to the variable $b$, is all zero. This means that the system does not impose any conditions on the variable $b$, so that it can be chosen arbitrarily. Also notice that the two last equations, $0=0$, are redundant (they don't impose any new conditions). 
+
+The variables can be identified as follows:
+\begin{itemize}
+\item Pivot variables: $a$, $d$ and $f$
+\item Free variables: $b$, $c$ and $e$.
+\end{itemize}
+Expressing the pivot variables in terms of the free variables we get:
+\begin{alignat*}{6}
+a &{}={}& -5 &{}-{}& 2c &{}-{}& 3e\\
+d &{}={}&  7 &{}{}&     &{}-{}& 4e\\
+f &{}={}& 12 &{}{}&     &{}{}&
+\end{alignat*} 
+Let's now choose one parametric variable for each of the free variables:
+\begin{align*}
+b &= \lambda_1 \text{ (don't forget this!)}\\
+c &= \lambda_2\\
+e &= \lambda_3
+\end{align*}
+Writing the solution in terms of the parametric variables:
+\begin{alignat*}{6}
+a &{}={}& -5 &{}\quad{}&           &{}-{}& 2\lambda_2 &{}-{}& 3\lambda_3\\
+b &{}={}&    &{}{}& \lambda_1 &{}{}&             &{}{}&\\
+c &{}={}&    &{}{}&           &{}{}&  \lambda_2  &{}{}&\\
+d &{}={}&  7 &{}{}&           &{}{}&             &{}-{}& 4\lambda_3\\
+e &{}={}&    &{}{}&           &{}{}&             &{}{}&   \lambda_3\\
+f &{}={}& 12
+\end{alignat*} 
+In vector form:
+\[
+\begin{bmatrix}a\\b\\c\\d\\e\\f\end{bmatrix}=
+\begin{bmatrix*}[r]-5\\ 0\\ 0\\ 7\\ 0\\ 12\end{bmatrix*}
++\lambda_1\begin{bmatrix*}[r] 0\\ 1\\ 0\\  0\\  0\\ 0 \end{bmatrix*}
++\lambda_2\begin{bmatrix*}[r]-2\\ 0\\ 1\\  0\\  0\\ 0 \end{bmatrix*}
++\lambda_3\begin{bmatrix*}[r]-3\\ 0\\ 0\\ -4\\  1\\ 0\\ \end{bmatrix*}
+\]
+In set notation:
+\[
+\left\{
+\begin{bmatrix*}[r]-5\\ 0\\ 0\\ 7\\ 0\\ 12\end{bmatrix*}
++\lambda_1\begin{bmatrix*}[r] 0\\ 1\\ 0\\  0\\  0\\ 0 \end{bmatrix*}
++\lambda_2\begin{bmatrix*}[r]-2\\ 0\\ 1\\  0\\  0\\ 0 \end{bmatrix*}
++\lambda_3\begin{bmatrix*}[r]-3\\ 0\\ 0\\ -4\\  1\\ 0\\ \end{bmatrix*}
+\;:\;
+\lambda_1,\lambda_2,\lambda_3\in\R\right\}
+\]
+\endproof
+
+\bigskip
+\item
+$\begin{bmatrix*}[r]
+1 & 2 & 3 & 4 & 5\\
+\end{bmatrix*}$
+
+\emph{Solution}:
+The system is, using the variables $x$, $y$, $u$, $v$:
+\[
+x+2y+3u+4v=5
+\]
+\begin{itemize}
+\item Pivot variable: $x$
+\item Free variables: $y$, $u$, $v$
+\end{itemize}
+Expressing the pivot variable in terms of the free variables:
+\[
+x = 5-2y-3u-4v
+\]
+Choose a parametric variable for each free variable:
+\begin{align*}
+y &= \lambda_1\\
+u &= \lambda_2\\
+v &= \lambda_3
+\end{align*}
+Expressing the solution in terms of the parametric variables:
+\begin{alignat*}{8}
+x &{}={}& 5 &{}-{}& 2\lambda_1 &{}-{}& 3\lambda_2 &{}-{}& 4\lambda_3\\
+y &{}={}&   &{}{}&   \lambda_1 &{}{}&             &{}{}&\\
+u &{}={}&   &{}{}&             &{}{}&   \lambda_2 &{}{}&\\
+v &{}={}&   &{}{}&             &{}{}&             &{}{}& \lambda_3
+\end{alignat*}
+Vector form:
+\[
+\begin{bmatrix}x\\y\\u\\v\end{bmatrix}=
+\begin{bmatrix*}[r] 5\\ 0\\ 0\\ 0\end{bmatrix*}
++\lambda_1\begin{bmatrix*}[r] -2\\ 1\\ 0\\ 0\end{bmatrix*}
++\lambda_2\begin{bmatrix*}[r] -3\\ 0\\ 1\\ 0\end{bmatrix*}
++\lambda_3\begin{bmatrix*}[r] -4\\ 0\\ 0\\ 1\end{bmatrix*}
+\]
+Set notation:
+\[
+\left\{
+\begin{bmatrix*}[r] 5\\ 0\\ 0\\ 0\end{bmatrix*}
++\lambda_1\begin{bmatrix*}[r] -2\\ 1\\ 0\\ 0\end{bmatrix*}
++\lambda_2\begin{bmatrix*}[r] -3\\ 0\\ 1\\ 0\end{bmatrix*}
++\lambda_3\begin{bmatrix*}[r] -4\\ 0\\ 0\\ 1\end{bmatrix*}
+\;:\;
+\lambda_1,\lambda_2,\lambda_3\in\R\right\}
+\]
+
+\bigskip
+\item
+$\begin{bmatrix*}[r]
+1 & 2 & 3 & 0 & 2  & 0 & 5 & 2\\
+0 & 0 & 0 & 1 & -2 & 0 & 3 & -8\\
+0 & 0 & 0 & 0 & 0  & 1 & 4 & 10\\
+\end{bmatrix*}$
+
+\emph{Solution}:
+
+\emph{Note}: This solution describes a streamlined solution method, which is equivalent to what was done for the examples above. \emph{Do not use this method unless you feel comfortable about what you are doing!}
+
+First notice that we have 7 columns that correspond to the variables:
+\begin{itemize}
+\item Pivot columns: 1, 4 and 6.
+\item Non-pivot columns: 2, 3, 5 and 7.
+\end{itemize}
+Lets call the variables $x_1$, $x_2$,\dots $x_7$. Then, the free variables are $x_2$, $x_3$, $x_5$ and $x_7$, and we need four parametric variables:
+\begin{align*}
+x_2 &= \lambda_1\\
+x_3 &= \lambda_2\\
+x_5 &= \lambda_3\\
+x_7 &=\lambda_4
+\end{align*}
+The vector representation of the solution will have the following structure:
+\[
+\begin{bmatrix}x_1\\x_2\\x_3\\x_4\\x_5\\x_6\\x_7\end{bmatrix}
+=
+\begin{bmatrix*}[r]           \quad \\ \\ \\ \\ \\ \\ \\ \end{bmatrix*}
++\lambda_1\begin{bmatrix*}[r] \quad \\ \\ \\ \\ \\ \\ \\ \end{bmatrix*}
++\lambda_2\begin{bmatrix*}[r] \quad \\ \\ \\ \\ \\ \\ \\ \end{bmatrix*}
++\lambda_3\begin{bmatrix*}[r] \quad \\ \\ \\ \\ \\ \\ \\ \end{bmatrix*}
++\lambda_4\begin{bmatrix*}[r] \quad \\ \\ \\ \\ \\ \\ \\ \end{bmatrix*}
+\]
+We now have to fill the entries. We can start with the rows corresponding to the \emph{free variables}:
+\[
+\begin{bmatrix}x_1\\x_2\\x_3\\x_4\\x_5\\x_6\\x_7\end{bmatrix}
+=
+\begin{bmatrix*}[r]           \quad \\ 0\\ 0\\ \\ 0\\ \\ 0\end{bmatrix*}
++\lambda_1\begin{bmatrix*}[r] \quad \\ 1\\ 0\\ \\ 0\\ \\ 0\end{bmatrix*}
++\lambda_2\begin{bmatrix*}[r] \quad \\ 0\\ 1\\ \\ 0\\ \\ 0\end{bmatrix*}
++\lambda_3\begin{bmatrix*}[r] \quad \\ 0\\ 0\\ \\ 1\\ \\ 0\end{bmatrix*}
++\lambda_4\begin{bmatrix*}[r] \quad \\ 0\\ 0\\ \\ 0\\ \\ 1\end{bmatrix*}
+\]
+(Notice that, if we look only at the rows that have the free variables, we have a pattern that is reminiscent of the identity matrix!)
+We can now fill the rows for the other variables. For example, from the first row we get the equation for $x_1$:
+\[
+x_1=2-2x_2-3x_3-2x_5-5x_7=2-2\lambda_1-3\lambda_2-2\lambda_3-5\lambda_4
+\]
+so that we get:
+\[
+\begin{bmatrix}x_1\\x_2\\x_3\\x_4\\x_5\\x_6\\x_7\end{bmatrix}
+=
+\begin{bmatrix*}[r]            2 \\ 0\\ 0\\ \\ 0\\ \\ 0\end{bmatrix*}
++\lambda_1\begin{bmatrix*}[r] -2 \\ 1\\ 0\\ \\ 0\\ \\ 0\end{bmatrix*}
++\lambda_2\begin{bmatrix*}[r] -3 \\ 0\\ 1\\ \\ 0\\ \\ 0\end{bmatrix*}
++\lambda_3\begin{bmatrix*}[r] -2 \\ 0\\ 0\\ \\ 1\\ \\ 0\end{bmatrix*}
++\lambda_4\begin{bmatrix*}[r] -5 \\ 0\\ 0\\ \\ 0\\ \\ 1\end{bmatrix*}
+\]
+Filling the remaining entries, we get:
+\[
+\begin{bmatrix}x_1\\x_2\\x_3\\x_4\\x_5\\x_6\\x_7\end{bmatrix}
+=
+\begin{bmatrix*}[r]            2 \\ 0\\ 0\\ -8\\ 0\\ 10\\ 0\end{bmatrix*}
++\lambda_1\begin{bmatrix*}[r] -2 \\ 1\\ 0\\  0\\ 0\\  0\\ 0\end{bmatrix*}
++\lambda_2\begin{bmatrix*}[r] -3 \\ 0\\ 1\\  0\\ 0\\  0\\ 0\end{bmatrix*}
++\lambda_3\begin{bmatrix*}[r] -2 \\ 0\\ 0\\  2\\ 1\\  0\\ 0\end{bmatrix*}
++\lambda_4\begin{bmatrix*}[r] -5 \\ 0\\ 0\\ -3\\ 0\\ -4\\ 1\end{bmatrix*}
+\]
+\emph{A word of advice}: Be careful with the signs, and where the zero entries should be. After you are finished, as a check, you can work in reverse from the vector representation to see if you get the right RREF.
+
+Finally, in terms of set notation:
+\[
+\left\{
+\begin{bmatrix*}[r]            2 \\ 0\\ 0\\ -8\\ 0\\ 10\\ 0\end{bmatrix*}
++\lambda_1\begin{bmatrix*}[r] -2 \\ 1\\ 0\\  0\\ 0\\  0\\ 0\end{bmatrix*}
++\lambda_2\begin{bmatrix*}[r] -3 \\ 0\\ 1\\  0\\ 0\\  0\\ 0\end{bmatrix*}
++\lambda_3\begin{bmatrix*}[r] -2 \\ 0\\ 0\\  2\\ 1\\  0\\ 0\end{bmatrix*}
++\lambda_4\begin{bmatrix*}[r] -5 \\ 0\\ 0\\ -3\\ 0\\ -4\\ 1\end{bmatrix*}
+\;:\;\lambda_1,\lambda_2,\lambda_3,\lambda_4\in\R\right\}
+\]
+\proofend
+
+\bigskip
+\item
+$\begin{bmatrix*}[r]
+1 & 0 &  2 & 0 & 0 & 0 &  3 &  4 & 9\\
+0 & 1 & -2 & 0 & 0 & 0 & -4 &  0 & 0\\
+0 & 0 &  0 & 1 & 0 & 0 &  0 & -1 & 7\\
+0 & 0 &  0 & 0 & 1 & 3 &  2 &  2 & 8\\
+\end{bmatrix*}$
+
+\emph{Solution}: Using $x_1$, $x_2$, \dots, $x_8$ as variables:
+\begin{itemize}
+\item Pivot variables: $x_1$, $x_2$, $x_4$, $x_5$.
+\item Free variables: $x_3$, $x_6$, $x_7$, $x_8$.
+\end{itemize}
+Parametric variables:
+\begin{align*}
+x_3 &= \lambda_1\\
+x_6 &= \lambda_2\\
+x_7 &= \lambda_3\\
+x_8 &= \lambda_4
+\end{align*}
+Filling the entries of the vector representation we get:
+\[
+\begin{bmatrix}     x_1\\ x_2\\ x_3\\ x_4\\ x_5\\ x_6\\ x_7\\ x_8\\\end{bmatrix}=
+\begin{bmatrix*}[r]   9\\   0\\   0\\   7\\   8\\   0\\   0\\   0\\\end{bmatrix*}+
+\lambda_1
+\begin{bmatrix*}[r]  -2\\   2\\   1\\   0\\   0\\   0\\   0\\   0\\\end{bmatrix*}+ 
+\lambda_2
+\begin{bmatrix*}[r]   0\\   0\\   0\\   0\\  -3\\   1\\   0\\   0\\\end{bmatrix*}+ 
+\lambda_3
+\begin{bmatrix*}[r]  -3\\   4\\   0\\   0\\  -2\\   0\\   1\\   0\\\end{bmatrix*}+ 
+\lambda_4
+\begin{bmatrix*}[r]  -4\\   0\\   0\\   1\\  -2\\   0\\   0\\   1\\\end{bmatrix*} 
+\]
+\proofend
+
+\bigskip
+\item
+$\begin{bmatrix*}[r]
+1 & 0 &  2 & 0 & 1 & 4\\
+0 & 1 & -4 & 0 & 0 & 3\\
+0 & 0 &  0 & 1 & 2 & 5\\
+0 & 0 &  0 & 0 & 0 & 1\\
+\end{bmatrix*}$
+
+\emph{Solution}:
+When we write this as a linear system, the last equation will be:
+\[
+0=1
+\]
+Since this equation is always false, no matter what are the values of the variables, the system has no solutions. We call such a system \emph{inconsistent}. The solution set is the \emph{empty set}:
+\[
+\text{Solution set}=\varnothing
+\]
+\proofend
+
+%\item
+%$\begin{bmatrix*}[r]
+%\end{bmatrix*}$
+
+%\item
+%$\begin{bmatrix*}[r]
+%\end{bmatrix*}$
+
+%\item
+%$\begin{bmatrix*}[r]
+%\end{bmatrix*}$
+
+\end{enumerate}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

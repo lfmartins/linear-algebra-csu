@@ -1,0 +1,383 @@
+\documentclass[12pt]{article}
+
+\usepackage{mathtools}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Gaussian Elimination Algorithm}
+
+\begin{document}
+\section{Introduction}
+In this handout we discuss Gaussian Elimination in detail. The goal is to understand the process of Gaussian Elimination as an \emph{algorithm} - a well-defined sequence of steps that produces a unique result. Gaussian Elimination is fundamental for this course, so it is necessary to understand very well the algorithm and be able to perform it efficiently.
+
+In this handout your will learn:
+
+\begin{itemize}
+\item What are \emph{elementary row operations} and how to use them to obtain a simplified version of a system.
+\item What is \emph{reduced row echelon form} of a matrix, and how it represents a simplified system.
+\item A detailed description of the Gaussian Elimination algorithm. 
+\end{itemize} 
+
+\section{Elementary Row Operations and Equivalence}
+
+The Gaussian Elimination algorithm takes as input a matrix. When used to solve a system of equations, the input matrix is the augmented matrix of a linear system. It then proceeds by performing operations on the rows of the given matrix. The operations we are allowed to perform are called \emph{elementary row operations}, abbreviated ERO, and are summarized on the table below:
+\begin{center}
+\begingroup
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{|c|c|p{3.5in}|}\hline
+\textbf{Generic Name} & \textbf{Symbol} & \textbf{\hfill Description\hfill\hfill}\\\hline
+ERO1 & $\mathbf{Ri*(c)+Rj=>Rj}$ & Multiply row $\mathbf{i}$ by $\mathbf{c}$, add to row $\mathbf{j}$, and store the result in row $\mathbf{j}$. The indices $\mathbf{i}$ and $\mathbf{j}$ must be distinct.\\\hline
+ERO2 & $\mathbf{Ri*(c)=>Ri}$ & Multiply row $\mathbf{i}$ by $\mathbf{c}$ and store the result in row $\mathbf{i}$. The constant $\mathbf{c}$ must be nonzero.\\\hline
+ERO3 & $\mathbf{Ri<=>Rj}$ & Swap rows $\mathbf{i}$ and $\mathbf{j}$. The indices $\mathbf{i}$ and $\mathbf{j}$ must be distinct.\\\hline
+\end{tabular}
+\endgroup
+\end{center}
+
+Using EROs, we can define the following concept:
+
+\begin{definition} We say that two matrices $A$ and $B$ are \emph{equivalent} if there is a sequence of EROs that transform matrix $A$ into matrix $B$. This is denoted by $A\sim B$.
+\end{definition}
+
+\begin{example} Suppose that we start with the matrix:
+\[
+A=\begin{bmatrix}
+1 & -2 &  3 &  0\\
+2 & -4 &  5 & 12\\
+4 &  3 & -3 & 21\\
+\end{bmatrix} 
+\]
+If we apply the ERO $\mathbf{R1*(-2)+R2=>R2}$, we obtain the matrix:
+\[
+B=\begin{bmatrix}
+1 & -2 &  3 &  0\\
+0 &  0 & -1 & 12\\
+4 &  3 & -3 & 21\\
+\end{bmatrix}
+\]
+We can then write $A\sim B$, or, more explicitly:
+\[
+\begin{bmatrix}
+1 & -2 &  3 &  0\\
+2 & -4 &  5 & 12\\
+4 &  3 & -3 & 21\\
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+1 & -2 &  3 &  0\\
+0 &  0 & -1 & 12\\
+4 &  3 & -3 & 21\\
+\end{bmatrix}
+\]
+Let's say that now we apply to matrix $B$ the ERO $\mathbf{R1*(-4)+R3=>R3}$ to obtain:
+\[
+C=\begin{bmatrix}
+1 & -2 &  3  &  0\\
+0 &  0 & -1  & 12\\
+0 & 11 & -15 & 21\\ 
+\end{bmatrix}
+\]
+So we have $B\sim C$, or:
+\[
+\begin{bmatrix}
+1 & -2 &  3 &  0\\
+0 &  0 & -1 & 12\\
+4 &  3 & -3 & 21\\
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+1 & -2 &  3  &  0\\
+0 &  0 & -1  & 12\\
+0 & 11 & -15 & 21\\ 
+\end{bmatrix}
+\]
+Notice that it is also correct to write $A\sim C$, since matrix $C$ was obtained by the application of a sequence of EROs from $A$. If we want to be explicit about the intermediate steps we can write:
+\[
+\begin{bmatrix}
+1 & -2 &  3 &  0\\
+2 & -4 &  5 & 12\\
+4 &  3 & -3 & 21\\
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+1 & -2 &  3 &  0\\
+0 &  0 & -1 & 12\\
+4 &  3 & -3 & 21\\
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+1 & -2 &  3  &  0\\
+0 &  0 & -1  & 12\\
+0 & 11 & -15 & 21\\ 
+\end{bmatrix}
+\]
+\end{example}
+
+\section{Reduced Row Echelon Form}
+
+The goal of Gaussian Elimination is to reach a matrix that is in \emph{reduced row echelon form}. Before we describe this form, let's make a couple conventions:
+
+\begin{definition} The \emph{leading element} of a row is the first nonzero value in the row. A row of zeros does not have a leading term. A \emph{leading column} is a column that contains the leading term of one of the rows.
+\end{definition}
+We are now ready for the main concept:
+
+\begin{definition} We say that a matrix is in \emph{reduced row echelon form}, abbreviated RREF, if:
+\begin{enumerate}
+\item The leading term of all rows is equal to $1$.
+\item The leading term of every row is to the right of the leading term of the previous row.
+\item In any leading column, all entries that are not the leading term of a row are equal to zero.
+\item Rows of zeros, if any, appear at the bottom of the matrix.
+\end{enumerate}
+\end{definition}
+Let's see some examples:
+
+\begin{example}
+The matrix below is in RREF:
+\[
+\begin{bmatrix}
+1 & 2 & 0 & 0 & 0 &  5 & 12\\
+0 & 0 & 1 & 0 & 0 &  2 &  4\\
+0 & 0 & 0 & 1 & 0 & -4 &  2\\
+0 & 0 & 0 & 0 & 1 &  2 & -1\\
+0 & 0 & 0 & 0 & 0 &  0 &  0\\ 
+\end{bmatrix}
+\]
+Let's check the requirements:
+\begin{itemize}
+\item Rows 1, 2, 3 and 4 have leading elements at columns 1, 3, 4 and 5, respectively. Each leading element is equal to 1 and is in a column that is to the right of the leading element on the previous row.
+\item For columns that contain a leading element, all other entries are zero. Notice that columns 2, 5 and 6 do not contain a leading element, so there is no restriction for which values they contain.
+\item There is a row of zeros, that is at the bottom of the matrix.
+\end{itemize}
+\end{example}
+
+\begin{example} Let's consider the following matrix:
+\[
+\begin{bmatrix*}[r]
+1 &  0 & 0 & 4 & 3 &  4\\
+0 & -4 & 0 & 6 & 2 & -1\\
+0 &  0 & 1 & 0 & 2 &  3\\
+\end{bmatrix*}
+\]
+This matrix is not in RREF because the leading term of row 2 is not equal to 1.
+\end{example} 
+
+\begin{example} Let's consider the following matrix:
+\[
+\begin{bmatrix*}[r]
+1 & 0 & 0 &  2 &   4\\
+0 & 0 & 1 & -3 & -15\\
+0 & 1 & 0 &  1 & 
+\end{bmatrix*}
+\]
+This is not in RREF because the leading element of row 3 appears to the left of the leading element of row 2.
+\end{example}
+
+\begin{example} Let's now consider the following matrix:
+\[
+\begin{bmatrix*}[r]
+1 & 2 & 0 &  4\\
+0 & 1 & 0 & -1\\
+0 & 0 & 1 &  1\\ 
+\end{bmatrix*}
+\]
+This matrix is not in RREF because the leading term of row 2 is not the only nonzero element in its column.
+\end{example}
+
+\section{The Gaussian Elimination Algorithm}
+We are now ready to describe the Gaussian Elimination Algorithm
+
+\textbf{Input}: An arbitrary $m\times n$ matrix.
+
+\textbf{Output} A matrix in RREF that is equivalent to the input matrix.
+
+\textbf{Algorithm}:
+
+We initialize the variables $i$ to 1 and $j$ to $0$ and repeat the following steps:
+
+\begin{enumerate}
+\item Find the smallest index $k>j$ such that the matrix has nonzero elements at or below the entry $(i,k)$. If there is no such $k$, the algorithm terminates.
+\item If necessary, swap row $i$ with a row below it so that the element $(i,k)$ is not zero. We call the element $(i,k)$ the \emph{pivot} in this step.
+\item Using EROs, make the current pivot 1 and all other elements in the same column 0.
+\item Let $j=k$ and increment $i$ by $1$. If $i\le m$, go to step 1. Otherwise, the algorithm terminates. 
+\end{enumerate}
+Let's now see an example of the algorithm in action.
+
+\begin{example} Let's solve the system:
+\begin{alignat*}{13}
+ &{}{}& 2 x &{}-{}& 4 y &{}+{}& 4 z &{}+{}& 4 u &{}-{}& 6 v &{}={}-2\\ 
+ &{}{}& 3 x &{}-{}& 6 y &{}+{}& 6 z &{}+{}& u &{}+{}& 2 v &{}={}9\\ 
+ &{}-{}& 2 x &{}+{}& 4 y &{}-{}& 2 z &{}+{}& 4 u &{}+{}& v &{}={}5\\ 
+ &{}{}& 5 x &{}-{}& 10 y &{}+{}& 4 z &{}-{}& 8 u &{}-{}& v &{}={}4\\ 
+ &{}-{}& 7 x &{}+{}& 14 y &{}-{}& 2 z &{}+{}& 17 u &{}+{}& 4 v &{}={}1\\ 
+\end{alignat*}
+The first step is to write the augmented matrix:
+\[
+\left[\begin{matrix*}[r]2 & -4 & 4 & 4 & -6 & -2\\3 & -6 & 6 & 1 & 2 & 9\\-2 & 4 & -2 & 4 & 1 & 5\\5 & -10 & 4 & -8 & -1 & 4\\-7 & 14 & -2 & 17 & 4 & 1\end{matrix*}\right]
+\]
+
+\textbf{Step 1}. Pivot row: 1 
+
+We start concentrating on row 1 of the matrix. Since the element $(1,1)$ equal to $2\ne 0$, we can use this element as the pivot. The first ERO is to multiply row 1 by $1/2$ to obtain a $1$ at the pivot position:
+\[
+\text{ERO: }\mathtt{R1*(1/2)=>R1}\quad\text{Result: }
+\left[\begin{matrix*}[r]1 & -2 & 2 & 2 & -3 & -1\\3 & -6 & 6 & 1 & 2 & 9\\-2 & 4 & -2 & 4 & 1 & 5\\5 & -10 & 4 & -8 & -1 & 4\\-7 & 14 & -2 & 17 & 4 & 1\end{matrix*}\right]
+\]
+To finish this step, we need to make zeros appear on column 1 at the non-pivot entries. For example, we need to multiply row 1 by $-3$ and add to row 3 to get a zero at position $(2,1)$. We need to perform 4 row operations in succession, obtaining the following:
+\[
+\text{EROs: }
+\left\{\begin{matrix*}[l]
+\mathtt{R1*(-3)+R2=>R2}\\
+\mathtt{R1*(2)+R3=>R3}\\
+\mathtt{R1*(-5)+R4=>R4}\\
+\mathtt{R1*(7)+R5=>R5}\\
+\end{matrix*}\right.
+\quad 
+\text{Result: }
+\left[\begin{matrix*}[r]1 & -2 & 2 & 2 & -3 & -1\\0 & 0 & 0 & -5 & 11 & 12\\0 & 0 & 2 & 8 & -5 & 3\\0 & 0 & -6 & -18 & 14 & 9\\0 & 0 & 12 & 31 & -17 & -6\end{matrix*}\right]
+\]
+
+\textbf{Step 2}.  Pivot row: 2
+
+We now move to row 2. However, we see a problem. The natural choice for the next pivot would be in position $(2,2)$. However, this element is zero. In fact, all entries on column 2 under position $(2,2)$ are zero! This means that we cannot use this column for the pivot, and we move to the next column.
+
+In position $(2,3)$ we also have a zero. However, there are nonzero elements under this position, so we can use a swap to get a nonzero pivot:
+\[
+\text{ERO: }\mathtt{R2<=>R3}\quad\text{Result: }
+\left[\begin{matrix*}[r]1 & -2 & 2 & 2 & -3 & -1\\0 & 0 & 2 & 8 & -5 & 3\\0 & 0 & 0 & -5 & 11 & 12\\0 & 0 & -6 & -18 & 14 & 9\\0 & 0 & 12 & 31 & -17 & -6\end{matrix*}\right]
+\]
+Now the pivot is at position $(2,3)$, and has the value $2$. So, we multiply row 2 by $1/2$ to get a 1 at the pivot position:
+\[
+\text{ERO: }\mathtt{R2*(1/2)=>R2}\quad\text{Result: }
+\left[\begin{matrix*}[r]1 & -2 & 2 & 2 & -3 & -1\\0 & 0 & 1 & 4 & - \frac{5}{2} & \frac{3}{2}\\0 & 0 & 0 & -5 & 11 & 12\\0 & 0 & -6 & -18 & 14 & 9\\0 & 0 & 12 & 31 & -17 & -6\end{matrix*}\right]
+\]
+We now use the pivot to get all other entries equal to 0 on column 3:
+\[
+\text{EROs: }
+\left\{\begin{matrix*}[l]
+\mathtt{R2*(-2)+R1=>R1}\\
+\mathtt{R2*(6)+R4=>R4}\\
+\mathtt{R2*(-12)+R5=>R5}\\
+\end{matrix*}\right.
+\quad 
+\text{Result: }
+\left[\begin{matrix*}[r]1 & -2 & 0 & -6 & 2 & -4\\0 & 0 & 1 & 4 & - \frac{5}{2} & \frac{3}{2}\\0 & 0 & 0 & -5 & 11 & 12\\0 & 0 & 0 & 6 & -1 & 18\\0 & 0 & 0 & -17 & 13 & -24\end{matrix*}\right]
+\]
+
+\textbf{Step 3}. Pivot row: 3
+
+No surprises here, the next pivot is at position $(3,4)$, and is equal to $-5$. We perform the needed row operations to get a 1 in the pivot position and zeros everywhere else in column 4:
+\[
+\text{ERO: }\mathtt{R3*(-1/5)=>R3}\quad\text{Result: }
+\left[\begin{matrix*}[r]1 & -2 & 0 & -6 & 2 & -4\\0 & 0 & 1 & 4 & - \frac{5}{2} & \frac{3}{2}\\0 & 0 & 0 & 1 & - \frac{11}{5} & - \frac{12}{5}\\0 & 0 & 0 & 6 & -1 & 18\\0 & 0 & 0 & -17 & 13 & -24\end{matrix*}\right]
+\]
+\[
+\text{EROs: }
+\left\{\begin{matrix*}[l]
+\mathtt{R3*(6)+R1=>R1}\\
+\mathtt{R3*(-4)+R2=>R2}\\
+\mathtt{R3*(-6)+R4=>R4}\\
+\mathtt{R3*(17)+R5=>R5}\\
+\end{matrix*}\right.
+\quad 
+\text{Result: }
+\left[\begin{matrix*}[r]1 & -2 & 0 & 0 & - \frac{56}{5} & - \frac{92}{5}\\0 & 0 & 1 & 0 & \frac{63}{10} & \frac{111}{10}\\0 & 0 & 0 & 1 & - \frac{11}{5} & - \frac{12}{5}\\0 & 0 & 0 & 0 & \frac{61}{5} & \frac{162}{5}\\0 & 0 & 0 & 0 & - \frac{122}{5} & - \frac{324}{5}\end{matrix*}\right]
+\]
+
+\textbf{Step 4}. Pivot row: 4
+
+The pivot position is $(4,5)$, and the pivot is $61/5$:
+\[
+\text{ERO: }\mathtt{R4*(5/61)=>R4}\quad\text{Result: }
+\left[\begin{matrix*}[r]2 & -4 & 4 & 4 & -6 & -2\\3 & -6 & 6 & 1 & 2 & 9\\-2 & 4 & -2 & 4 & 1 & 5\\5 & -10 & 4 & -8 & -1 & 4\\-7 & 14 & -2 & 17 & 4 & 1\end{matrix*}\right]
+\]
+\[
+\text{EROs: }
+\left\{\begin{matrix*}[l]
+\mathtt{R4*(56/5)+R1=>R1}\\
+\mathtt{R4*(-63/10)+R2=>R2}\\
+\mathtt{R4*(11/5)+R3=>R3}\\
+\mathtt{R4*(122/5)+R5=>R5}\\
+\end{matrix*}\right.
+\quad 
+\text{Result: }
+\left[\begin{matrix*}[r]1 & -2 & 0 & 0 & 0 & \frac{692}{61}\\0 & 0 & 1 & 0 & 0 & - \frac{687}{122}\\0 & 0 & 0 & 1 & 0 & \frac{210}{61}\\0 & 0 & 0 & 0 & 1 & \frac{162}{61}\\0 & 0 & 0 & 0 & 0 & 0\end{matrix*}\right]
+\]
+
+\textbf{Step 5}. Pivot row: 5
+
+When we move to the next row, we see that all entries in the row are zero. This means that we cannot have more pivots, and the algorithm terminates. The reader should verify that the matrix is in RREF.
+
+We have to now go back to interpreting the augmented matrix as a system:
+
+\begin{alignat*}{13}
+ &{}\hphantom{+}{}& x &{}-{}& 2 y&{}\hphantom{+}{}&&{}\hphantom{+}{}&&{}\hphantom{+}{}& &{}={}\frac{692}{61}\\ 
+&{}\hphantom{+}{}&&{}\hphantom{+}{}& &{}\hphantom{+}{}& z&{}\hphantom{+}{}&&{}\hphantom{+}{}& &{}={}- \frac{687}{122}\\ 
+&{}\hphantom{+}{}&&{}\hphantom{+}{}&&{}\hphantom{+}{}& &{}\hphantom{+}{}& u&{}\hphantom{+}{}& &{}={}\frac{210}{61}\\ 
+&{}\hphantom{+}{}&&{}\hphantom{+}{}&&{}\hphantom{+}{}&&{}\hphantom{+}{}& &{}\hphantom{+}{}& v &{}={}\frac{162}{61}\\ 
+&{}\hphantom{+}{}&&{}\hphantom{+}{}&&{}\hphantom{+}{}&&{}\hphantom{+}{}&&{}\hphantom{+}{}&0 &{}={}0\\ 
+\end{alignat*}
+
+We can freely choose $y$, and then all the other variables will be determined. We can choose a new variable $\lambda$, and write a general solution of the system as:
+\begin{align*}
+x &= \frac{692}{61}+2\lambda\\
+y &= \lambda\\
+z &= - \frac{687}{122}\\
+u &= \frac{210}{61}\\
+v &= \frac{162}{61}\\
+\end{align*}
+
+We will prefer to represent the solution in terms of vectors:
+\[
+\begin{bmatrix}x\\y\\z\\u\\v\end{bmatrix}=
+\begin{bmatrix*}[r]\frac{692}{61}\\0\\- \frac{687}{122}\\\frac{210}{61}\\\frac{162}{61}\end{bmatrix*}+
+\lambda
+\begin{bmatrix*}[r]2\\1\\0\\0\\0\end{bmatrix*}
+\]
+We can also express this as a \emph{solution set}:
+\[
+\left\{
+\begin{bmatrix*}[r]\frac{692}{61}\\0\\- \frac{687}{122}\\\frac{210}{61}\\\frac{162}{61}\end{bmatrix*}+
+\lambda
+\begin{bmatrix*}[r]2\\1\\0\\0\\0\end{bmatrix*}
+:\lambda \in \R\right\}
+\]
+This is an infinite set, since $\lambda$ can be chosen to be an arbitrary real number. We will see that, since there is only one free parameter, the solution set is a (one-dimensional) line in a five-dimensional space.
+ 
+
+\end{example}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

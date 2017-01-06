@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH 288 --- Linear Algebra --- Test 2}
+
+\begin{document}
+
+Name and Student ID: \hrulefill
+
+
+\textbf{Instructions.} All solutions must be justified, unless otherwise stated. Show all work leading to your answer in each problem. Solutions without appropriate work that supports it will receive no credit. All work must be written in the test. Do not attach computer printouts to the test. If not enough space is provided for an answer, continue the solution on the back of the page.
+
+Unless where specified otherwise, you can use Python to do the following computations:
+\begin{itemize}
+\item Compute the determinant of a matrix.
+\item Factor polynomials or solve equations.
+\item Do any matrix operations, including inversion and solving systems
+\end{itemize}
+If you use the software, please state where and how you are using it. Remember that you are still required to completely justify your answers, with a careful description of the solution process. Also remember that all solutions should be given as \emph{exact} values, not decimal approximations.
+
+Please identify your final answer to each problem by surrounding it with a rectangle.
+
+
+\clearpage
+
+% Eigenvalues and eigenspaces
+\textbf{Problem 1.}(30 points.) Let $A$ be the matrix:
+\[
+A=\left[\begin{matrix}-19 & -10 & 20\\-5 & -14 & 10\\-15 & -15 & 21\end{matrix}\right]
+\]
+
+\textbf{(a)} (15 points) Find all the eigenvalues of $A$, and determine the multiplicity of each eigenvalue.
+
+
+\vfill
+(This problem continues on the next page.)
+\clearpage
+\textbf{(b)} (15 points) Find a basis for the eigenspace associated to each of the eigenvalues of $A$.
+
+\clearpage
+
+\textbf{Problem 2.} (30 points.) Answer the following items for the following basis of $\R^{3}$:
+\[
+{\cal B}=\left\{
+\begin{bmatrix} 1\\ 0\\ 0\end{bmatrix},
+\begin{bmatrix} -1\\ 2\\ 1\end{bmatrix},
+\begin{bmatrix} 1\\ -1\\ 0\end{bmatrix}
+\right\}
+\]
+
+\textbf{(a)} (15 points) Convert the following vector to a coordinate vector with respect to the standard basis: 
+\[
+[\mathbf{x}]_{\cal B}=\begin{bmatrix}2\\-1\\3\end{bmatrix}
+\]
+
+\vfill
+(This problem continues on the next page.)
+\clearpage
+
+\textbf{(b)} (15 points) Convert the following vector to a coordinate vector with respect to the basis ${\cal B}$:
+\[
+\mathbf{x}=\begin{bmatrix}-2\\1\\2\end{bmatrix}
+\]
+\clearpage
+
+\textbf{Problem 3.} (30 points.) Let $A$ be a $4\times 4$ matrix. The following information is given about the eigenvalues and corresponding eigenspaces of the matrix $A$:
+\[
+\text{Eigenvalue: }\lambda_1=1;\quad
+\text{Basis for eigenspace: } \left\{\begin{bmatrix} 2\\ 0\\ 1\\ 1\end{bmatrix},
+\begin{bmatrix} 0\\ 1\\ 2\\ 1\end{bmatrix}\right\}
+\]
+
+\[
+\text{Eigenvalue: }\lambda_2=-2;\quad
+\text{Basis for eigenspace: } \left\{\begin{bmatrix} 0\\ 1\\ 3\\ 1\end{bmatrix},
+\begin{bmatrix} 3\\ 1\\ 4\\ 1\end{bmatrix}\right\}
+\]
+
+Is it possible to determine the matrix $A$ using only this information? If possible, find the matrix $A$. If not, explain why.
+
+\clearpage
+
+\textbf{Problem 4.} (10 points.) Let $a$ be a scalar and consider the matrix:
+\[
+A = \begin{bmatrix}a&1\\0&a\end{bmatrix}
+\]
+Answer the following items for the matrix $A$. Notice that your answers will depend on the unspecified scalar $a$
+
+\textbf{(a)} Determine the eigenvalues of the matrix $A$, and specify the multiplicity of each eigenvalue.
+
+\vskip3in
+
+\textbf{(b)} Find a basis for the eigenspace corresponding to each of the eigenvalues you found in the previous item.
+
+\vfill
+(This problem continues on the next page.)
+\clearpage
+
+\textbf{(c)} Determine if the matrix $A$ is diagonalizable or not, and justify your answer.
+
+
+\end{document}

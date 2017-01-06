@@ -1,0 +1,305 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Everything You Ever Wanted to Know About Linear Systems}
+
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\kernel}{kernel}
+\DeclareMathOperator{\nullity}{nullity}
+
+\begin{document}
+
+
+This handout contains a ``grand summary'' of all we have studied in this course so far. We consider a system of linear equations, written in matrix form:
+\[
+A\mathbf{x}=\mathbf{b}
+\]
+$A$ is a $m\times n$ matrix, $\mathbf{x}$ is a $n\times 1$ vector, and $\mathbf{b}$ is a $m\times1$ vector.
+
+With this system, we associate a linear transformation $L:\R^n\to \R^m$ in the usual way:
+\[
+L(\mathbf{x})=A\mathbf{x}\text{ for $\mathbf{x}$ in $\R^n$.}
+\]
+
+We start, in the next section, by reviewing some key definitions.
+
+\section{Essential Concepts}
+
+It is convenient, to make it easier to state all the results relationships that come up, to introduce some concepts that use the modern language of set theory. In the following definitions, $L:V\to W$ is a linear transformation, and $V$ and $W$ are vector spaces.
+
+\begin{definition} The \emph{range} of $L$ is the set of all vectors $\mathbf{b}$ in $\R^m$ for which there is a vector $\mathbf{x}$ in $\R^n$ such that $L(\mathbf{x})=\mathbf{b}$.
+The range of $L$ is a subspace of $\R^m$, denoted by $\range(L)$. The \emph{rank} of $L$, denoted by $\rank(L)$ is defined as the dimension of $\range(L)$.
+\end{definition}
+
+\begin{definition} The \emph{kernel} of $L$ is the set of all vectors $\mathbf{x}$ in $\R^n$ such that $L(\mathbf{x})=\mathbf{0}$. The kernel of $L$ is denoted by $\kernel(L)$. The \emph{nullity} of $L$, denoted by $\nullity(L)$ is the dimension of $\kernel(L)$.
+\end{definition}
+
+The concepts of range, kernel, rank and nullity have analogous definitions for a matrix $A$. So, for example $\range(A)$ and $\kernel(A)$ are, respectively, the same as $\range(L)$ and $\kernel(L)$, where $L$ is the corresponding linear transformation\footnote{The attentive reader will notice that there may be an ambiguity here, since we could represent the transformation $L$ in a different bases, getting a different matrix $A$. It can be shown that the definitions are consistent, no matter what are the bases that are chosen to represent $L$.}. Notice that, if $A$ is $m\times n$ then $L$ maps $\R^n$ into $\R^m$.
+
+It is important to realize that these concepts are just a new way to describe properties of a system of linear equations:
+
+\begin{itemize}
+\item $\range(L)$ is the set of all vectors $\mathbf{b}$ for which the system $A\mathbf{x}=\mathbf{b}$ has a solution.
+
+\item $\kernel(L)$ is the set of all solutions $\mathbf{x}$ of the system $A\mathbf{x}=\mathbf{0}$.
+\end{itemize}
+
+Also notice that we already have methods of computing the range and kernel. We proceed as follows:
+
+\begin{enumerate}
+
+\item $R$ be the reduced row echelon form of $A$.
+
+\item A basis of $\range(A)$ is given by the columns of $A$ that correspond to pivot columns of $R$. Consequently, $\rank(A)$ is the number of pivot columns in $R$.
+
+\item A basis of $\kernel(A)$ is obtained by the usual procedure of finding a set of solutions of $R\mathbf{x}=\mathbf{0}$. It follows that $\nullity(A)$ is the number of free variable columns in $R$.
+
+\end{enumerate}
+
+This procedure has a very important consequence. The $\rank(A)$ is equal to the number of columns of $A$ corresponding to pivot variables, and $\nullity(A)$ is equal to the number of columns of $A$ corresponding to free variables. Since every column corresponds to either a free variable or a pivot variable we have:
+
+\[
+\rank(A)+\nullity(A)=\text{Number of columns of $A$}
+\]
+
+So, we have the following very important theorem:
+
+\begin{theorem}[\textbf{Rank-Nullity Theorem}] Let $L:V\to W$. Then:
+\[
+\rank(L)+\nullity(L)=\dim(\range(L))+\dim(\kernel(L))=\dim(V)
+\]
+In terms of matrices:
+\[
+\rank(A)+\nullity(A)=\dim(\range(A))+\dim(\kernel(A))=\text{Number of columns of $A$}
+\]
+\end{theorem}
+
+\section{One-to-one and onto}
+
+The two most important questions we can ask about a system of linear equations:
+\[
+A\mathbf{x}=\mathbf{b}
+\]
+are the following:
+\begin{itemize}
+\item \textbf{Existence}. Does the system have solutions $\mathbf{x}$ for a given $\mathbf{b}$?
+\item \textbf{Uniqueness}. Given that the system has solutions, is there only one solution?
+\end{itemize}
+
+These questions can be phrased in terms of linear transformations. Suppose that $L:V\to W$ is an arbitrary linear transformation, where $V$ and $W$ are vector spaces. (You can think of $V=\R^n$ and $W=\R^m$, but the definitions apply to arbitrary spaces.)
+
+\begin{definition} We say that the linear transformation $L$ is \emph{onto} if for every vector $\mathbf{b}$ in $W$, there is a vector $\mathbf{x}$ in $V$ such that $L(\mathbf{x})=\mathbf{b}$. \end{definition}
+
+\begin{definition} We say that the linear transformation $L$ is \emph{one-to-one} if, for every $\mathbf{b}$ in $W$, there is at most one $\mathbf{x}$ in $V$ such that $L(\mathbf{x})=\mathbf{b}$.
+\end{definition}
+
+As usual, we can interpret these definitions in terms of systems. Suppose that $A$ is a $m\times n$ matrix, and let $L$ be the corresponding linear transformation. Then:
+
+\begin{itemize}
+\item $L$ is onto if and only if, for every $\mathbf{b}$ in $\R^m$, the system $A\mathbf{x}=\mathbf{b}$ has a solution.
+\item $L$ is one-to-one if and only if, for every $\mathbf{b}$ in $\R^m$, the system $A\mathbf{x}=\mathbf{b}$ has at most one solutions. That is, if a solution exists, then it is unique.
+\end{itemize}
+
+Now come the first important results of this handout. The notions of onto and one-to-one can be expressed in terms of the subspaces we defined in the previous section. Let's start with a characterization of linear transformations that are onto.
+
+\begin{theorem} 
+\label{characterization-onto}
+Let $L:V\to W$ be a linear transformation. Then, $L$ is onto if and only if any of the following statements is true:
+\begin{enumerate}
+\item $\range(L)=W$
+\item $\rank(L)=\dim(W)$
+\item $\nullity(L)=\dim(V)-\dim(W)$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The first statement is just s restatement of the definition of onto. 
+
+To see why the second statement is equivalent to the first, notice that $\range(L)=W$ if and only if $\rank(L)=\dim(\range(L))=\dim(W)$.
+
+To see that the third statement is equivalent to the second, recall the rank-nullity theorem:
+\[
+\rank(L)+\nullity(L)=\dim(V).
+\]
+So, $\rank(L)=\dim(W)$ if and only if:
+\[
+\dim(W)+\nullity(L)=\dim(V).
+\]
+\end{proof}
+
+The third statement has am important consequence.
+
+\begin{corollary} Let $L:V\to W$ be a linear transformation. If $dim(V)<\dim(W)$, then $L$ cannot be onto.  
+\end{corollary}
+
+\begin{proof}
+By the previous theorem, $L$ is onto if and only if $\nullity(L)=\dim(V)-\dim(W)$. But, if $\dim(V)<\dim(W)$, this would imply $\nullity(L)<0$, which is impossible.
+\end{proof}
+
+\begin{example} Show that there are vectors $\begin{bmatrix}b_1\\b_2\\b_3\\b_4\end{bmatrix}$ for which the system:
+\[
+\begin{bmatrix*}[r]1&2&0\\-3&4&2\\0&5&-10\\2&2&13\end{bmatrix*}
+\begin{bmatrix}x\\y\\z\end{bmatrix}=
+\begin{bmatrix}b_1\\b_2\\b_3\\b_4\end{bmatrix}
+\]
+does not have solutions.
+
+\emph{Solution}: The linear transformation $L$ associated to $A$ maps $\R^3$ into $\R^4$, since $A$ is $4\times3$. Since $\dim(\R^4)>\dim(\R^3)$, $L$ cannot be onto. It follows that there are vectors $\mathbf{b}$ that are not the image $L(\mathbf{x})$ of any $\mathbf{x}$ in $\R^3$. For such vectors $\mathbf{b}$, the system does not have any solution.
+\end{example}
+
+We now turn to the characterization of one-to-one linear transformations.
+
+\begin{theorem}
+\label{characterization-one-to-one}
+Let $L:V\to W$ be a linear transformation, where $V$ and $W$ are arbitrary vector spaces. Then, $L$ is one-to-one if and only if any of the following statements are true:
+\begin{enumerate}
+\item $\kernel(L)=\{\mathbf{0}\}$.
+\item $\nullity(L)=0$.
+\item $\rank(L)=\dim(V)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Let's start by proving that the first statement is equivalent to $L$ being one-to-one. Since we want to prove a ``if and only if'' statement, we break it down into two implications.
+
+First, suppose that $L$ is one-to-one. If $\mathbf{x}$ is in $\kernel(L)$, then, $L(\mathbf{x})=\mathbf{0}=L(\mathbf{0})$, and $L$ being one-to-one implies $\mathbf{x}=\mathbf{0}$. This shows that $\kernel(L)=\{\mathbf{0}\}$.
+
+Now, suppose that $\kernel(L)=\mathbf{0}$. This is equivalent to the following:
+\[
+L(\mathbf{z})=\mathbf{0} \text{ implies } \mathbf{z}=\mathbf{0}.
+\] 
+To show that $L$ is one-to-one, suppose that $L(\mathbf{x})=L(\mathbf{y})$. Then, using linearity , we get:
+\[
+L(\mathbf{x}-\mathbf{y})=L(\mathbf{x})-L(\mathbf{y})=\mathbf{0}
+\]
+Using $\mathbf{z}=\mathbf{x}-\mathbf{y}$ in the previous statement, we get $\mathbf{x}-\mathbf{y}=\mathbf{0}$, that is, $\mathbf{x}=\mathbf{y}$. This implies that $L$ is one-to-one.
+
+The proof that the second statement is equivalent to the first is almost immediate. Just notice that $\kernel(L)=\{\mathbf{0}\}$ if and only if $\nullity(L)=\dim(\kernel(L))=0$.
+
+To prove that the third statement is equivalent to the second, we use the rank-nullity theorem again:
+\[
+\rank(L)+\nullity(L)=\dim(V).
+\]
+From this, it follows immediately that $\nullity(L)=0$ if and only if $\rank(L)=\dim(V)$.
+\end{proof}
+
+\begin{example} Show that the system
+\[
+\begin{bmatrix*}[r]1&2&-2\\-3&0&8\end{bmatrix*}
+\begin{bmatrix}x\\y\\z\end{bmatrix}=
+\begin{bmatrix}0\\0\end{bmatrix}
+\]
+has nonzero solutions.
+
+\emph{Solution}: Let $L$ be the linear transformation associated with the matrix $A$ in the given system. Then, $L$ maps $\R^3$ to $\R^2$, since $A$ is $2\times3$. Notice that the solution set of the system is simply $\kernel(L)$.
+
+Notice that:
+\begin{itemize}
+\item By the third statement in Theorem~\ref{characterization-one-to-one}, $L$ is one-to-one if and only if $\rank(L)=\dim(\R^3)=3$.
+\item $\rank(L)=\dim(\range(L))$, and $\range(L)$ is a subspace of $\R^2$. So, $\rank(L)\le 2$.
+\end{itemize}
+The two statements above imply that $L$ can't be one-to-one. By the first statement in Theorem~\ref{characterization-one-to-one}, this implies that there are nonzero vectors in $\kernel(L)$. Any such vector will be a nonzero solution of the given system.
+\end{example}
+
+The reasoning above is valid for a general matrix $A$, and has the following important consequence:
+
+\begin{theorem} Suppose that $A$ is a $m\times n$ matrix where $n>m$. Then the homogeneous system $A\mathbf{x}=\mathbf{0}$ has infinitely many solutions.
+\end{theorem}
+
+\begin{proof} Let $L:\R^n\to\R^m$ be the linear transformation associated to $A$. Then, $L$ is one-to-one if and only if $\rank(L)=n>m$, which is impossible. So, $L$ is not one-to-one, and $\kernel(L)$ has nonzero vectors. Since $\kernel(L)$ is a subspace, this implies that $\kernel(L)$ is an infinite set. Since the solution set of the system is just the kernel of $L$, this shows that the system has infinitely many solutions.
+\end{proof}
+
+\emph{Note}: We had already proved this result by analyzing the RREF of $A$.
+
+\section{The Alternatives Theorems}
+
+We can now state very general theorems that characterize the structure of the solution sets of linear system. The theorems in this section simply summarize the results from previous sections, so their proofs are ommited.  
+
+In the results below, we assume that $A$ is a $m\times n$ matrix.
+
+\begin{theorem}[\textbf{Alternatives Theorem for Homogeneous Linear Systems}] Consider the system
+\[
+A\mathbf{x}=0
+\]
+Then exactly one of the following alternatives is true:
+\begin{enumerate}
+\item The system has exactly one solution.
+\item The system has infinitely many solutions.
+\end{enumerate}
+Furthermore, we have the following facts:
+\begin{itemize}
+\item Alternative 1 is true if and only if $\nullity(L)=0$ or, equivalently, $\rank(L)=n$.
+\item If $n>m$, Alternative 2 is always true.
+\end{itemize}
+\end{theorem}
+
+For general systems we have the following.
+
+\begin{theorem}[\textbf{Alternatives Theorem for General Linear Systems}] Consider the system
+\[
+A\mathbf{x}=\mathbf{b}
+\]
+Then, for each vector $\mathbf{b}$ in $\R^m$, exactly one of the following alternatives takes place:
+\begin{enumerate}
+\item The system has exactly one solution.
+\item The system has infinitely many solutions.
+\item The system has no solutions.
+\end{enumerate}
+Furthermore, the following statements are true:
+\begin{itemize}
+\item There are vectors $\mathbf{b}$ for which Alternative 1 is true if and only if $\nullity(L)=0$ or, equivalently, $\rank(L)=n$.
+\item If $\nullity(L)>0$ or, equivalently, $\rank(L)<n$, then there are vectors that satisfy Alternative 2.
+\item If $n>m$, then there are vectors for which Alternative 2 is true and Alternative 1 is not possible.
+\item If $n<m$, then there are vectors for which Alternative 3 is true.
+\item If $n\ne m$, then it is not possible that Alternative 1 is true for all vectors $\mathbf{b}$.
+\end{itemize}
+\end{theorem}
+
+\section{Square matrices}
+
+An important case occurs when the the matrix $A$ is square. Then we can give a more precise characterization of the solution set of the system.
+
+\begin{theorem}[\textbf{Alternatives Theorem for Square Matrices}] Let $A$ be a $n\times n$ matrix, and consider the system:
+\[
+A\mathbf{x}=\mathbf{b}
+\]
+Then, the exactly one of the following alternatives takes place:
+\begin{enumerate}
+\item For all vectors $\mathbf{b}$, the system has exactly one solution.
+\item There are vectors $\mathbf{b}$ for which the system has no solution, and there are vectors $\mathbf{b}$ for which the system has infinitely many solutions.
+\end{enumerate}
+Furthermore, Alternative 1 is true if and only if any of the following equivalent statements is true:
+\begin{itemize}
+\item The only solution of the homogeneous system $A\mathbf{x}=\mathbf{0}$ is $\mathbf{x}=\mathbf{0}$.
+\item $\nullity(A)=0$
+\item $\rank(A)=n$
+\item $\det(A)\ne 0$
+\end{itemize}
+\end{theorem}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

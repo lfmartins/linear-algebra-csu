@@ -1,0 +1,726 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Selected Solutions for the Practice Problems for Test 2}
+
+\begin{document}
+
+\bigskip
+\textbf{Exercise 1.} Compute the determinant of the following matrices. Do not use the $\mathtt{det()}$ method. Indicate the method you used to compute the determinant, and show all computations:
+
+\medskip
+(a) $\det\left[\begin{matrix*}[r]1 & 2\\-3 & 1\end{matrix*}\right]=1\times 1-(-3)\times 2=1+6=7$
+\proofend
+
+\medskip
+(b) $\det\left[\begin{matrix*}[r]2 & 0 & -3\\1 & 2 & 0\\3 & -1 & 2\end{matrix*}\right]=
+2\times2\times2 + 0\times0\times3+(-3)\times1\times(-1)-(-3)\times2\times3-2\times0\times(-1)-0\times1\times2$
+$=8+0+3+18-0-0=29$
+
+\bigskip
+\textbf{Exercise 2.} $A$ is a $5\times 5$ matrix and it is known that $\det(A)=-2$. The matrix $B$ is obtained by applying the following operations to $A$:
+\begin{itemize}
+\item Multiply row $3$ row by $2$. The determinant is multiplied by $2$, so the value after this step becomes $-2\times 2=4.$
+\item Add to column $4$ the result of multiplying column $1$ by $-2$. The determinant does not change.
+\item Swap columns $2$ and $5$. The determinant changes sign, so the value after this step is $-(-4)=4$.
+\item Add row $3$ to row $4$. The determinant is not change.
+\item Multiply column $5$ by $-3$. The determinant is multiplied by $-3$, so the value after this step is $4\times(-3)=12$
+\item Swap rows $1$ and $3$. The determinant changes sign, so the value after this step is $-12$.
+\end{itemize} 
+Find $\det(B)$, and justify your answer.
+
+\bigskip
+\textbf{Exercise 3.} Let:
+\[
+\mathbf{v}_1=\left[\begin{matrix*}[r]1\\-2\\2\\3\end{matrix*}\right],\quad
+\mathbf{v}_2=\left[\begin{matrix*}[r]0\\1\\0\\-1\end{matrix*}\right],\quad
+\mathbf{v}_3=\left[\begin{matrix*}[r]2\\-7\\4\\9\end{matrix*}\right],\quad
+\mathbf{v}_4=\left[\begin{matrix*}[r]1\\-1\\0\\3\end{matrix*}\right]
+\]
+Let
+\[
+V=\text{span}\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3,\mathbf{v}_4\}
+\]
+
+\medskip
+(a) Find a basis of $V$. What is the dimension of $V$?
+
+\emph{Solution}: We construct a matrix with the vectors $\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3,\mathbf{v}_4$ on its columns and find the RREF of the matrix:
+\[
+\left[\begin{matrix*}[r]1 & 0 & 2 & 1\\-2 & 1 & -7 & -1\\2 & 0 & 4 & 0\\3 & -1 & 9 & 3\end{matrix*}\right]\sim
+\left[\begin{matrix*}[r]1 & 0 & 2 & 0\\0 & 1 & -3 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{matrix*}\right]
+\]
+The pivots in the RREF are in columns 1, 2 and 4, so $B=\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_4\}$ is a basis for $V$. Since there are three vectors in the basis, the dimension is $3$.
+\proofend
+
+\medskip
+(b) Determine if the vector $\mathbf{w}=\left[\begin{matrix*}[r]3\\-9\\4\\13\end{matrix*}\right]$ is in $V$. If it is, write it as a linear combination of the vectors in the basis you found in the previous item.
+
+\emph{Solution}. We have to determine if there are scalars $c_1$, $c_2$, $c_3$ such that:
+\[
+c_1\left[\begin{matrix*}[r]1\\-2\\2\\3\end{matrix*}\right]+
+c_2\left[\begin{matrix*}[r]0\\1\\0\\-1\end{matrix*}\right]+
+c_3\left[\begin{matrix*}[r]1\\-1\\0\\3\end{matrix*}\right]
+=\left[\begin{matrix*}[r]3\\-9\\4\\13\end{matrix*}\right]
+\]
+Equivalently, we need to solve the system of linear equations:
+\[
+\left[\begin{matrix*}[r]1 & 0 & 1\\-2 & 1 & -1\\2 & 0 & 0\\3 & -1 & 3\end{matrix*}\right]
+\begin{bmatrix}c_1\\c_2\\c_3\end{bmatrix}=
+\left[\begin{matrix*}[r]3\\-9\\4\\13\end{matrix*}\right]
+\]
+Write the augmented matrix for the system and find its RREF:
+\[
+\left[\begin{matrix*}[r]1 & 0 & 1 & 3\\-2 & 1 & -1 & -9\\2 & 0 & 0 & 4\\3 & -1 & 3 & 13\end{matrix*}\right]\sim
+\left[\begin{matrix*}[r]1 & 0 & 0 & 2\\0 & 1 & 0 & -4\\0 & 0 & 1 & 1\\0 & 0 & 0 & 0\end{matrix*}\right]
+\]
+The system corresponding to the RREF is:
+\begin{align*}
+c_1&=2\\
+c_2&=-4\\
+c_3&=1
+\end{align*}
+Since the system has a solution, the vector $\left[\begin{matrix*}[r]3\\-9\\4\\13\end{matrix*}\right]$ is in $V$.
+\proofend
+
+\medskip
+(c) Find a vector in $\mathbb{R}^4$ that is not in $V$.
+
+\emph{Solution} We have to find $w$, $x$, $y$, $z$ for which the system below does not have a solution $c_1$, $c_2$, $c_3$:
+\[
+\left[\begin{matrix*}[r]1 & 0 & 1\\-2 & 1 & -1\\2 & 0 & 0\\3 & -1 & 3\end{matrix*}\right]
+\begin{bmatrix}c_1\\c_2\\c_3\end{bmatrix}=
+\left[\begin{matrix*}[r]w\\x\\y\\z\end{matrix*}\right]
+\]
+We write the augmented matrix and find its RREF:
+\[
+\left[\begin{matrix*}[r]1 & 0 & 1 & w\\-2 & 1 & -1 & x\\2 & 0 & 0 & y\\3 & -1 & 3 & z\end{matrix*}\right]=
+\left[\begin{matrix*}[r]1 & 0 & 0 & \frac{y}{2}\\
+0 & 1 & 0 &  w + x + \frac{y}{2}\\
+0 & 0 & 1 &  w - \frac{y}{2}\\
+0 & 0 & 0 & - 2 w + x + \frac{y}{2} + z\end{matrix*}\right]
+\]
+The system has a solution unless:
+\[
+- 2 w + x + \frac{y}{2} + z\ne 0.
+\]
+We can thus choose any values of $w$, $x$, $y$, $z$ for which the expression above is not zero. For example, we can pick $w,x,y=0$ and $z=1$. So, the vector
+\[
+\begin{bmatrix}0\\0\\0\\1\end{bmatrix}
+\]
+is not in $V$.
+\proofend
+
+\bigskip
+\textbf{Exercise 4.} Let
+\[
+\mathbf{v}_1=\left[\begin{matrix*}[r]0\\-1\\3\\-2\end{matrix*}\right],\quad
+\mathbf{v}_2=\left[\begin{matrix*}[r]2\\0\\1\\3\end{matrix*}\right],\quad
+\mathbf{v}_3=\left[\begin{matrix*}[r]4\\-1\\2\\1\end{matrix*}\right],\quad
+\mathbf{v}_4=\left[\begin{matrix*}[r]2\\0\\1\\0\end{matrix*}\right]
+\]
+
+\medskip
+(a) Show that $B=\{\mathbf{v}_1,\mathbf{v}_2,\mathbf{v}_3,\mathbf{v}_4\}$ is a basis of $\mathbb{R}^4$.
+
+\emph{Solution}: To determine if the given vectors are a basis of $\R^4$, compute the determinant:
+\[
+\det\left[\begin{matrix*}[r]0 & 2 & 4 & 2\\-1 & 0 & -1 & 0\\3 & 1 & 2 & 1\\-2 & 3 & 1 & 0\end{matrix*}\right]=18
+\]
+The determinant was computed in Jupyter, with the function $\det$. Since the determinant is not zero, the given vectors form a basis.
+\proofend
+
+\medskip
+(b) Find the change of basis matrix from basis $B$ to basis $E$, the standard basis of $\mathbb{R}^4$.
+
+\emph{Solution}: This is the same matrix as the one used in the previous item, with the vectors of the basis $B$ on its columns:
+\[
+P=\left[\begin{matrix*}[r]0 & 2 & 4 & 2\\-1 & 0 & -1 & 0\\3 & 1 & 2 & 1\\-2 & 3 & 1 & 0\end{matrix*}\right]
+\] 
+\proofend
+
+\medskip
+(c) Find the change of basis matrix from basis $E$ to basis $B$.
+
+\emph{Solution}: This is the inverse of the matrix from the previous item:
+\[
+P^{-1}=\left[\begin{matrix*}[r]- \frac{1}{6} & 0 & \frac{1}{3} & 0\\- \frac{1}{6} & \frac{1}{3} & \frac{1}{3} & \frac{1}{3}\\\frac{1}{6} & -1 & - \frac{1}{3} & 0\\\frac{1}{3} & \frac{5}{3} & \frac{1}{3} & - \frac{1}{3}\end{matrix*}\right]
+\]
+The inverse was computed with the Python expression:
+
+\begin{lstlisting}
+P**(-1)
+\end{lstlisting}
+\endproof
+
+\medskip
+(d) Find the coordinates in basis $B$ of the vector
+$\begin{bmatrix*}[r]1\\-3\\2\\0\end{bmatrix*}_E$.
+
+\emph{Solution}: The coordinates in base $B$ of the given vector are computed by:
+\[
+P^{-1}\mathbf{v}=\left[\begin{matrix*}[r]- \frac{1}{6} & 0 & \frac{1}{3} & 0\\- \frac{1}{6} & \frac{1}{3} & \frac{1}{3} & \frac{1}{3}\\\frac{1}{6} & -1 & - \frac{1}{3} & 0\\\frac{1}{3} & \frac{5}{3} & \frac{1}{3} & - \frac{1}{3}\end{matrix*}\right]
+\begin{bmatrix*}[r]1\\-3\\2\\0\end{bmatrix*}=
+\left[\begin{matrix*}[r]\frac{1}{2}\\- \frac{1}{2}\\\frac{5}{2}\\-4\end{matrix*}\right]
+\]
+The vector was computed with the following Python code:
+\begin{lstlisting}
+v = Matrix([1, -3, 2, 0])
+P**(-1) * v
+\end{lstlisting}
+\proofend
+
+\bigskip
+\textbf{Exercise 5.} For each of the matrices below, find all eigenvalues and a basis for each eigenspace. Then, determine if the matrix is diagonalizable. If it is, find a matrix $P$ such that $D=P^{-1}AP$ is diagonal, and compute $P^{-1}AP$ to verify that your solution is correct.
+
+\medskip
+(a) $A=\left[\begin{matrix*}[r]2 & 0 & 1\\-3 & 5 & -3\\-6 & 6 & -5\end{matrix*}\right]$
+
+\emph{Solution}:
+To find the eigenvalues we factor the characteristic polynomial:
+\[
+\det(A-\lambda I)=- \left(\lambda - 2\right) \left(\lambda - 1\right) \left(\lambda + 1\right)
+\]
+We conclude that the eigenvalues are $\lambda_1=2$, $\lambda_2=1$ and $\lambda_3=1$
+
+Let's now find a basis for each of the eigenspaces.
+
+\begin{itemize}
+
+\item $\lambda_1=2$. We have to find solutions of the system $(A-2I)\mathbf{v}=\mathbf{0}$. Using the computer, we find the RREF:
+\[
+A-2I\sim\left[\begin{matrix*}[r]1 & -1 & 0\\0 & 0 & 1\\0 & 0 & 0\end{matrix*}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+&x_1-x_2=0\\
+&x_3=0
+\end{align*}
+There is only one free variable, $x_2$, so the eigenspace $E(2)$ has dimension $1$.
+To get a nonzero solution, we can let $x_2=1$, and get $x_1=1$ and $x_3=0$. We conclude that:
+\[
+\text{A basis of $E(2)$ is: } \left\{\begin{bmatrix*}[r]1\\1\\0\end{bmatrix*}\right\}
+\]
+
+\item $\lambda_2=1$. We have to find solutions of the system $(A-1I)\mathbf{v}=\mathbf{0}$. Using the computer, we find the RREF:
+\[
+A-1I\sim\left[\begin{matrix*}[r]1 & 0 & 1\\0 & 1 & 0\\0 & 0 & 0\end{matrix*}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+&x_1+x_3=0\\
+&x_2=0
+\end{align*}
+There is only one free variable, $x_3$, so the eigenspace $E(1)$ has dimension $1$.
+To get a nonzero solution, we can let $x_3=1$, and get $x_1=-1$ and $x_2=0$. We conclude that:
+\[
+\text{A basis of $E(1)$ is: } \left\{\begin{bmatrix*}[r]-1\\0\\1\end{bmatrix*}\right\}
+\]
+
+\item $\lambda_3=-1$. We have to find solutions of the system $(A-(-1)I)\mathbf{v}=\mathbf{0}$. Using the computer, we find the RREF:
+\[
+A-(-1)I\sim\left[\begin{matrix}1 & 0 & \frac{1}{3}\\0 & 1 & - \frac{1}{3}\\0 & 0 & 0\end{matrix}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+&x_1+\frac{1}{3}x_3=0\\
+&x_2-\frac{1}{3}x_3=0
+\end{align*}
+There is only one free variable, $x_3$, so the eigenspace $E(1)$ has dimension $1$.
+To get a nonzero solution, we can let $x_3=3$, and get $x_1=-1$ and $x_2=1$. We conclude that:
+\[
+\text{A basis of $E(2)$ is:} \left\{\begin{bmatrix*}[r]-1\\1\\3\end{bmatrix*}\right\}
+\]
+\end{itemize}
+
+\textbf{Conclusion}: Since we found a total of 3 linearly independent eigenvectors, the matrix is diagonalizable. The columns of the matrix $P$ are the eigenvectors of $A$:
+\[
+P=\left[\begin{matrix*}[r]1 & -1 & -1\\1 & 0 & 1\\0 & 1 & 3\end{matrix*}\right]
+\]
+We can now compute:
+\[
+P^{-1}AP=\left[\begin{matrix*}[r]2 & 0 & 0\\0 & 1 & 0\\0 & 0 & -1\end{matrix*}\right]
+\]
+The product was computed with the following Python expression:
+\begin{lstlisting}
+P**(-1)*A*P
+\end{lstlisting}
+Since this is a diagonal matrix with the eigenvalues of $A$ on its diagonal, our calculations are correct.
+\proofend
+
+\medskip
+(d) $A=\left[\begin{matrix*}[r]-10 & 0 & -10 & 8 & -19\\3 & 1 & 26 & -8 & 11\\-1 & 0 & 3 & 0 & -1\\0 & 0 & 16 & -3 & 4\\5 & 0 & 6 & -4 & 10\end{matrix*}\right]$
+
+\emph{Solution}:
+To find the eigenvalues we factor the characteristic polynomial, using the following code in Jupyter:
+\begin{lstlisting}
+lbd = symbols('lambda')
+p = det(A - lbd*eye(5))
+factor(p)
+\end{lstlisting}
+We get:
+\[
+\det(A-\lambda I)=- \left(\lambda - 1\right)^{3} \left(\lambda + 1\right)^{2}
+\]
+We conclude that the eigenvalues are $\lambda_1=1$ and $\lambda_2=-1$.
+
+Let's now find a basis for each of the eigenspaces.
+
+\begin{itemize}
+
+\item $\lambda_1=1$. We have to find solutions of the system $(A-1I)\mathbf{v}=\mathbf{0}$. 
+We use the following code in Jupyter:
+\begin{lstlisting}
+R = reduced_row_echelon_form(A - 1*eye(5))
+R
+\end{lstlisting}
+This results:
+\[
+A-1I\sim\left[\begin{matrix*}[r]1 & 0 & 0 & - \frac{1}{2} & \frac{3}{2}\\0 & 0 & 1 & - \frac{1}{4} & \frac{1}{4}\\0 & 0 & 0 & 0 & 0\\0 & 0 & 0 & 0 & 0\\0 & 0 & 0 & 0 & 0\end{matrix*}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+&x_1-\frac{1}{2}x_4+\frac{3}{2}x_5=0\\
+&x_3-\frac{1}{4}x_4+\frac{1}{4}x_5=0
+\end{align*}
+There are three free variables, $x_2$, $x_4$ and $x_5$ so the eigenspace $E(1)$ has dimension $3$. To find a basis, we construct the table:
+\[
+\begin{array}{c|rrr}
+x_2 & 1 & 0 & 0\\
+x_4 & 0 & 1 & 0\\
+x_5 & 0 & 0 & 1\\
+x_1=\frac{1}{2}x_4-\frac{3}{2}x_5 & 0 & \frac{1}{2} & -\frac{3}{2}\\
+x_3=\frac{1}{4}x_4-\frac{1}{4}x_5 & 0 & \frac{1}{4} & -\frac{1}{4}
+\end{array}
+\]
+So we get:
+\[
+\text{A basis of $E(1)$ is: } 
+\left\{
+\begin{bmatrix*}0\\1\\0\\0\\0\end{bmatrix*},
+\begin{bmatrix*}[r]\frac{1}{2}\\0\\\frac{1}{4}\\1\\0\end{bmatrix*}
+\begin{bmatrix*}[r]-\frac{3}{2}\\0\\-\frac{1}{4}\\0\\1\end{bmatrix*}
+\right\}
+\]
+
+\item $\lambda_2=-1$. We have to find solutions of the system $(A-(-1)I)\mathbf{v}=\mathbf{0}$. We use the following code in Jupyter:
+\begin{lstlisting}
+R = reduced_row_echelon_form(A - (-1)*eye(5))
+R
+\end{lstlisting}
+This results:
+\[
+A-(-1)I\sim\left[\begin{matrix*}[r]1 & 0 & 0 & 0 & \frac{7}{3}\\0 & 1 & 0 & 0 & \frac{1}{3}\\0 & 0 & 1 & 0 & \frac{1}{3}\\0 & 0 & 0 & 1 & \frac{2}{3}\\0 & 0 & 0 & 0 & 0\end{matrix*}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+&x_1+x_3=0\\
+&x_2=0
+\end{align*}
+There is only one free variable, $x_3$, so the eigenspace $E(1)$ has dimension $1$.
+To get a nonzero solution, we can let $x_3=1$, and get $x_1=-1$ and $x_2=0$. We conclude that:
+\[
+\text{A basis of $E(1)$ is: } \left\{\begin{bmatrix*}[r]-1\\0\\1\end{bmatrix*}\right\}
+\]
+
+\item $\lambda_3=-1$. We have to find solutions of the system $(A-(-1)I)\mathbf{v}=\mathbf{0}$. Using the computer, we find the RREF:
+\[
+A-(-1)I\sim\left[\begin{matrix}1 & 0 & \frac{1}{3}\\0 & 1 & - \frac{1}{3}\\0 & 0 & 0\end{matrix}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+&x_1+\frac{7}{3}x_5=0\\
+&x_2+\frac{1}{3}x_5=0\\
+&x_3+\frac{1}{3}x_5=0\\
+&x_4+\frac{2}{3}x_5=0\\
+\end{align*}
+There is only one free variable, $x_5$, so the eigenspace $E(-1)$ has dimension $1$.
+To get a nonzero solution, we can let $x_5=3$, and get $x_1=-7$, $x_2=-1$, $x_3=-1$ and $x_4=-2$. We conclude that:
+\[
+\text{A basis of $E(-2)$ is:} \left\{\begin{bmatrix*}[r]-7\\-1\\-1\\-2\\3\end{bmatrix*}\right\}
+\]
+\end{itemize}
+
+\textbf{Conclusion}: Since we found a total of 4 linearly independent eigenvectors and $\R^5$ has dimension five, it is not possible to find a basis of eigenvectors, and the matrix is not diagonalizable. 
+\proofend
+
+\bigskip
+\textbf{Exercise 6.} Let
+\[
+\mathbf{v}_1=\begin{bmatrix*}[r]2\\-1\\0\\3\end{bmatrix*},\quad
+\mathbf{v}_2=\begin{bmatrix*}[r]1\\2\\-2\\0\end{bmatrix*}.
+\]
+Find a basis for the subspace of all vectors $\mathbf{u}=\begin{bmatrix*}[r]x\\y\\z\\t\end{bmatrix*}$ in $\R^4$ that are orthogonal to both $\mathbf{v}_1$ and $\mathbf{v}_2$
+
+\emph{Solution}: Let $\mathbf{u}=\begin{bmatrix}x\\y\\z\\t\end{bmatrix}$ an arbitrary vector in the subspace. Then $\mathbf{u}\cdot\mathbf{v}_1=0$ and $\mathbf{u}\cdot\mathbf{v}_2=0$,
+from which we get the system:
+\begin{align*}
+2x-1y+0z+3y&=0\\
+1x+2y-2z+0t&=0
+\end{align*}
+This is a homogeneous system with matrix:
+\[
+\left[\begin{matrix*}[r]2 & -1 & 0 & 3\\1 & 2 & -2 & 0\end{matrix*}\right]
+\]
+The RREF for this matrix is:
+\[
+\left[\begin{matrix*}[r]1 & 0 & - \frac{2}{5} & \frac{6}{5}\\0 & 1 & - \frac{4}{5} & - \frac{3}{5}\end{matrix*}\right]
+\]
+Writing this back as a system we get:
+\begin{align*}
+x-\frac{2}{5}z+\frac{6}{5}t&=0\\
+y-\frac{4}{5}z-\frac{3}{5}t&=0
+\end{align*}
+The system has two free variables, $z$ and $t$, so the space has dimension 2. To find a basis of the solution subspace, construct the table:
+\[
+\begin{array}{l|rr}
+z & 1 & 0\\
+t & 0 & 1\\
+x=\frac{2}{5}z-\frac{6}{5}t & \frac{2}{5} & -\frac{6}{5}\\
+y=\frac{4}{5}z+\frac{3}{5}t & \frac{4}{5} &  \frac{3}{5}\\
+\end{array}
+\]
+We conclude that a basis for the subspace is:
+\[
+\left\{
+\begin{bmatrix*}[r]\frac{2}{5}\\\frac{4}{5}\\1\\0\end{bmatrix*},
+\begin{bmatrix*}[r]-\frac{6}{5}\\\frac{3}{5}\\0\\1\end{bmatrix*}
+\right\}
+\]
+\proofend
+
+\bigskip
+\textbf{Exercise 7.} Suppose that $\mathbf{u}$ and $\mathbf{v}$ are two vectors in $\R^n$ such that:
+\begin{itemize}
+\item $\mathbf{u}$ and $\mathbf{v}$ are orthogonal.
+\item $\mathbf{u}+\mathbf{v}$ and $\mathbf{u}-\mathbf{v}$ are also orthogonal.
+\end{itemize}
+Given this information, what can you conclude about $||\mathbf{u}||$ and $||\mathbf{v}||$? Justify your answer.
+
+\emph{Solution}: Since $\mathbf{u}$ and $\mathbf{v}$ are orthogonal, we have $\mathbf{u}\cdot\mathbf{v}=0$. Likewise, $(\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=0$. Expanding this we get:
+\[
+(\mathbf{u}+\mathbf{v})\cdot(\mathbf{u}-\mathbf{v})=
+\mathbf{u}\cdot\mathbf{u}-\mathbf{u}\cdot\mathbf{v}+\mathbf{v}\cdot\mathbf{u}-\mathbf{v}\cdot\mathbf{v}=0
+\]
+Since $\mathbf{u}\cdot\mathbf{v}=\mathbf{v}\cdot\mathbf{u}$, the two terms in the middle cancel, and we get:
+$$
+\mathbf{u}\cdot\mathbf{u}-\mathbf{v}\cdot\mathbf{v}=0.
+$$
+Now, recall that for any vector $\mathbf{x}$, $||\mathbf{x}||^2=\mathbf{x}\cdot\mathbf{x}$. So, we can conclude that:
+\[
+||\mathbf{u}||^2-||\mathbf{v}||^2=0,
+\]
+that is:
+\[
+||\mathbf{u}||^2=||\mathbf{v}||^2.
+\]
+Since $||\mathbf{u}||$ and $||\mathbf{v}||$ are non-negative, the identity above implies:
+\[
+||\mathbf{u}||=||\mathbf{v}||.
+\]
+\proofend
+
+\bigskip
+\textbf{Exercise 8.} In each of the items below, use the Gram-Schmidt process to find an orthonormal basis of the subspace spanned by the given vectors.
+
+\medskip
+(a)
+$
+\mathbf{v}_1=\begin{bmatrix*}[r]1\\-2\\0\end{bmatrix*}, 
+\mathbf{v}_2=\begin{bmatrix*}[r]0\\2\\-4\end{bmatrix*} 
+$
+
+\medskip
+(b)
+$
+\mathbf{v}_1=\begin{bmatrix*}[r]0\\0\\1\end{bmatrix*}, 
+\mathbf{v}_2=\begin{bmatrix*}[r]2\\-2\\1\end{bmatrix*}, 
+\mathbf{v}_3=\begin{bmatrix*}[r]1\\0\\3\end{bmatrix*}
+$
+
+\emph{Solution}:
+We will do all computations in Jupyter. We start by entering the vectors, using the code below:
+\begin{lstlisting}
+v1 = Matrix([0, 0, 1])
+v2 = Matrix([2, -2, 1])
+v3 = Matrix([1,  0, 3])
+\end{lstlisting}
+Notice that this generates column vectors, even though each vector is specified in a single row.
+
+\textbf{Step 1}: Let $\mathbf{u}_1=\mathbf{v}_1$. In Jupyter this is coded as:
+\begin{lstlisting}
+u1 = v1
+u1
+\end{lstlisting}
+This produces the output:
+\[
+\mathbf{u}_1=\begin{bmatrix}0\\0\\1\end{bmatrix}
+\]
+
+\textbf{Step 2:} Project $\mathbf{v}_2$ on the direction of $\mathbf{u}_1$ using the formula:
+\[
+\mathbf{u}_2 = \mathbf{v}_2-\frac{\mathbf{v}_2\cdot\mathbf{u}_1}{\mathbf{u}_1\cdot\mathbf{u}_1}\mathbf{u}_1
+\]
+In Jupyter this is coded as:
+\begin{lstlisting}
+u2 = v2 - v2.dot(u1)/u1.dot(u1)*u1
+u2
+\end{lstlisting}
+We get the vector:
+\[
+\mathbf{u}_2=\left[\begin{matrix*}[r]2\\-2\\0\end{matrix*}\right]
+\]
+
+\textbf{Step 3}. Project $\mathbf{v}_3$ on the subspace $\text{span}\{\mathbf{u}_1,\mathbf{u}_2\}$, using the formula:
+\[
+\mathbf{u}_3 = \mathbf{v}_3
+-\frac{\mathbf{v}_3\cdot\mathbf{u}_1}{\mathbf{u}_1\cdot\mathbf{u}_1}\mathbf{u}_1
+-\frac{\mathbf{v}_3\cdot\mathbf{u}_2}{\mathbf{u}_2\cdot\mathbf{u}_2}\mathbf{u}_2
+\]
+In Jupyter, this is coded as:
+\begin{lstlisting}
+u3 = v3 - v3.dot(u1)/u1.dot(u1)*u1 - v3.dot(u2)/u2.dot(u2)*u2
+u3
+\end{lstlisting}
+We get the vector:
+\[
+\mathbf{u}_3=\left[\begin{matrix*}[r]\frac{1}{2}\\\frac{1}{2}\\0\end{matrix*}\right]
+\]
+So far, we got the following orthogonal basis:
+\[
+\left\{
+\begin{bmatrix}0\\0\\1\end{bmatrix},
+\left[\begin{matrix*}[r]2\\-2\\0\end{matrix*}\right],
+\left[\begin{matrix*}[r]\frac{1}{2}\\\frac{1}{2}\\0\end{matrix*}\right]
+\right\}
+\]
+To get an orthonormal basis we must normalize the vectors. This can be done with the following code:
+\begin{itemize}
+
+\item 
+\begin{lstlisting}
+n1 = u1/u1.norm()
+n1
+\end{lstlisting}
+Output:
+\[
+\mathbf{n}_1=\left[\begin{matrix}0\\0\\1\end{matrix}\right]
+\]
+
+\item 
+\begin{lstlisting}
+n2 = u2/u2.norm()
+n2
+\end{lstlisting}
+Output:
+\[
+\mathbf{n}_2=\left[\begin{matrix*}[r]\frac{\sqrt{2}}{2}\\- \frac{\sqrt{2}}{2}\\0\end{matrix*}\right]
+\]
+
+\item 
+\begin{lstlisting}
+n3 = u3/u3.norm()
+n3
+\end{lstlisting}
+Output:
+\[
+\mathbf{n}_3=\left[\begin{matrix*}[r]\frac{\sqrt{2}}{2}\\\frac{\sqrt{2}}{2}\\0\end{matrix*}\right]
+\]
+So, we got the following orthonormal basis:
+\[
+\left\{
+\left[\begin{matrix}0\\0\\1\end{matrix}\right],
+\left[\begin{matrix*}[r]\frac{\sqrt{2}}{2}\\- \frac{\sqrt{2}}{2}\\0\end{matrix*}\right],
+\left[\begin{matrix*}[r]\frac{\sqrt{2}}{2}\\\frac{\sqrt{2}}{2}\\0\end{matrix*}\right]
+\right\}
+\]
+To check that our solution is correct, we can use the following code:
+\begin{lstlisting}
+P = Matrix.hstack(n1, n2, n3)
+P.T * P
+\end{lstlisting}
+The output is:
+\[
+\begin{bmatrix*}[r]1&0&0\\0&1&0\\0&0&1\end{bmatrix*}
+\]
+That is, $P^{-1}=P^T$ and the matrix $P$ is orthogonal, as expected.
+\endproof
+
+\end{itemize}
+
+\bigskip
+\textbf{Exercise 9.} For each of the following items, do the following:
+\begin{itemize}
+\item Find an orthonormal basis consisting of eigenvectors of the symmetric matrix $A$.
+\item Find a matrix $P$ such that $D=P^TAP$ is a diagonal matrix.
+\item Compute the product $P^TAP$ to confirm that it is equal to a diagonal matrix with the eigenvalues of $A$ on its diagonal.
+\end{itemize}
+
+\medskip
+\medskip
+(c)
+$A=\left[\begin{matrix*}[r]-4 & 3 & -2 & -5\\3 & -4 & -2 & 5\\-2 & -2 & 1 & 0\\-5 & 5 & 0 & -2\end{matrix*}\right]$
+
+\emph{Solution}: We start by finding the eigenvalues, using the code:
+\begin{lstlisting}
+lbd = symbols('lambda')
+p = det(A - lbd*eye(4))
+factor(p)
+\end{lstlisting}
+This outputs:
+\[
+\left(\lambda - 3\right)^{2} \left(\lambda + 3\right) \left(\lambda + 12\right)
+\]
+
+We conclude that the eigenvalues are $\lambda_1=3$, $\lambda_2=-3$ and $\lambda_3=-12$.
+
+We now need to find an orthonormal basis for each of the eigenspaces.
+
+\begin{itemize}
+
+\item $\lambda_1=3$. We have to find solutions of the system $(A-3I)\mathbf{v}=\mathbf{0}$. 
+We use the following code in Jupyter:
+\begin{lstlisting}
+R = reduced_row_echelon_form(A - 1*eye(5))
+R
+\end{lstlisting}
+This results:
+\[
+A-3I\sim\R = \left[\begin{matrix*}[r]1 & 0 & \frac{1}{2} & \frac{1}{2}\\0 & 1 & \frac{1}{2} & - \frac{1}{2}\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix*}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+&x_1+\frac{1}{2}x_3+\frac{1}{2}x_4=0\\
+&x_2+\frac{1}{2}x_3-\frac{1}{2}x_4=0
+\end{align*}
+There are two free variables, $x_3$ and $x_4$, so the eigenspace $E(3)$ has dimension $2$. To find a basis, we construct the table:
+\[
+\begin{array}{c|rr}
+x_3 & 1 & 0 \\
+x_4 & 0 & 1 \\
+x_1=-\frac{1}{2}x_3-\frac{1}{2}x_4 & -\frac{1}{2} & -\frac{1}{2} \\
+x_2=-\frac{1}{2}x_3+\frac{1}{2}x_4 & -\frac{1}{2} & \frac{1}{2} 
+\end{array}
+\]
+So, we get the following two vectors in a basis of $E(3)$:
+\[
+\mathbf{u}_1=\left[\begin{matrix*}[r]- \frac{1}{2}\\-\frac{1}{2}\\1\\0\end{matrix*}\right],\quad
+\mathbf{u}_2=\left[\begin{matrix*}[r]- \frac{1}{2}\\\frac{1}{2}\\0\\1\end{matrix*}\right]
+\]
+Notice that these two vectors are already orthogonal: $\mathbf{u}_1\cdot\mathbf{u}_2=0$, so we do not need to use Gram-Schmidt.
+
+
+\item $\lambda_2=-3$. We have to find solutions of the system $(A-(-3)I)\mathbf{v}=\mathbf{0}$. We use the following code in Jupyter:
+\begin{lstlisting}
+R = reduced_row_echelon_form(A - (-3)*eye(4))
+R\end{lstlisting}
+This results:
+\[
+A-(-3)I\sim\left[\begin{matrix*}[r]1 & 0 & -1 & 0\\0 & 1 & -1 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{matrix*}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+&x_1-x_3=0\\
+&x_2-x_3=0\\
+&x_4=0
+\end{align*}
+There is only one free variable, $x_3$, so the eigenspace $E(-3)$ has dimension $1$.
+To get a nonzero solution, we can let $x_3=1$, and get $x_1=1$, $x_2=1$ and $x_4=0$. We conclude that a basis of $E(-3)$ consists of the single vector:
+\[
+\mathbf{u_3}=\begin{bmatrix*}[r]1\\1\\1\\0\end{bmatrix*}
+\]
+
+\item $\lambda_3=-12$. We have to find solutions of the system $(A-(-12)I)\mathbf{v}=\mathbf{0}$. We use the following code in Jupyter:
+\begin{lstlisting}
+R = reduced_row_echelon_form(A - (-12)*eye(4))
+R\end{lstlisting}
+This results:
+\[
+A-(-12)I\sim\left[\begin{matrix}1 & 0 & 0 & -1\\0 & 1 & 0 & 1\\0 & 0 & 1 & 0\\0 & 0 & 0 & 0\end{matrix}\right]
+\]
+The system corresponding to this matrix is:
+\begin{align*}
+&x_1-x_4=0\\
+&x_2+x_4=0\\
+&x_3=0
+\end{align*}
+There is only one free variable, $x_4$, so the eigenspace $E(-12)$ has dimension $1$.
+To get a nonzero solution, we can let $x_4=1$, and get $x_1=1$, $x_2=-1$ and $x_3=0$. We conclude that a basis of $E(-12)$ consists of a single vector:
+\[
+\mathbf{u}_4=\left[\begin{matrix*}[r]1\\-1\\0\\1\end{matrix*}\right]
+\]
+\end{itemize}
+
+We are finally done computing the eigenspaces. So far, we found an orthogonal basis of $\R^4$ formed by eigenvectors of $A$:
+\[
+\mathbf{u}_1=\left[\begin{matrix*}[r]- \frac{1}{2}\\-\frac{1}{2}\\1\\0\end{matrix*}\right],\quad
+\mathbf{u}_2=\left[\begin{matrix*}[r]- \frac{1}{2}\\\frac{1}{2}\\0\\1\end{matrix*}\right],\quad
+\mathbf{u_3}=\begin{bmatrix*}[r]1\\1\\1\\0\end{bmatrix*},\quad
+\mathbf{u}_4=\left[\begin{matrix*}[r]1\\-1\\0\\1\end{matrix*}\right]
+\]
+At this point, it is recommended that we check that the vectors are indeed orthogonal to prevent mistakes.
+The last step is to normalize the vectors, using the formula:
+\[
+\mathbf{n}_j=\frac{1}{||\mathbf{u}_j||}\mathbf{u}_j\text{ for $j=1,2,3,4$}.
+\]
+We get:
+\[
+\mathbf{n}_1=\left[\begin{matrix*}[r]- \frac{\sqrt{6}}{6}\\- \frac{\sqrt{6}}{6}\\\frac{\sqrt{6}}{3}\\0\end{matrix*}\right],\quad
+\mathbf{n}_2=\left[\begin{matrix*}[r]- \frac{\sqrt{6}}{6}\\\frac{\sqrt{6}}{6}\\0\\\frac{\sqrt{6}}{3}\end{matrix*}\right],\quad
+\mathbf{n}_3=\left[\begin{matrix*}[r]\frac{\sqrt{3}}{3}\\\frac{\sqrt{3}}{3}\\\frac{\sqrt{3}}{3}\\0\end{matrix*}\right],\quad
+\mathbf{n}_4=\left[\begin{matrix*}[r]\frac{\sqrt{3}}{3}\\- \frac{\sqrt{3}}{3}\\0\\\frac{\sqrt{3}}{3}\end{matrix*}\right]
+\]
+To check our computations, let $P$ be the change of basis matrix, that is, the matrix with the orthonormal basis on its columns. We can construct the matrix $P$ in Jupyter with the code:
+\begin{lstlisting}
+P = Matrix.hstack(n1,n2,n3,n4)
+P
+\end{lstlisting}
+This produces the output:
+\[
+\left[\begin{matrix}- \frac{\sqrt{6}}{6} & - \frac{\sqrt{6}}{6} & \frac{\sqrt{3}}{3} & \frac{\sqrt{3}}{3}\\- \frac{\sqrt{6}}{6} & \frac{\sqrt{6}}{6} & \frac{\sqrt{3}}{3} & - \frac{\sqrt{3}}{3}\\\frac{\sqrt{6}}{3} & 0 & \frac{\sqrt{3}}{3} & 0\\0 & \frac{\sqrt{6}}{3} & 0 & \frac{\sqrt{3}}{3}\end{matrix}\right]
+\]
+This matrix must be orthogonal, that is $P^TP=I$. We can verify this with the code:
+\begin{lstlisting}
+P.T * P
+\end{lstlisting}
+The output is the identity matrix, as expected:
+\[
+\left[\begin{matrix}1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\end{matrix}\right]
+\]
+Next, let's compute $P^TAP$, which should be a diagonal matrix with the eigenvalues of $A$ on the diagonal. We compute this with the code:
+\begin{lstlisting}
+P.T * A * P
+\end{lstlisting}
+The output is:
+\[
+\left[\begin{matrix*}[r]3 & 0 & 0 & 0\\0 & 3 & 0 & 0\\0 & 0 & -3 & 0\\0 & 0 & 0 & -12\end{matrix*}\right]
+\]
+This confirms that the solution is correct.
+\proofend
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

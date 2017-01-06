@@ -1,0 +1,164 @@
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{graphicx}
+\RequirePackage{mathabx}
+\RequirePackage{varioref}
+\RequirePackage{cancel}
+\RequirePackage{MnSymbol,wasysym}
+\RequirePackage{pdfpages}
+
+\RequirePackage{listings}
+\lstset{language=Python, 
+   basicstyle=\ttfamily\small, 
+   showstringspaces=false,
+   tabsize=3,
+   frameround=tttt,
+   captionpos=b}
+
+\lstnewenvironment{lstfancy}[2]
+{\lstset{float=th,caption=#1,label=#2,numbers=left,numberstyle=\tiny,%
+frame=tb,escapeinside={(*}{*)}}}
+{}
+
+\RequirePackage[colorlinks=true,
+	linkcolor=blue, urlcolor=blue,
+	pdfauthor={L. Felipe Martins},
+	pdfsubject={Computational number theory},
+	pdfkeywords={number theory, computations, cryptography},
+	pdfstartview=FitH,
+	pdfview=FitH]{hyperref}
+
+\RequirePackage{fancyhdr}
+
+\RequirePackage{titlesec}
+\titleformat{\section}{\large\bf\sffamily}{\thesection}{1em}{}
+\titleformat{\subsection}{\bf\sffamily}{\thesubsection}{1em}{}
+
+\newenvironment{remarkbox}%
+{\begin{Sbox}\begin{minipage}{6in}}%
+{\end{minipage}\end{Sbox}\begin{center}\shadowbox{\TheSbox}\end{center}}%
+
+
+
+%----------------------------------------------------------
+%\swapnumbers
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem*{conjecture*}{Conjecture}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{principle}[theorem]{Principle}
+\newtheorem{property}[theorem]{Property}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}{}[section]
+\newtheorem*{solution}{\emph{\textbf{Solution}}}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{claim}[theorem]{Claim}
+%----------------------------------------------------------
+
+%My definitions
+
+%Number sets
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+
+% Floor and ceil functions
+\newcommand{\floorf}[1]{\ensuremath{\left\lfloor{#1}\right\rfloor}}
+\newcommand{\ceilf}[1]{\ensuremath{\left\lceil{#1}\right\rceil}}
+
+% "Divides" and "Not divides"
+\newcommand{\dv}{\ensuremath{\mathbf{\divides}}}
+\newcommand{\ndv}{\ensuremath{\notdivides}}
+
+%Shortcut to underline and cancel
+\newcommand{\un}[1]{\underline{#1}}
+\newcommand{\cn}[1]{\cancel{#1}}
+
+% Sets
+\newcommand{\setof}[2]{\ensuremath{\left\{ #1 \; | \; #2 \right\}}}
+\newcommand{\setofc}[2]{\ensuremath{\left\{ #1 : #2 \right\}}}
+\newcommand{\setenum}[1]{\left\{#1\right\}}
+
+% Prime factorizations
+%\newcommand{\primefactorization}[3]{\ensuremath{#1_1^{#2_1}#1_2^{#2_2}\ldots#1_{#3}^{#2_{#3}}}}
+\newcommand{\primefactorization}[3]{#1_1^{#2_1}#1_2^{#2_2}\ldots#1_{#3}^{#2_{#3}}}
+\newcommand{\primefactorizationprod}[4]{\ensuremath{\prod_{#4=1}^{#3}#1_{#4}^{#2_{#4}}}}
+
+% Modular identities
+\newcommand{\eqmod}[3]{\ensuremath{#1 \equiv #2 \pmod{#3}}}
+
+% End of proof
+\newcommand{\proofend}{\hfill  {\Large\smiley}}%
+
+
+%Legendre symbols
+%\newcommand{\legendre}[2]{ {#1}\abovewithdelims () {#2}}
+\newcommand{\legendre}[2]{\left(\frac{#1}{#2}\right)}
+
+% Operators "div" and "divmod" 
+%\DeclareMathOperator{\bdiv}{div}
+\newcommand{\bdiv}{\;\mathrm{div}\;}
+\DeclareMathOperator{\round}{round}
+%\DeclareMathOperator{\divmod}{divmod}
+%\DeclareMathOperator{\bdivp}{divp}
+%\DeclareMathOperator{\bmodp}{modp}
+%\DeclareMathOperator{\divmodp}{divmodp}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\dlog}{dlog}
+
+%Equation reference formats
+\labelformat{equation}{(#1)}
+
+%Macro to introduce license notice
+%\newcommand{\license}%
+%{{\scriptsize Work licensed under a Creative Commons License available at}\\%
+%{\scriptsize\url{http://creativecommons.org/licenses/by-nc-sa/3.0/us/}}\\}
+
+%--------------------- Formatting for number theory modules ------------------------
+% Set headings
+\newcommand{\setheadings}[1]{%
+\fancyhead[L]{{\large \textsf{#1}}}%
+\fancyhead[R]{\thepage}%
+\fancyfoot[L]{%
+{\scriptsize L. Felipe Martins (\href{mailto:l.martins@csuohio.edu}{l.martins@csuohio.edu})\\%
+%Licensed under a Creative Commons License, visit %\url{http://creativecommons.org/licenses/by-nc-sa/3.0/} to view a copy of the license.%
+}}}%
+
+\newcommand{\setheadingsa}[2]{%
+\fancyhead[L]{{\large \textsf{#1}}}%
+\fancyhead[R]{\thepage}%
+\fancyfoot[L]{\scriptsize{#2}}%
+}%
+
+\renewcommand{\footrulewidth}{0.4pt}%
+
+% Change margins
+\setlength{\headheight}{29pt}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\usepackage[left=2.5cm,right=2cm,bottom=2cm]{geometry}
+\fancyheadoffset[L]{0cm}
+
+\numberwithin{equation}{section}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+

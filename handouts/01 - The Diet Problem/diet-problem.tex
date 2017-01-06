@@ -1,0 +1,230 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- The Diet Problem}
+
+\begin{document}
+
+
+\section{Representations of the Diet Problem}
+
+A student wants to plan for her breakfast based on four kinds of foot: milk, bread, bacon and bananas. The table below gives the amount, in grams, of each kind of nutrient contained in each food:
+
+\begin{center}
+\begin{tabular}{l|cccc|c}
+        & Milk  & Bread     & Bacon     & Banana       & Breakfast \\
+        & (1qt) & (1 slice) & (1 slice) & (1, average) & Requirement\\\hline
+Protein & 32    & 2         & 4         & 0.5          & 15\\
+Carbs   & 48    & 12        & 1         & 27           & 100\\
+Fat     & 40    & 1         & 8         & 1            & 10\\\hline
+\end{tabular}
+\end{center}
+
+The problem is to find out how much the student should consume of each of the foods to get the required amount of each nutrient. We assume that the requirements must be reached exactly.
+
+We can represent each food as a 3-dimensional vector:
+
+$$\left[\begin{matrix}\text{Protein}\\\text{Carbs}\\\text{Fat}\\\end{matrix}\right]$$
+
+We then have the following vectors for Milk, Bread, Bacon and Bananas, respectively:
+$$
+\mathbf{v}_{\text{Milk}}=\left[\begin{matrix} 32  \\ 48 \\ 40 \\ \end{matrix}\right]\quad
+\mathbf{v}_{\text{Bread}}=\left[\begin{matrix}  2  \\ 12 \\  1 \\ \end{matrix}\right]\quad
+\mathbf{v}_{\text{Bacon}}=\left[\begin{matrix}  4  \\  1 \\  8 \\ \end{matrix}\right]\quad
+\mathbf{v}_{\text{Banana}}=\left[\begin{matrix} 0.5 \\ 27 \\  1 \\ \end{matrix}\right]\quad
+$$
+We can also represent the requirements by a vector:
+\[
+\mathbf{v}_{\text{Req}}=\left[\begin{matrix} 15  \\ 100 \\ 10 \\ \end{matrix}\right]
+\]
+The unknowns in our problem are the amounts of each food, so let's define these quantities:
+\begin{align*}
+x &= \text{Quarts of Milk}\\
+y &= \text{Slices of Bread}\\
+z &= \text{Slices of Bacon}\\
+t &= \text{Bananas}
+\end{align*}
+Given the amounts consumed for each food, we can compute the nutrients ingested using vector operations:
+\[
+x\left[\begin{matrix} 32  \\ 48 \\ 40 \\ \end{matrix}\right]+
+y\left[\begin{matrix}  2  \\ 12 \\  1 \\ \end{matrix}\right]+
+z\left[\begin{matrix}  4  \\  1 \\  8 \\ \end{matrix}\right]+
+t\left[\begin{matrix} 0.5 \\ 27 \\  1 \\ \end{matrix}\right]
+\]
+This expression is called a \emph{linear combination} of the given vectors. We can then express the condition that the requirements must be met exactly by the equation:
+\[
+x\left[\begin{matrix} 32  \\ 48 \\ 40 \\ \end{matrix}\right]+
+y\left[\begin{matrix}  2  \\ 12 \\  1 \\ \end{matrix}\right]+
+z\left[\begin{matrix}  4  \\  1 \\  8 \\ \end{matrix}\right]+
+t\left[\begin{matrix} 0.5 \\ 27 \\  1 \\ \end{matrix}\right]=
+\left[\begin{matrix} 15  \\ 100 \\ 10 \\ \end{matrix}\right]
+\]
+We are going to call this the \emph{linear combination} representation of the problem. 
+Using the definitions of vector operations, this is equivalent to:
+\[
+\left[
+\begin{matrix}
+32x+2y+4z+0.5t\\
+48x+12y+1z+27t\\
+40x+1y+8z+1t\\
+\end{matrix}
+\right]=
+\left[\begin{matrix}
+15 \\ 100 \\ 10
+\end{matrix}\right]
+\]
+Since two vectors are equal if and only if each its components are equal, the equality above is equivalent to:
+\begin{align*}
+32x+2y+4z+0.5t &= 15\\
+48x+12y+1z+27t &= 100\\
+40x+1y+8z+1t   &= 10
+\end{align*}
+We call this the \emph{system of equations} representation of the problem.
+
+There is one more representation of the problem that will be extremely important. It comes from the observation that, from the definition of matrix multiplication we have:
+\[
+\begin{bmatrix}
+32 & 2 & 4 & 0.5\\
+48 & 12 & 1 & 27\\
+40 & 1 & 8 & 1
+\end{bmatrix}
+\begin{bmatrix}x\\y\\z\\t\end{bmatrix}
+=
+\begin{bmatrix}
+32x+2y+4z+0.5t\\
+48x+12y+1z+27t\\
+40x+1y+8z+1t\\
+\end{bmatrix}
+\]
+We will review in detail the definition of matrix multiplication. For now, it is enough to recall that, when multiplying a matrix by a column vector, we have to multiply each of the rows of the matrix by the vector in succession.
+
+We conclude then that the diet problem can be expressed in the form:
+\[
+\begin{bmatrix}
+32 & 2 & 4 & 0.5\\
+48 & 12 & 1 & 27\\
+40 & 1 & 8 & 1
+\end{bmatrix}
+\begin{bmatrix}x\\y\\z\\t\end{bmatrix}=
+\begin{bmatrix}
+15 \\ 100 \\ 10
+\end{bmatrix}
+\]
+We call this the \emph{matrix multiplication} representation.
+
+Summarizing, we can say that there are three equivalent ways to represent the diet problem:
+
+The \emph{linear combination} representation:
+\[
+x\left[\begin{matrix} 32  \\ 48 \\ 40 \\ \end{matrix}\right]+
+y\left[\begin{matrix}  2  \\ 12 \\  1 \\ \end{matrix}\right]+
+z\left[\begin{matrix}  4  \\  1 \\  8 \\ \end{matrix}\right]+
+t\left[\begin{matrix} 0.5 \\ 27 \\  1 \\ \end{matrix}\right]=
+\left[\begin{matrix} 15  \\ 100 \\ 10 \\ \end{matrix}\right]
+\]
+
+The \emph{system of equations} representation:
+\begin{align*}
+32x+2y+4z+0.5t &= 15\\
+48x+12y+1z+27t &= 100\\
+40x+1y+8z+1t   &= 10
+\end{align*}
+
+The \emph{matrix multiplication} representation:
+\[
+\begin{bmatrix}
+32 & 2 & 4 & 0.5\\
+48 & 12 & 1 & 27\\
+40 & 1 & 8 & 1
+\end{bmatrix}
+\begin{bmatrix}x\\y\\z\\t\end{bmatrix}=
+\begin{bmatrix}
+15 \\ 100 \\ 10
+\end{bmatrix}
+\]
+
+\section{Matrix Multiplication, Linear Combinations and Systems of Equations}
+
+Let's now try to generalize the observations above. To make things simpler, we will consider a small square matrix:
+\[
+A=\begin{bmatrix}a&b\\c&d\end{bmatrix}
+\]
+Suppose that we are given two real numbers $x$ and $y$. We can then form a linear combination using the \emph{columns} of the matrix $A$:
+\[
+x\begin{bmatrix}a\\c\end{bmatrix}+y\begin{bmatrix} b\\d\end{bmatrix}
+\]
+This can be computed using the rules for vector operations:
+\[
+x\begin{bmatrix}a\\c\end{bmatrix}+y\begin{bmatrix} b\\d\end{bmatrix}=
+\begin{bmatrix}ax\\cx\end{bmatrix}+\begin{bmatrix} by\\dy\end{bmatrix}=
+\begin{bmatrix}ax+by\\cx+dy\end{bmatrix}
+\]
+Now, this result is the same that we get from matrix multiplication:
+\[
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+\begin{bmatrix}x\\y\end{bmatrix}=
+\begin{bmatrix}ax+by\\cx+dy\end{bmatrix}
+\]
+So, we have the equality:
+\[
+x\begin{bmatrix}a\\c\end{bmatrix}+y\begin{bmatrix} b\\d\end{bmatrix}=
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+\begin{bmatrix}x\\y\end{bmatrix}
+\]
+This is a very important principle:
+\begin{quote}
+\emph{A linear combination of vectors can be expressed in an equivalent way as the product of a matrix by a column vector}.
+\end{quote}
+
+This observation will be very important in all that we will do. For now, let's consider one of the consequences of this observation. Suppose that we have two vectors:
+\[
+\begin{bmatrix}x\\y\end{bmatrix}\text{ and }\begin{bmatrix}x'\\y'\end{bmatrix}
+\]
+Let's compute the product:
+\[
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+\left(
+\begin{bmatrix}x\\y\end{bmatrix}+\begin{bmatrix}x'\\y'\end{bmatrix}
+\right)
+\]
+To compute this, we must first evaluate the sum of vectors in parenthesis:
+\[
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+\begin{bmatrix}x+x'\\y+y'\end{bmatrix}
+\]
+By the observation above, this is equal to the linear combination:
+\[
+(x+x')\begin{bmatrix}a\\c\end{bmatrix}+
+(y+y')\begin{bmatrix}b\\d\end{bmatrix}
+\]
+Using properties of vector operations this is the same as:
+\[
+\left(x\begin{bmatrix}a\\c\end{bmatrix}+
+y\begin{bmatrix}b\\d\end{bmatrix}\right) +
+\left(x'\begin{bmatrix}a\\c\end{bmatrix}+
+y'\begin{bmatrix}b\\d\end{bmatrix}\right)
+\]
+Using the observation again, we can express each of the terms above as a matrix-vector multiplication:
+\[
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+\begin{bmatrix}x\\y\end{bmatrix} +
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+\begin{bmatrix}x'\\y'\end{bmatrix}
+\]
+We have proved the following (for $2\times 2$) matrices:
+\[
+A(\mathbf{v}+\mathbf{v})=A\mathbf{v}+A\mathbf{v}'.
+\]
+Using a similar reasoning, we can show that, for any real number $c$:
+\[
+A(c\mathbf{v})=c(A\mathbf{v}).
+\]
+What this means is that we can consider the matrix $A$ as defining a \emph{linear function} that transforms vectors into vectors:
+\begin{align*}
+L\,:\;&\R^2\to\R^2\\
+&v \to L(v)=Av
+\end{align*}
+
+\end{document}
+

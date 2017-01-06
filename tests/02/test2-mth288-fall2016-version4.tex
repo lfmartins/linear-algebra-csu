@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Linear Algebra --- Test 2}
+
+
+\begin{document}
+
+Name: \hrulefill
+
+\bigskip
+Student ID: \hrulefill
+
+\bigskip
+\textbf{Instructions.} All solutions must be justified, unless otherwise stated. Show all work leading to your answer in each problem. Solutions without appropriate work that supports it will receive no credit. All work must be written in the test. Do not attach computer printouts to the test. If not enough space is provided for an answer, continue your solution on the back of the page. All answers must be given as exact values, decimal approximations will not be accepted.
+
+Please identify your final answer to each problem by surrounding it with a rectangle.
+
+\vfill
+\hfill$\clubsuit$
+
+\clearpage
+
+% Problem 1 - Determine if a vector is in the span of a set of vectors.
+\textbf{Problem 1.} (20 points)
+Determine if the vector:
+\[
+\mathbf{v}=\begin{bmatrix*}[r]-1\\ -1\\ 5\\ \end{bmatrix*}
+\]
+is in the span of the set of vectors:
+\[
+\mathbf{u}_1=\begin{bmatrix*}[r]-2\\ 1\\ 2\\ \end{bmatrix*}\quad
+\mathbf{u}_2=\begin{bmatrix*}[r]3\\ -3\\ 1\\ \end{bmatrix*}\quad
+\]
+If $\mathbf{v}$ is in the span, 
+express it as a linear combination the given vectors
+
+% Solution: $\left [ 2, \quad 1\right ]$
+
+\clearpage
+
+
+% Problem 2 - Find orthogonal subspace
+\textbf{Problem 2.} (20 points) 
+Let:
+\[\mathbf{u}_1=\begin{bmatrix*}[r]-2\\ 3\\ 2\\ 3\\ \end{bmatrix*}\quad
+\mathbf{u}_2=\begin{bmatrix*}[r]2\\ -2\\ 1\\ -1\\ \end{bmatrix*}\quad
+\]
+Find one vector in $\R^{4}$ that is orthogonal to $\textbf{u}_1, \textbf{u}_2$.
+
+
+\clearpage
+
+
+% Problem 3 - Find basis for eigenvalue
+Let $A$ be the matrix:
+\[A=
+\begin{bmatrix*}[r]-2&3&-3\\-4&5&-3\\1&-1&2\\\end{bmatrix*}
+\]
+Find all eigenvalues of $A$ and a basis for the eigenspace of the largest eigenvalue of $A$
+
+% Solution: D=$\begin{bmatrix*}[r]2&1&0\\0&2&0\\0&0&1\\\end{bmatrix*}$ P=$\begin{bmatrix*}[r]-3&3&1\\-3&2&1\\1&-1&0\\\end{bmatrix*}$
+
+
+\clearpage
+
+% Problem 4 - Gram-Schmidt
+\textbf{Problem 4.} (20 points)
+
+Use the Gram-Schmidt method to find an orthogonal basis of the subspace 
+of $\R^{4}$ spanned by the following vectors:
+
+\[
+\mathbf{u}_1=\begin{bmatrix*}[r]2\\ -1\\ 2\\ -1\\ \end{bmatrix*}\quad
+\mathbf{u}_2=\begin{bmatrix*}[r]0\\ -2\\ 0\\ 2\\ \end{bmatrix*}\quad
+\mathbf{u}_3=\begin{bmatrix*}[r]-2\\ -1\\ -1\\ 0\\ \end{bmatrix*}\quad
+\]
+
+% Solution: $\left [ \left[\begin{matrix}2\\-1\\2\\-1\end{matrix}\right], \quad \left[\begin{matrix}0\\-2\\0\\2\end{matrix}\right], \quad \left[\begin{matrix}-1\\-1\\0\\-1\end{matrix}\right]\right ]$
+ 
+
+\clearpage
+
+% Problem 5 - Diagonalize symmetric matrix
+\textbf{Problem 5.} (20 points) 
+Let
+\[
+A=\begin{bmatrix*}[r]- \frac{3}{2} & \frac{1}{2}\\\frac{1}{2} & - \frac{3}{2}\end{bmatrix*}
+\]
+Notice that $A$ is a symmetric matrix.
+Find an orthonormal basis of eigenvectors of $A$ and a matrix $P$ such that $D=P^TAP$ 
+is a diagonal matrix. Verify that your answer is correct by computing $P^TAP$
+
+% Solution: $P=\left[\begin{matrix}-2 & 1\\2 & 1\end{matrix}\right]$, $P^TAP=\left[\begin{matrix}-16 & 0\\0 & -2\end{matrix}\right]$
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

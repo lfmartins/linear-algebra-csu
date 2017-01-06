@@ -1,0 +1,388 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Homogeneous Systems}
+
+
+\begin{document}
+
+\section{Homogeneous Systems}
+
+A \emph{homogeneous system} is a linear system where the right-hand side is the zero vector:
+\begin{equation}
+\label{homo-system}
+A\mathbf{x}=\mathbf{0}
+\end{equation}
+Since $A\mathbf{0}=\mathbf{0}$, a homogeneous system always has at least one solution, the zero vector. We call this the \emph{trivial solution} to the system. The relevant question concerning a homogeneous system will be, in general, if there are \emph{other} solutions besides the trivial one.
+
+To solve a linear system, we employ the usual strategy of writing the augmented matrix:
+\[
+M=\begin{bmatrix} A & \mathbf{0}\end{bmatrix}
+\]
+and doing row operations until we get a matrix in RREF. Notice that, when we do row operations, the rightmost columns never changes, since all it's entries are zero. So, at the end of the process, we get:
+\begin{equation}
+\label{rref-M}
+M = \begin{bmatrix}R & \mathbf{0}\end{bmatrix}
+\end{equation}
+Where $R$ is a matrix in RREF form. In fact, when doing the computations, we can ignore the last column in the augmented matrix, since it never changes when we do row operations. In other words, we can discover all we want to know about the system~\ref{homo-system} by computing the matrix $R$, which is the RREF matrix equivalent to $A$.
+
+Recall that, in the RREF matrix~\ref{rref-M}, each column corresponds to one of the variables $x_1,x_2,\ldots,x_n$. We say that:
+\begin{enumerate}
+\item $x_i$ is a \emph{pivot variable} if it is in a column corresponding to the first nonzero element of some row. Recall that, in a RREF matrix, the first nonzero element in any row is always 1, and all other elements in the same column are zero.
+\item $x_i$ is a \emph{free variable} if it is not a pivot variable. 
+\end{enumerate}
+
+\begin{example}
+\label{homo-example1}
+ Identify the pivot variables and free variables in the following RREF matrix $R$. Notice that this is \emph{not} and augmented matrix, but the RREF equivalent of the matrix $A$ in some system as in~\ref{homo-system}. Then, write the solution set of the system in vector-parameteric form.
+\[
+R=\begin{bmatrix*}[r]
+1 & 2 & 0 & 0 & -3 \\
+0 & 0 & 1 & 0 &  2 \\
+0 & 0 & 0 & 1 & 12 \\
+0 & 0 & 0 & 0 &  0 \\
+\end{bmatrix*}
+\]
+\emph{Solution}: Columns 1, 3 and 4 of the matrix correspond to pivots, so we have:
+\begin{itemize}
+\item $x_1$, $x_3$ and $x_4$ are pivot variables.
+\item $x_2$, $x_5$ are free variables.
+\end{itemize}
+Since we can choose the values of the free variables arbitrarily, we know that the system will have infinitely many solutions, which can be obtained by choosing arbitrary values for the free variables and then computing the pivot variables by the formulas:
+\begin{align*}
+x_1&=-2x_2+3x_5\\
+x_3&=-2x_5\\
+x_4&=-12x_5
+\end{align*}
+It is useful to have a standard way to express the solution set, as is illustrated in the following computations.
+First let:
+\[
+\begin{bmatrix}x_2\\x_5\end{bmatrix}=\begin{bmatrix}1\\0\end{bmatrix}
+\]
+This gives us the solution:
+\[
+\begin{bmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{bmatrix}=
+\begin{bmatrix*}[c](-2)(1)+(3)(0)\\1\\(-2)(0)\\(-12)(0)\\0\end{bmatrix*}=
+\begin{bmatrix*}[r]-2\\1\\0\\0\\0\end{bmatrix*}
+\]
+Next, let:
+\[
+\begin{bmatrix}x_2\\x_5\end{bmatrix}=\begin{bmatrix}0\\1\end{bmatrix}
+\]
+We now get the solution:
+\[
+\begin{bmatrix}x_1\\x_2\\x_3\\x_4\\x_5\end{bmatrix}=
+\begin{bmatrix*}[c](-2)(0)+(3)(1)\\0\\(-2)(1)\\(-12)(1)\\1\end{bmatrix*}=
+\begin{bmatrix*}[r]3\\0\\-2\\-12\\1\end{bmatrix*}
+\]
+The solution set of the linear system is then simply the span of the set of the two solutions we found:
+\[
+\left\{
+\lambda_1\begin{bmatrix*}[r]-2\\1\\0\\0\\0\end{bmatrix*}+
+\lambda_2\begin{bmatrix*}[r]3\\0\\-2\\-12\\1\end{bmatrix*}
+\;:\;\lambda_1, \lambda_2\in\R
+\right\}
+\]
+\end{example}
+\proofend
+
+Notice that, for a homogeneous system, any zero rows will correspond to an equation of type $0=0$, which can always be ignored. This principle is worth remembering:
+
+\begin{center}
+\emph{When solving a homogeneous system, any zero rows in the RREF of the system can be ignored}.
+\end{center}
+
+\section{Important Results for Homogeneous Systems}
+In this section, we will develop some theory concerning the solution set of a homogeneous system. These results are \emph{extremely important}, and will be used in an almost daily basis in the course.
+
+We start with the following important characterization of the solution set:
+
+\begin{theorem}
+\label{theorem-homo-system-span}
+The solution set of a homogeneous system~\ref{homo-system} is a linear subspace.
+\end{theorem}
+\begin{proof} Suppose first that $\mathbf{x}$ and $\mathbf{y}$ are solutions of the homogeneous system~\ref{homo-system}. Then:
+\[
+A(\mathbf{x}+\mathbf{y})=A\mathbf{x}+A\mathbf{y}=\mathbf{0}+\mathbf{0}=\mathbf{0}.
+\]
+We conclude that $\mathbf{x}+\mathbf{y}$ is also a solution of~\ref{homo-system}.
+
+Now suppose that $\mathbf{x}$ is a solution of~\ref{homo-system} and $c$ is an arbitrary scalar. Then:
+\[
+A(c\mathbf{x})=c(A\mathbf{x})=c\mathbf{0}=\mathbf{c}.
+\]
+We conclude that $c\mathbf{x}$ is a solution of~\ref{homo-system}
+
+This shows that the solution set of~\ref{homo-system} satisfies the requirements for a linear subspace.
+\end{proof}
+
+The second important result is called the \emph{Alternatives Theorem} for homogeneous systems:
+
+\begin{theorem}[\textbf{Alternatives Theorem for Homogeneous Systems}] There are two mutually exclusives alternatives for the homogeneous system~\ref{homo-system}:
+
+\begin{enumerate}
+\item Either the system has a unique solution (the trivial solution)\dots
+\item \dots or the system has infinitely many solutions.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof} The system always has the trivial solution. Suppose that the system has a nontrivial solution $\mathbf{x}_0$. Then, by the previous theorem, all vectors in $\laspan(\mathbf{x}_0)$ are also solutions. Since $\mathbf{x}_0\ne\mathbf{0}$, the set $\laspan(\mathbf{x}_0)$ is infinite.
+\end{proof}
+
+This theorem is somewhat theoretical, since it does not tell us how to determine if the system has only the trivial solution or infinitely many solutions. The following result is more specific.
+
+\begin{theorem} Let $R$ be a RREF matrix equivalent to $A$ in~\ref{homo-system}. If $R$ has non-pivot columns, then the system has infinitely many solutions. Otherwise, it has only the trivial solution.
+\end{theorem}
+\begin{proof} If there are non-pivot columns, there are free variables. By setting the free variables to arbitrary values, not all zero, we get a nonzero solution of the system. By the previous theorem, if there are nonzero solutions, the system will have infinitely many solutions
+\end{proof}
+
+We are now in a position to prove a simple result that will be extremely important:
+\begin{theorem} Suppose that the matrix $A$ in~\ref{homo-system} has dimensions $m\times n$ where $n>m$. Then, the system has infinitely many solutions.
+\end{theorem}
+\begin{proof}
+Let $R$ be the RREF matrix equivalent to $A$. Since every pivot column of $R$ corresponds to a pivot row, and $R$ has more columns than rows, $R$ has non-pivot columns. By the previous theorem, this implies that the system has infinitely many solutions.
+\end{proof}
+
+There also is a specialized result for the case of square matrices.
+
+\begin{theorem} Suppose that the matrix $A$ in~\ref{homo-system} has dimensions $n\times n$. Then, the system infinitely many solutions if and only if $A$ is non-singular, that is, if and only if $\det(A)=0$.
+\end{theorem}
+
+\begin{proof} Suppose first that $A$ is non-singular. Then, $A$ has an inverse $A^{-1}$. If $\mathbf{x}$ is a solution of the system, then left-multiplying~\ref{homo-system} by $A^{-1}$ we get:
+\[
+A^{-1}A\mathbf{x}=A^{-1}\mathbf{0}=\mathbf{0},
+\]
+so that $\mathbf{x}=0$, since $A^{-1}A=I_n$.
+
+Now suppose that $A$ is singular. Then, if $R$ is the RREF matrix equivalent to $A$, we have $\det(R)=c\det(A)$ for some nonzero scalar $c$. But $\det(A)=0$, and we conclude that $\det(R)=0$. Since $R$ is diagonal, $\det(R)$ is the product of its diagonal entries, so that $\det(R)=0$ implies that $R$ has a zero on its diagonal. The column where this zero entry is will correspond to a free variable, which implies that the system has infinitely many solutions.
+\end{proof}
+
+\begin{example} Determine if the following system has infinitely many solutions:
+\[
+\begin{bmatrix*}[r]1&-2&-1\\2&4&6\\5&-3&2\end{bmatrix*}
+\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}=
+\begin{bmatrix}0\\0\\0\end{bmatrix}
+\]
+
+\emph{Solution}: Compute:
+\begin{multline*}
+\det\begin{bmatrix*}[r]1&-2&-1\\2&4&6\\5&-3&2\end{bmatrix*}=\\
+(1)(4)(2)+(-2)(6)(5)+(-1)(-3)(2)-(-1)(4)(5)-(-2)(2)(2)-(1)(-3)(6)=\\
+8-60+6-(-20)-(-8)-(-18)=0
+\end{multline*}
+Since the determinant is zero, the matrix is singular and the system has infinitely many solutions.
+
+\emph{Note}: Instead of computing the determinant explicitly, one could notice that the third column is the sum of the first two columns, from which it directly follows that the determinant is zero.
+\end{example}
+
+We finish this section by making explicit the method used to find the solution set in Example~\ref{homo-example1}. The procedure is described in what follows, where we assume that the matrix $A$ has dimensions $m\times n$.
+
+\textbf{Algorithm to Find the Solution Set of~\ref{homo-system}}
+
+\textbf{Step 1.} Find the RREF matrix $R=\{r_{ij}\}$ that is equivalent to $A$. Let $k$ be the number of non-pivot columns of $R$ $(0\le k\le n)$. If $k=0$ the system only has the trivial solution, and we are done. If not, proceed to the second step.
+
+\textbf{Step 2.} Let $f_1, f_2,\ldots,f_k$ be the indexes of the non-pivot columns. Then, the free variables in the system are $x_{f_1},x_{f_2},\ldots,x_{f_k}$. Given the values of the free variables, we can find the values of the pivot variables using the formula:
+\[
+x_j=-\sum_{l=1}^{k}r_{if_l}x_{f_l},
+\]
+where $x_j$ is the pivot variable that corresponds to row $i$.
+
+\textbf{Step 2.} For $l=1,\ldots,k$, use the formula above to find $\textbf{x}^l$, the solution of the system for the free-variable assignment:
+\[
+\begin{bmatrix}x^l_{f_1}\\x^l_{f_1}\\\vdots\\x^l_{f_1}\end{bmatrix}=\mathbf{e}^k_l,
+\] 
+where $\mathbf{e}^k_1,\mathbf{e}^k_2,\mathbf{e}^k_k$ is the standard basis of $\R^k$.
+
+\textbf{Step 3.} The solution set of the system is:
+\[
+S=\{\lambda_1\textbf{x}^1+\lambda_2\textbf{x}^2+\cdots+\lambda_k\textbf{x}^k
+\;:\; \lambda_1,\lambda_2,\ldots,\lambda_k\in\R\}
+\]
+In other words, the solution set is $\laspan(\mathbf{x}^1,\mathbf{x}^2,\ldots,\mathbf{x}^k)$.
+
+Let's see how the algorithm works in an example:
+
+\begin{example} Find the solution set of the system:
+
+\[
+\left[\begin{matrix*}[r]1 & 2 & -2 & 7 & 0 & 2 & 0\\-2 & 1 & 4 & 1 & -1 & 2 & 2\\1 & -1 & -2 & -2 & 0 & 0 & 7\\2 & 0 & -4 & 2 & 0 & 0 & 4\end{matrix*}\right]
+\begin{bmatrix}x_1\\x_2\\x_3\\x_4\\x_5\\x_6\\x_7\end{bmatrix}=
+\begin{bmatrix}0\\0\\0\\0\end{bmatrix}
+\]
+
+\emph{Solution}: 
+
+\textbf{Step 1.} Find the RREF matrix equivalent to $A$:
+\[
+R=\left[\begin{matrix*}[r]1 & 0 & -2 & 1 & 0 & 0 & 2\\0 & 1 & 0 & 3 & 0 & 0 & -5\\0 & 0 & 0 & 0 & 1 & 0 & -3\\0 & 0 & 0 & 0 & 0 & 1 & 4\end{matrix*}\right]
+\]
+
+\textbf{Step 2.}
+Identify the free variables and write the pivot variables in terms of the free variables:
+\begin{itemize}
+\item Pivot columns: 1, 2, 5, 6.
+\item Non-pivot columns: 3, 4, 7. There are 3 free variables: $x_3$, $x_4$ and $x_7$
+\end{itemize}
+From the RREF matrix $R$ we get:
+\begin{align*}
+x_1 &= 2x_3-x_4-2x_7\\
+x_2 &= 0x_3-3x_4+5x_7\\
+x_5 &= 0x_3+0x_4+3x_7\\
+x_6 &= 0x_3+0x_4+4x_7
+\end{align*}
+
+\textbf{Step 3.}
+Assign values to the free variables and compute the corresponding solution to the system:
+
+\begin{enumerate}
+\item Let
+$$
+\begin{bmatrix}x_3\\x_4\\x_7\end{bmatrix}=\begin{bmatrix}1\\0\\0\end{bmatrix}
+$$
+Then:
+\begin{align*}
+x_1&=2\\
+x_2&=0\\
+x_5&=0\\
+x_6&=0\\
+\end{align*}
+We get the solution:
+$$
+\begin{bmatrix}2\\0\\1\\0\\0\\0\\0\end{bmatrix}
+$$
+\item  Let
+$$
+\begin{bmatrix}x_3\\x_4\\x_7\end{bmatrix}=\begin{bmatrix}0\\1\\0\end{bmatrix}
+$$
+Then:
+\begin{align*}
+x_1&=-1\\
+x_2&=-3\\
+x_5&=0\\
+x_6&=0\\
+\end{align*}
+We get the solution:
+$$
+\begin{bmatrix*}[r]-1\\-3\\0\\1\\0\\0\\0\end{bmatrix*}
+$$
+\item Let
+$$
+\begin{bmatrix}x_3\\x_4\\x_7\end{bmatrix}=\begin{bmatrix}0\\0\\1\end{bmatrix}
+$$
+Then:
+\begin{align*}
+x_1&=-2\\
+x_2&=5\\
+x_5&=3\\
+x_6&=4\\
+\end{align*}
+We get the solution:
+$$
+\begin{bmatrix*}[r]-2\\5\\0\\0\\3\\4\\1\end{bmatrix*}
+$$
+\end{enumerate}
+
+\textbf{Step 4.}
+
+Write the solution set, which is the span of the solutions we have found:
+$$
+S=\left\{
+\lambda_1\begin{bmatrix}2\\0\\1\\0\\0\\0\\0\end{bmatrix}+
+\lambda_2\begin{bmatrix*}[r]-1\\-3\\0\\1\\0\\0\\0\end{bmatrix*}+
+\lambda_3\begin{bmatrix*}[r]-2\\5\\0\\0\\3\\4\\1\end{bmatrix*}
+\;:\;\lambda_1,\lambda_2,\lambda_3\in\mathbb{R}
+\right\}
+$$
+\end{example}
+
+We now prove the theorem:
+
+\begin{proof} Recall that we are assuming that there are $k$ free variables. The case $k=0$ is immediate, so we concentrate on the case $k>0$.
+
+By renaming the variables if necessary, we can assume that the free variables are the last $k$ variables, so that we can write:
+\[
+\mathbf{x}=\begin{bmatrix}\mathbf{x}_P\\\mathbf{x}_F\end{bmatrix},
+\]
+where $\mathbf{x}_P$ $\mathbf{x}_F$ are vectors containing, respectively, the pivot variables and the free variables.
+
+Ignoring the zero rows that might appear at the bottom, the RREF of the system can be written as:
+\[
+\begin{bmatrix}I_{n-k} & U\end{bmatrix}
+\begin{bmatrix}\mathbf{x_P}\\\mathbf{x}_F\end{bmatrix}=\mathbf{0}_{n-r}
+\]
+
+%We should check that the matrix blocks in this equation have compatible dimensions:
+%
+%\begin{itemize}
+%\item $I_{n-k}$ is the $(n-k)\times(n-k)$ identity matrix.
+%\item $U$ is $k\times k$.
+%\item The matrix $\begin{bmatrix}I_{n-k} & U\end{bmatrix}$ is $(n-k)\times n$.
+%\item $\mathbf{x}_P$ is a $(n-k)\times 1$ column vector and $\mathbf{x}_F$ is a $k\times 1$ column vector. This is compatible with the matrix dimensions in the formula, and the result is a $(n-r)\times 1$ column vector.
+%\end{itemize}
+
+This can be written as to:
+\[
+I_{n-r}\mathbf{x}_P+U\mathbf{x}_F=\mathbf{0}_{n-r},
+\]
+which is in turn equivalent to:
+\begin{equation}
+\label{eq-proof-homo-solution-alg}
+\mathbf{x}_P=-\mathbf{U}\mathbf{x}_F
+\end{equation}
+Now, for $i=1,\ldots,k$, let $\mathbf{e}^i$ be the $i^{\text{th}}$ vector of the standard basis of $\R^k$. We let: 
+\[
+\mathbf{x}_P^{i}=-U\mathbf{e}^i.
+\]
+and:
+\[
+\mathbf{x}^i=\begin{bmatrix}\mathbf{x}_P^i\\\mathbf{e}^i\end{bmatrix}.
+\]
+The observations above imply that $\mathbf{x}^i$ is a solution of the system, for $i=1,\ldots,k$. We claim that the solution set of the system is:
+\[
+S=\laspan(\mathbf{x}^1,\mathbf{x}^2,\ldots,\mathbf{x}^k)=
+\left\{
+c_1\mathbf{x}^1+c_2\mathbf{x}^2+\cdots+c_k\mathbf{x}^k
+\;:\; c_1, c_2,\ldots,c_k\in\R
+\right\}
+\]
+
+First notice that all vectors in $S$ must be solutions of the system, by Theorem~\ref{theorem-homo-system-span}. So, it remains to prove that all solutions of the system are represented in the set $S$. Let $\mathbf{y}$ be an arbitrary solution of the system. Write:
+\[
+\mathbf{y}=\begin{bmatrix}\mathbf{y}_P\\\mathbf{y}_F\end{bmatrix}
+\]
+where the two vectors on the right have dimensions $n-r$ and $r$, respectively. Then, since $\mathbf{y}$ is a solution, we have, from:
+\[
+\mathbf{y}_P=-U\mathbf{\mathbf{y}_F}
+\]
+
+
+
+\end{proof}
+ 
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

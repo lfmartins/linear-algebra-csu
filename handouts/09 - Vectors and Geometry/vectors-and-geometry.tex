@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Vectors and Geometry}
+
+\begin{document}
+
+This handout contains hints for some homework problems that explore the geometry of systems of linear equations. For most of these exercises, the strategy is to reformulate the problem as a linear system and then consider what can be concluded from the solution of the system.
+
+\section{Problem 7} This problem uses the notation:
+\[
+\mathbf{i}=\begin{bmatrix} 1\\ 0\\ 0\end{bmatrix}\quad
+\mathbf{j}=\begin{bmatrix} 0\\ 1\\ 0\end{bmatrix}\quad
+\mathbf{k}=\begin{bmatrix} 0\\ 0\\ 1\end{bmatrix}
+\]
+This notation is common in engineering and physics but not much in mathematics. We use $\mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3$ instead.
+
+\section{Problem 8}
+
+\emph{Note}: This problems represents most vectors as points, instead of a column vector. This makes no difference. They probably write it this way to save space on the page.
+
+\textbf{(a)} Find the vector from the points $P=(-4,-1,1)$ to the point $Q=(4,3,2)$.
+
+\emph{Solution}: The vector that connects two points is just the difference between the points, considered as vectors:
+\[
+Q-P=(4-(-4),3-(-1),2-1)=(8,4,1)
+\]
+
+\textbf{(b)} Consider the vector equation of the line through the two points listed above. For each equation listed below, answer \textbf{T} if the equation represents the line, and \textbf{F} if it does not.
+
+\emph{Solution} Recall that the vector form of the equation of a line in space is:
+\[
+S+t v
+\]
+where $S$ is a point on the line, $v$ is a vector parallel to the line, and t is a free parameter. All items can be answered using this characterization. Here are a few examples:
+
+\begin{enumerate}
+\item $(x,y,z)=(-4,-1,1)+t(8,4,1)$: The "starting" point in this representation is $(-4,-1,1)$, which is one of the two given points, so it is on the line connecting $P$ and $Q$. The vector $(8,4,1)$ is the difference between the two given points, so it is parallel to the line.
+\item $(4,3,2)+t(4, 2, 1/2)$: The "starting" point is $(4,3,2)$, which is on the line connecting $P$ and $Q$. The vector $(4,2,1/2)$ is collinear to $(8,4,1)$ because:
+\[
+(8,4,1)=2(4,2,1/2)
+\]
+So, this equation also represents the same line.
+\end{enumerate}
+
+\section{Problems 9, 12} Find the line of intersection of the planes $x+4y+3z=-4$ and $x+4z=0$.
+
+\emph{Solution}: ``Intersection'' means the set of points that are in both planes simultaneously, so we need to solve the system of equations:
+\begin{alignat*}{6}
+x &{}+{}& 4y &{}+{}& 3z &{}={}& -4\\
+x &{}{}&     &{}+{}& 4z &{}={}& 0
+\end{alignat*}
+So, we can just go ahead and use Gaussian Elimination, find the RREF, and write the solution in vector form. That will be the equation of the intersecting line.
+
+\section{Problem 13}
+Find an equation of a plane containing the three points $(0, 4, -4)$, $(3, 3, -7)$, $(3, 4, -5)$ in which the coefficient of $x$ is $1$.
+
+\emph{Solution}: The equation of a plane is:
+\[
+ax+by+cz=d
+\]
+where $a$, $b$, $c$ and $d$ are scalars. All we have to do is to find these coefficients.
+
+They tell us that the coefficient of $x$ is $1$, that is, $a=1$. So the equation reduces to:
+\[
+x+by+cz=d
+\]
+We are given three points on the plane. So, each of the points must satisfy the equation. For example, plugging in $(0,4,-4)$ on the equation we get:
+\[
+0+b\cdot4+c\cdot(-4)=d
+\]
+This gives the equation:
+\[
+4b-4c-d=0
+\]
+By doing the same with the other two points, we get a linear system for the unknowns $b$, $c$ and $d$, and from the solution of the system we can get the equation of the plane.
+
+
+\end{document}

@@ -1,0 +1,571 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Determinants}
+
+%\usepackage{stackrel}
+%\usepackage{mathdots}
+
+
+\begin{document}
+
+Historically, determinants were invented to enable the easy solution of systems of linear equations where the number of unknowns is equal to the number of equations. It was quickly seen, however, that determinants are fundamental for the understanding of several problems in matrix algebra, and remain an essential theoretical tool to this day. Besides linear algebra, determinants are essential in other areas of mathematics. For example, determinants appear in the change of variable formula for multiple integrals.
+
+We will present determinants from the point of view of the problem of matrix inversion. Roughly, for the purposes of our exposition, the determinant of a matrix is \emph{a number that tells us if a matrix can be inverted or not}. It is in itself remarkable that al information concerning the invertibility of a matrix can be summarized by a single number.
+
+\section{$2\times2$ Matrices}
+
+We start our exploration with the case of $2\times 2$ matrices. Suppose we have a $2\times2$ matrix with generic coefficients:
+\[
+A=\begin{bmatrix}a&b\\c&d\end{bmatrix}.
+\]
+In this small case, we can compute the inverse directly using row operations, as shown below:
+\begin{align*}
+&\left[\begin{matrix}1 & \frac{b}{a} & \frac{1}{a} & 0\\c & d & 0 & 1\end{matrix}\right]
+\xrightarrow{\mathtt{R1*(1/a)=>R1}}\\
+&\left[\begin{matrix}1 & \frac{b}{a} & \frac{1}{a} & 0\\c & d & 0 & 1\end{matrix}\right]
+\xrightarrow{\mathtt{R1*(-c)+R2=>R2}}\\
+&\left[\begin{matrix}1 & \frac{b}{a} & \frac{1}{a} & 0\\0 & \frac{a d - b c}{a} & - \frac{c}{a} & 1\end{matrix}\right]
+\xrightarrow{\mathtt{R2*((ad-bc)/c)=>R2}}\\
+&\left[\begin{matrix}1 & \frac{b}{a} & \frac{1}{a} & 0\\0 & 1 & - \frac{c}{a d - b c} & \frac{a}{a d - b c}\end{matrix}\right]
+\xrightarrow{\mathtt{R2*(-b/a)+R1=>R1}}\\
+&\left[\begin{matrix}1 & 0 & \frac{d}{a d - b c} & - \frac{b}{a d - b c}\\0 & 1 & - \frac{c}{a d - b c} & \frac{a}{a d - b c}\end{matrix}\right]
+\end{align*}
+From this calculation, the inverse exists if $ad-bc\ne0$ and:
+\[
+A^{-1}=\frac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}
+\]
+We call the number $ad-bc$ the \emph{determinant} of $A$, denoted by $\det(A)$:
+\[
+\det(A)=ad-bc.
+\]
+Thus, we have the following:
+\begin{proposition} 
+A $2\times2$ matrix $A$ is invertible if and only if $\det{A}\ne0$.
+\end{proposition}
+We would like to generalize this to higher order matrices.
+
+\section{$3\times3$ and $4\times4$ Matrices}
+
+We can use the same approach to investigate invertibility of larger matrices, but it becomes cumbersome to do the computations by hand. We can, however, use software with symbolic capabilities to do the calculations. For a generic $3\times 3$ matrix:
+\[
+A=\left[\begin{matrix}a_{11} & a_{12} & a_{13}\\a_{21} & a_{22} & a_{23}\\a_{31} & a_{32} & a_{33}\end{matrix}\right]
+\]
+we get:
+\begin{multline*}
+A^{-1}=\frac{1}{a_{11} a_{22} a_{33} - a_{11} a_{23} a_{32} - a_{12} a_{21} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{32} - a_{13} a_{22} a_{31}}\times\\
+\left[\begin{matrix}a_{22} a_{33} - a_{23} a_{32} & - a_{12} a_{33} + a_{13} a_{32} & a_{12} a_{23} - a_{13} a_{22}\\- a_{21} a_{33} + a_{23} a_{31} & a_{11} a_{33} - a_{13} a_{31} & - a_{11} a_{23} + a_{13} a_{21}\\a_{21} a_{32} - a_{22} a_{31} & - a_{11} a_{32} + a_{12} a_{31} & a_{11} a_{22} - a_{12} 
+a_{21}\end{matrix}\right]
+\end{multline*}
+
+It follows that $A$ has an inverse if and only if the denominator in the fraction above is nonzero. Motivated by this, we define the determinant of $A$ by:
+\[
+\det(A)=a_{11} a_{22} a_{33} - a_{11} a_{23} a_{32} - a_{12} a_{21} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{32} - a_{13} a_{22} a_{31}
+\]
+
+The same method can be used with a $4\times4$ matrix. The resulting matrix is too big to be printed here, but we get a result similar to the previous examples. The matrix is invertible if and only if the quantity below is nonzero:
+\begin{align*}
+\det(A)&=
+a_{11} a_{22} a_{33} a_{44} - a_{11} a_{22} a_{34} a_{43} - a_{11} a_{23} a_{32} a_{44} + a_{11} a_{23} a_{34} a_{42} + a_{11} a_{24} a_{32} a_{43} - a_{11} a_{24} a_{33} a_{42}\\
+&- a_{12} a_{21} a_{33} a_{44} + a_{12} a_{21} a_{34} a_{43} + a_{12} a_{23} a_{31} a_{44} - a_{12} a_{23} a_{34} a_{41} - a_{12} a_{24} a_{31} a_{43} + a_{12} a_{24} a_{33} a_{41}\\
+& + a_{13} a_{21} a_{32} a_{44} - a_{13} a_{21} a_{34} a_{42} - a_{13} a_{22} a_{31} a_{44} + a_{13} a_{22} a_{34} a_{41} + a_{13} a_{24} a_{31} a_{42} - a_{13} a_{24} a_{32} a_{41}\\
+& - a_{14} a_{21} a_{32} a_{43} + a_{14} a_{21} a_{33} a_{42} + a_{14} a_{22} a_{31} a_{43} - a_{14} a_{22} a_{33} a_{41} - a_{14} a_{23} a_{31} a_{42} + a_{14} a_{23} a_{32} a_{41}
+\end{align*}
+
+Going beyond $4\times4$ matrices becomes cumbersome even with the use of a computer. In the next section we will see how to generalize the observations we made.
+
+\section{Patterns in the Determinant Formulas}
+
+Let's revisit the results from the previous section, and try to generalize the observations. So far we got:
+
+For a $2\times 2$ matrix:
+\[
+\det(A)=a_{11} a_{22} - a_{12} a_{21}
+\]
+For a $3\times 3$ matrix:
+\[
+\det(A)=a_{11} a_{22} a_{33} - a_{11} a_{23} a_{32} - a_{12} a_{21} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{32} - a_{13} a_{22} a_{31}
+\]
+For a $4\times 4$ matrix:
+\begin{align*}
+\det(A)&=
+a_{11} a_{22} a_{33} a_{44} - a_{11} a_{22} a_{34} a_{43} - a_{11} a_{23} a_{32} a_{44} + a_{11} a_{23} a_{34} a_{42} + a_{11} a_{24} a_{32} a_{43} - a_{11} a_{24} a_{33} a_{42}\\
+&- a_{12} a_{21} a_{33} a_{44} + a_{12} a_{21} a_{34} a_{43} + a_{12} a_{23} a_{31} a_{44} - a_{12} a_{23} a_{34} a_{41} - a_{12} a_{24} a_{31} a_{43} + a_{12} a_{24} a_{33} a_{41}\\
+& + a_{13} a_{21} a_{32} a_{44} - a_{13} a_{21} a_{34} a_{42} - a_{13} a_{22} a_{31} a_{44} + a_{13} a_{22} a_{34} a_{41} + a_{13} a_{24} a_{31} a_{42} - a_{13} a_{24} a_{32} a_{41}\\
+& - a_{14} a_{21} a_{32} a_{43} + a_{14} a_{21} a_{33} a_{42} + a_{14} a_{22} a_{31} a_{43} - a_{14} a_{22} a_{33} a_{41} - a_{14} a_{23} a_{31} a_{42} + a_{14} a_{23} a_{32} a_{41}
+\end{align*}
+
+There is a clear pattern in these formulas. Each determinant can be described as a sum of products, some of them multiplied by $-1$. The table below summarizes the patterns:
+
+\begin{center}
+\begin{tabular}{|c|c|}\hline
+Dimensions of Matrix & Term in Determinant\\\hline
+$2\times 2$ & $\pm a_{1i}a_{2j}$\\\hline
+$3\times 3$ & $\pm a_{1i}a_{2j}a_{3k}$\\\hline
+$4\times 4$ & $\pm a_{1i}a_{2j}a_{3k}a_{4l}$\\\hline
+\end{tabular}
+\end{center}
+There is a more ``geometric'' way to understand each term. Let's carefully examine some examples in the $4\times 4$ case. First consider the term:
+\[
++a_{13} a_{22} a_{34} a_{41}
+\]
+Let's observe the position of these elements in the matrix:
+\[
+\begin{bmatrix}
+-&-&a_{13}&-\\
+-&a_{22}&-&-\\
+-&-&-&a_{34}\\
+a_{41}&-&-&-
+\end{bmatrix}
+\]
+As a second example, let's look at the term:
+\[
+- a_{14} a_{21} a_{32} a_{43} 
+\]
+The positions of these terms in the matrix are:
+\[
+\begin{bmatrix}
+-&-&-&a_{14}\\
+a_{21}&-&-&-\\
+-&a_{32}&-&-\\
+-&-&a_{43}&-
+\end{bmatrix}
+\]
+Notice that, for each term, we select an entry from each row, \emph{in a way that each selected entry is  from a distinct column}. In other words, we select four entries in the matrix, so that no two of them are   in the same row or column.
+
+There is an easy way to express this in terms of the column indices in each term. Each term can be expressed as:
+\[
+\pm a_{1i}a_{2j}a_{3k}a_{4l}
+\]
+Where the indices:
+\[
+(i,j,k,l)
+\]
+are pairwise distinct. We call such ordered collection of distinct objects a \emph{permutation}. So, each term in the determinant corresponds to a permutation of indices. In the examples above we have:
+\[
++a_{13} a_{22} a_{34} a_{41} \leftrightarrow (3,2,4,1)
+\]
+\[
+- a_{14} a_{21} a_{32} a_{43} \leftrightarrow (4,1,2,3)
+\]
+It remains determine how to choose the sign of each term. This is a little tricky, and depends on the notion of \emph{parity} of a permutation.
+
+Let's first define the concept of \emph{inversion}. Given a permutation, we say that there is an \emph{inversion} whenever two terms appear our of order. Let's for example consider the permutation:
+\[
+(3,2,4,1)
+\]
+In this permutation, $3$ comes before $2$, so we count this as an inversion. On the other hand, $2$ and $4$ are in the right order. So, this is not an inversion. Let's list all inversions in this permutation:
+\[
+(3,2)\quad
+(3,1)\quad
+(2,1)\quad
+(4,1)
+\]
+There are $4$ inversions. Since the number of inversions is even, we say that $(3,2,1,4)$ is an \emph{even} permutation. Notice that the corresponding term appears with a \emph{positive} sign in the determinant.
+
+Let's contrast this with the term:
+\[
+(4,1,2,3)
+\]
+The inversions now are:
+\[
+(4,1)\quad(4,2)\quad(4,3)
+\]
+The number of inversions is odd, so we say that this is an \emph{odd} permutation. Notice that the sign of the term in the determinant is \emph{negative}
+
+We are now in a position to describe all the terms that appear in the determinant. For a $4\times 4$ matrix, each term is of the form:
+\[
+\pm a_{1i}a_{2j}a_{3k}a_{4l},
+\]
+corresponding to a permutation
+\[
+(i,j,k,l)
+\]
+If the permutation has an even number of inversions, the term has a plus sign, otherwise it has a minus sign.
+
+Let's do one more example. Consider the permutation:
+\[
+(3,1,4,2)
+\]
+The inversions in this permutation are:
+\[
+(3,1)\quad(3,2)\quad(4,2)
+\]
+Since there are an odd number of inversions, the sign is negative, and we get the term:
+\[
+-a_{13}a_{21}a_{34}a_{42}
+\]
+
+In the next section we will generalize this pattern to matrices of arbitrary size.
+
+\section{Definition of Determinant}
+
+Let's now consider the general case of a $n\times n$ matrix. We start with the following:
+
+\begin{definition} A \emph{permutation} of the set $\{1,2,\ldots,n\}$ is an ordered $n$-tuple:
+\[
+p = (p(1),p(2),\ldots,p(n)),
+\]
+where each of the elements in $\{1,2,\dots,n\}$ appear exactly once.
+\end{definition}
+
+The set of all permutation of the set $\{1,2,\ldots,n\}$ is denoted $S_n$. This set is very important in abstract algebra and combinatorics, and is called the \emph{symmetric group} of order $n$. 
+
+Given a permutation, we define its \emph{parity} as follows:
+
+\begin{definition} Let $p$ be a permutation of the set $\{1,2,\ldots,n\}$:
+\[
+p = (p(1),p(2),\ldots,p(n)).
+\]
+The \emph{number of inversions} in $p$ is the number of elements of the set:
+\[
+\{(i,j)\;:\; i<j\text{ and } p(i)>p(j)\}
+\]
+We denote the number of inversions in $p$ by $N_{\text{inv}}(p)$. We say that $p$ is \emph{even} if $N_{\text{inv}}(p)$ is even. Otherwise we say that $p$ is \emph{odd}.
+\end{definition}
+
+We are now ready to define the determinant, by the following formula:
+\[
+\sum_{p\in S_n}(-1)^{N_{\text{inv}(p)}}a_{1,p(1)}a_{2,p(2)}\cdots a_{n,p(n)}
+\]
+
+This is a complicated formula, so let's look at the terms one by one:
+
+\begin{itemize}
+\item $\displaystyle \sum_{p\in S_n}$ says that we are doing a sum, with one term for each permutation $p$ in the set of all permutation, $S_n$.
+
+\item $(-1)^{N_{\text{inv}(p)}}$ says that we use a plus sign for even permutations and a minus sign for odd permutations.
+
+\item $a_{1,p(1)}a_{2,p(2)}\cdots a_{n,p(n)}$ is a product of $n$ entries from the matrix. The term $a_{i,p(i)}$ expresses the fact that the entry selected from row $i$ is in column $p(i)$.
+\end{itemize}
+
+This characterization of determinant has the advantage of being completely formal, and can be used to prove results about determinants. It is not, however, practical to actually compute determinants, except for small matrices, or matrices with a special structure.
+
+Let's use the definition of determinant to compute the determinant of:
+\[
+A = \left[\begin{matrix*}[r]1 & 0 & -3 & -1\\2 & -1 & -4 & 1\\3 & 1 & 1 & 2\\1 & 2 & 1 & 1\end{matrix*}\right]
+\]
+
+The table below displays all permutations and corresponding terms in the determinant:
+
+\begin{center}
+\begin{tabular}{|c|l|c|c|}\hline
+Permutation & Inversions & Term in Determinant\\\hline
+$(1, 2, 3, 4)$ &  $$ &  $+a_{11}a_{22}a_{33}a_{44}=+(1)(-1)(1)(1)=-1 $ \\\hline
+$(1, 2, 4, 3)$ &  $(4,3)\;$ &  $-a_{11}a_{22}a_{34}a_{43}=-(1)(-1)(2)(1)=-2 $ \\\hline
+$(1, 3, 2, 4)$ &  $(3,2)\;$ &  $-a_{11}a_{23}a_{32}a_{44}=-(1)(-4)(1)(1)=-4 $ \\\hline
+$(1, 3, 4, 2)$ &  $(3,2)\;(4,2)\;$ &  $+a_{11}a_{23}a_{34}a_{42}=+(1)(-4)(2)(2)=-16 $ \\\hline
+$(1, 4, 2, 3)$ &  $(4,2)\;(4,3)\;$ &  $+a_{11}a_{24}a_{32}a_{43}=+(1)(1)(1)(1)=1 $ \\\hline
+$(1, 4, 3, 2)$ &  $(4,3)\;(4,2)\;(3,2)\;$ &  $-a_{11}a_{24}a_{33}a_{42}=-(1)(1)(1)(2)=2 $ \\\hline
+$(2, 1, 3, 4)$ &  $(2,1)\;$ &  $-a_{12}a_{21}a_{33}a_{44}=-(0)(2)(1)(1)=0 $ \\\hline
+$(2, 1, 4, 3)$ &  $(2,1)\;(4,3)\;$ &  $+a_{12}a_{21}a_{34}a_{43}=+(0)(2)(2)(1)=0 $ \\\hline
+$(2, 3, 1, 4)$ &  $(2,1)\;(3,1)\;$ &  $+a_{12}a_{23}a_{31}a_{44}=+(0)(-4)(3)(1)=0 $ \\\hline
+$(2, 3, 4, 1)$ &  $(2,1)\;(3,1)\;(4,1)\;$ &  $-a_{12}a_{23}a_{34}a_{41}=-(0)(-4)(2)(1)=0 $ \\\hline
+$(2, 4, 1, 3)$ &  $(2,1)\;(4,1)\;(4,3)\;$ &  $-a_{12}a_{24}a_{31}a_{43}=-(0)(1)(3)(1)=0 $ \\\hline
+$(2, 4, 3, 1)$ &  $(2,1)\;(4,3)\;(4,1)\;(3,1)\;$ &  $+a_{12}a_{24}a_{33}a_{41}=+(0)(1)(1)(1)=0 $ \\\hline
+$(3, 1, 2, 4)$ &  $(3,1)\;(3,2)\;$ &  $+a_{13}a_{21}a_{32}a_{44}=+(-3)(2)(1)(1)=-6 $ \\\hline
+$(3, 1, 4, 2)$ &  $(3,1)\;(3,2)\;(4,2)\;$ &  $-a_{13}a_{21}a_{34}a_{42}=-(-3)(2)(2)(2)=-24 $ \\\hline
+$(3, 2, 1, 4)$ &  $(3,2)\;(3,1)\;(2,1)\;$ &  $-a_{13}a_{22}a_{31}a_{44}=-(-3)(-1)(3)(1)=9 $ \\\hline
+$(3, 2, 4, 1)$ &  $(3,2)\;(3,1)\;(2,1)\;(4,1)\;$ &  $+a_{13}a_{22}a_{34}a_{41}=+(-3)(-1)(2)(1)=6 $ \\\hline
+$(3, 4, 1, 2)$ &  $(3,1)\;(3,2)\;(4,1)\;(4,2)\;$ &  $+a_{13}a_{24}a_{31}a_{42}=+(-3)(1)(3)(2)=-18 $ \\\hline
+$(3, 4, 2, 1)$ &  $(3,2)\;(3,1)\;(4,2)\;(4,1)\;(2,1)\;$ &  $-a_{13}a_{24}a_{32}a_{41}=-(-3)(1)(1)(1)=-3 $ \\\hline
+$(4, 1, 2, 3)$ &  $(4,1)\;(4,2)\;(4,3)\;$ &  $-a_{14}a_{21}a_{32}a_{43}=-(-1)(2)(1)(1)=-2 $ \\\hline
+$(4, 1, 3, 2)$ &  $(4,1)\;(4,3)\;(4,2)\;(3,2)\;$ &  $+a_{14}a_{21}a_{33}a_{42}=+(-1)(2)(1)(2)=-4 $ \\\hline
+$(4, 2, 1, 3)$ &  $(4,2)\;(4,1)\;(4,3)\;(2,1)\;$ &  $+a_{14}a_{22}a_{31}a_{43}=+(-1)(-1)(3)(1)=3 $ \\\hline
+$(4, 2, 3, 1)$ &  $(4,2)\;(4,3)\;(4,1)\;(2,1)\;(3,1)\;$ &  $-a_{14}a_{22}a_{33}a_{41}=-(-1)(-1)(1)(1)=1 $ \\\hline
+$(4, 3, 1, 2)$ &  $(4,3)\;(4,1)\;(4,2)\;(3,1)\;(3,2)\;$ &  $-a_{14}a_{23}a_{31}a_{42}=-(-1)(-4)(3)(2)=24 $ \\\hline
+$(4, 3, 2, 1)$ &  $(4,3)\;(4,2)\;(4,1)\;(3,2)\;(3,1)\;(2,1)\;$ &  $+a_{14}a_{23}a_{32}a_{41}=+(-1)(-4)(1)(1)=4 $ \\\hline
+&& Sum: -32\\\hline
+\end{tabular}
+\end{center}
+We conclude that $\det(A)=-32$.
+
+In the next section we will discuss properties of the determinant and a practical method for its computation.
+
+\section{Properties of the Determinant}
+
+The definition of determinant we saw in the previous section illustrates something very common in mathematics:
+
+\begin{itemize}
+\item A mathematical concept has a definition, but this definition is either non-constructive or too cumbersome to be of use in practical cases.
+\item The definition, however, can be used to prove several properties related to the concept.
+\item These properties are easier to use them the definition, and provide efficient ways to work with the concept. After the properties have been proved, we rarely need to go back to the original definition of the concept.
+\end{itemize} 
+
+In this section we will present the main properties of determinants. All these properties can be proved by using the formula for the determinant in terms of permutations, but we will not give most of the proofs.
+
+We start by noticing that the determinant of some matrices is easy to compute. This involves the following concept:
+
+\begin{definition} A square matrix $A$ is said to be \emph{upper triangular} if $a_{ij}=0$ if $i>j$. The matrix is said to be \emph{lower triangular} if $a_{ij}=0$ if $i<j$. A matrix is said to be \emph{triangular} if it is either lower triangular or upper triangular.
+\end{definition}
+Here are examples of triangular matrices:
+\[
+A=\left[\begin{matrix*}[r]\frac{1}{2} & 0 & 0 & 0\\3 & -1 & 0 & 0\\1 & 4 & 5 & 0\\2 & -3 & 4 & 3\end{matrix*}\right];\quad
+B=\left[\begin{matrix*}[r]6 & -3 & -2 & 0\\0 & 4 & 2 & 1\\0 & 0 & -8 & 0\\0 & 0 & 0 & -4\end{matrix*}\right]
+\]
+Matrix $A$ is lower triangular and $B$ is upper triangular. Notice that the diagonal entries in a triangular matrix can be nonzero. The main result about determinants of triangular matrices is the following:
+
+\begin{theorem}The determinant of a triangular matrix is equal to the product of its diagonal elements.
+\end{theorem}
+
+Thus, for example:
+\[
+\det(A)=\left(\frac{1}{2}\right)(-1)(5)(3)=-\frac{15}{2};\quad\det(B)=(6)(4)(-8)(-4)=768
+\]
+
+It is easy to see why the Theorem is true. The table below displays the computation of $\det(A)$:
+
+\begin{center}
+\begin{tabular}{|c|l|c|c|}\hline
+Permutation & Inversions & Term in Determinant\\\hline
+$(1, 2, 3, 4)$ &  $$ &  $+a_{11}a_{22}a_{33}a_{44}=+(1/2)(-1)(5)(3)=-15/2 $ \\\hline
+$(1, 2, 4, 3)$ &  $(4,3)\;$ &  $-a_{11}a_{22}a_{34}a_{43}=-(1/2)(-1)(0)(4)=0 $ \\\hline
+$(1, 3, 2, 4)$ &  $(3,2)\;$ &  $-a_{11}a_{23}a_{32}a_{44}=-(1/2)(0)(4)(3)=0 $ \\\hline
+$(1, 3, 4, 2)$ &  $(3,2)\;(4,2)\;$ &  $+a_{11}a_{23}a_{34}a_{42}=+(1/2)(0)(0)(-3)=0 $ \\\hline
+$(1, 4, 2, 3)$ &  $(4,2)\;(4,3)\;$ &  $+a_{11}a_{24}a_{32}a_{43}=+(1/2)(0)(4)(4)=0 $ \\\hline
+$(1, 4, 3, 2)$ &  $(4,3)\;(4,2)\;(3,2)\;$ &  $-a_{11}a_{24}a_{33}a_{42}=-(1/2)(0)(5)(-3)=0 $ \\\hline
+$(2, 1, 3, 4)$ &  $(2,1)\;$ &  $-a_{12}a_{21}a_{33}a_{44}=-(0)(3)(5)(3)=0 $ \\\hline
+$(2, 1, 4, 3)$ &  $(2,1)\;(4,3)\;$ &  $+a_{12}a_{21}a_{34}a_{43}=+(0)(3)(0)(4)=0 $ \\\hline
+$(2, 3, 1, 4)$ &  $(2,1)\;(3,1)\;$ &  $+a_{12}a_{23}a_{31}a_{44}=+(0)(0)(1)(3)=0 $ \\\hline
+$(2, 3, 4, 1)$ &  $(2,1)\;(3,1)\;(4,1)\;$ &  $-a_{12}a_{23}a_{34}a_{41}=-(0)(0)(0)(2)=0 $ \\\hline
+$(2, 4, 1, 3)$ &  $(2,1)\;(4,1)\;(4,3)\;$ &  $-a_{12}a_{24}a_{31}a_{43}=-(0)(0)(1)(4)=0 $ \\\hline
+$(2, 4, 3, 1)$ &  $(2,1)\;(4,3)\;(4,1)\;(3,1)\;$ &  $+a_{12}a_{24}a_{33}a_{41}=+(0)(0)(5)(2)=0 $ \\\hline
+$(3, 1, 2, 4)$ &  $(3,1)\;(3,2)\;$ &  $+a_{13}a_{21}a_{32}a_{44}=+(0)(3)(4)(3)=0 $ \\\hline
+$(3, 1, 4, 2)$ &  $(3,1)\;(3,2)\;(4,2)\;$ &  $-a_{13}a_{21}a_{34}a_{42}=-(0)(3)(0)(-3)=0 $ \\\hline
+$(3, 2, 1, 4)$ &  $(3,2)\;(3,1)\;(2,1)\;$ &  $-a_{13}a_{22}a_{31}a_{44}=-(0)(-1)(1)(3)=0 $ \\\hline
+$(3, 2, 4, 1)$ &  $(3,2)\;(3,1)\;(2,1)\;(4,1)\;$ &  $+a_{13}a_{22}a_{34}a_{41}=+(0)(-1)(0)(2)=0 $ \\\hline
+$(3, 4, 1, 2)$ &  $(3,1)\;(3,2)\;(4,1)\;(4,2)\;$ &  $+a_{13}a_{24}a_{31}a_{42}=+(0)(0)(1)(-3)=0 $ \\\hline
+$(3, 4, 2, 1)$ &  $(3,2)\;(3,1)\;(4,2)\;(4,1)\;(2,1)\;$ &  $-a_{13}a_{24}a_{32}a_{41}=-(0)(0)(4)(2)=0 $ \\\hline
+$(4, 1, 2, 3)$ &  $(4,1)\;(4,2)\;(4,3)\;$ &  $-a_{14}a_{21}a_{32}a_{43}=-(0)(3)(4)(4)=0 $ \\\hline
+$(4, 1, 3, 2)$ &  $(4,1)\;(4,3)\;(4,2)\;(3,2)\;$ &  $+a_{14}a_{21}a_{33}a_{42}=+(0)(3)(5)(-3)=0 $ \\\hline
+$(4, 2, 1, 3)$ &  $(4,2)\;(4,1)\;(4,3)\;(2,1)\;$ &  $+a_{14}a_{22}a_{31}a_{43}=+(0)(-1)(1)(4)=0 $ \\\hline
+$(4, 2, 3, 1)$ &  $(4,2)\;(4,3)\;(4,1)\;(2,1)\;(3,1)\;$ &  $-a_{14}a_{22}a_{33}a_{41}=-(0)(-1)(5)(2)=0 $ \\\hline
+$(4, 3, 1, 2)$ &  $(4,3)\;(4,1)\;(4,2)\;(3,1)\;(3,2)\;$ &  $-a_{14}a_{23}a_{31}a_{42}=-(0)(0)(1)(-3)=0 $ \\\hline
+$(4, 3, 2, 1)$ &  $(4,3)\;(4,2)\;(4,1)\;(3,2)\;(3,1)\;(2,1)\;$ &  $+a_{14}a_{23}a_{32}a_{41}=+(0)(0)(4)(2)=0 $ \\\hline
+&& Sum: $-15/2$\\\hline
+\end{tabular}
+\end{center}
+
+Notice that the only nonzero term is the first one, corresponding to the product of the diagonal entries. All other terms have at least one zero in the product. It is easy to see why this must be the case. Suppose that we have an arbitrary permutation:
+\[
+p=(p(1),p(2),p(3),p(4))
+\]
+Then, unless $(p(1),p(2),p(3),p(4))=(1,2,3,4)$, there is a $i$ such that $i>p(i)$. If $A$ is lower triangular, we have $a_{i,p(i)}=0$, and the corresponding term in the formula for the determinant is zero.
+
+A diagonal matrix in one in which every entry off the main diagonal is zero:
+
+\begin{definition} A square matrix $A$ is \emph{diagonal} if $a_{ij}=0$ if $i\ne j$.
+\end{definition}
+
+A diagonal matrix is both upper and lower triangular, so we have:
+
+\begin{theorem} The determinant of a diagonal matrix is equal to the product of its diagonal members. 
+\end{theorem}
+
+This has an important consequence:
+
+\begin{theorem} The determinant of the identity matrix is $1$.
+\end{theorem}
+
+We next will investigate the effect of elementary operations on determinants. We already defined row operations:
+
+\begin{center}
+\begingroup
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{|c|c|p{3.5in}|}\hline
+\textbf{Type} & \textbf{Symbol} & \textbf{\hfill Description\hfill\hfill}\\\hline
+1 & $\mathtt{Ri*(c)+Rj=>Rj}$ & Multiply row $\mathtt{i}$ by $\mathtt{c}$, add to row $\mathtt{j}$, and store the result in row $\mathtt{j}$. The indices $\mathtt{i}$ and $\mathtt{j}$ must be distinct.\\\hline
+2 & $\mathtt{Ri*(c)=>Ri}$ & Multiply row $\mathtt{i}$ by $\mathtt{c}$ and store the result in row $\mathtt{i}$.\\\hline
+3 & $\mathtt{Ri<=>Rj}$ & Swap rows $\mathtt{i}$ and $\mathtt{j}$. The indices $\mathtt{i}$ and $\mathtt{j}$ must be distinct.\\\hline
+\end{tabular}
+\endgroup
+\end{center}
+
+We now also consider \emph{elementary column operations}:
+
+\begin{center}
+\begingroup
+\renewcommand*{\arraystretch}{1.5}
+\begin{tabular}{|c|c|p{3.5in}|}\hline
+\textbf{Type} & \textbf{Symbol} & \textbf{\hfill Description\hfill\hfill}\\\hline
+1 & $\mathtt{Ci*(c)+Cj=>Cj}$ & Multiply columnn $\mathtt{i}$ by $\mathtt{c}$, add to column $\mathtt{j}$, and store the result in column $\mathtt{j}$. The indices $\mathtt{i}$ and $\mathtt{j}$ must be distinct.\\\hline
+2 & $\mathtt{Ci*(c)=>Ci}$ & Multiply column $\mathtt{i}$ by $\mathtt{c}$ and store the result in column $\mathtt{i}$. \\\hline
+3 & $\mathtt{Ci<=>Cj}$ & Swap columns $\mathtt{i}$ and $\mathtt{j}$. The indices $\mathtt{i}$ and $\mathtt{j}$ must be distinct.\\\hline
+\end{tabular}
+\endgroup
+\end{center}
+
+The effect of rows and columns operations on the determinant of a matrix are the following:
+
+\begin{enumerate}
+\item In an operation of Type 1, the determinant of the matrix is unchanged.
+\item In an operation of Type 2, the determinant of the matrix is multiplied by $c$.
+\item In an operation of Type 3, the determinant of the matrix changes sign.
+\end{enumerate}
+
+The use of these properties yields an efficient algorithm for computation of any determinant. Suppose that we are given a matrix $A$, and we want to find it's determinant. We can proceed as follows:
+
+\begin{enumerate}
+\item Use elementary row operations to find an upper triangular matrix $U$ that is equivalent $A$. During the reduction process, record the following:
+\begin{enumerate}
+\item The scalars by which each row is multiplied in row operations of Type 2.
+\item The number of row swaps.
+\end{enumerate}
+\item Then:
+\[
+\det(A)=\frac{(-1)^{\text{(Number of row swaps)}}}
+{\text{(Product scalars used in Type 2 operations}}\times \det(U)
+\]
+\end{enumerate}
+
+\emph{Important Note}: Operations of Type 1 do not change the determinant of the matrix, so it is not necessary to keep track of these operations.
+
+Let's use this algorithm to compute the determinant of the matrix:
+\[
+A = \left[\begin{matrix*}[r]1 & 3 & 2 & 4\\-2 & -6 & 0 & 4\\2 & 1 & 4 & -2\\3 & -3 & 0 & 2\end{matrix*}\right]
+\]
+The table below outlines the steps of the process:
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}\hline
+Step & Row Operations & Result & Effect on Determinant\\\hline
+1 &
+$\begin{matrix}\mathtt{R1*(2)+R2=>R2}\\\mathtt{R1*(-2)+R3=>R3}\\\mathtt{R1*(-3)+R4=>R4}\end{matrix}$ &
+$\left[\begin{matrix*}[r]1 & 3 & 2 & 4\\0 & 0 & 4 & 12\\0 & -5 & 0 & -10\\0 & -12 & -6 & -10\end{matrix*}\right]$ &
+None\\\hline
+2 &
+$\mathtt{R2<=>R3}$ &
+$\left[\begin{matrix*}[r]1 & 3 & 2 & 4\\0 & -5 & 0 & -10\\0 & 0 & 4 & 12\\0 & -12 & -6 & -10\end{matrix*}\right]$ &
+Change sign\\\hline
+3 &
+$\mathtt{R2*(-1/5)=>R2}$ &
+$\left[\begin{matrix*}[r]1 & 3 & 2 & 4\\0 & 1 & 0 & 2\\0 & 0 & 4 & 12\\0 & -12 & -6 & -10\end{matrix*}\right]$ &
+Multiply by $-1/5$\\\hline
+4 &
+$\mathtt{R2*(12)+R4=>R4}$ &
+$\left[\begin{matrix*}[r]1 & 3 & 2 & 4\\0 & 1 & 0 & 2\\0 & 0 & 4 & 12\\0 & 0 & -6 & 14\end{matrix*}\right]$ &None\\\hline
+5 &
+$\mathtt{R3*(1/4)=>R3}$ &
+$\left[\begin{matrix*}1 & 3 & 2 & 4\\0 & 1 & 0 & 2\\0 & 0 & 1 & 3\\0 & 0 & -6 & 14\end{matrix*}\right]$ &
+Multiply by $1/4$\\\hline
+6 &
+$\mathtt{R3*(6)+R4=>R4}$ &
+$\left[\begin{matrix*}[r]1 & 3 & 2 & 4\\0 & 1 & 0 & 2\\0 & 0 & 1 & 3\\0 & 0 & 0 & 32\end{matrix*}\right] $&
+None\\\hline
+\end{tabular}
+\end{center}
+The overall effect on the determinant is summarized below:
+\[
+\det\left[\begin{matrix*}[r]1 & 3 & 2 & 4\\0 & 1 & 0 & 2\\0 & 0 & 1 & 3\\0 & 0 & 0 & 32\end{matrix*}\right]
+=
+(-1)\times\left(-\frac{1}{5}\right)\times\left(\frac{1}{4}\right)\times\det
+\left[\begin{matrix*}[r]1 & 3 & 2 & 4\\-2 & -6 & 0 & 4\\2 & 1 & 4 & -2\\3 & -3 & 0 & 2\end{matrix*}\right]
+\]
+The determinant of the triangular matrix on the left is the product of the diagonal entries, so we get:
+\[
+\det
+\left[\begin{matrix*}[r]1 & 3 & 2 & 4\\-2 & -6 & 0 & 4\\2 & 1 & 4 & -2\\3 & -3 & 0 & 2\end{matrix*}\right]=
+-32\times(-5)\times(4)=640
+\]
+
+\section{Determinants and Invertibility}
+
+We are now in a position to prove the main result relating determinants and invertibility.
+
+\begin{theorem} Let $A$ be a square matrix. Then, $A$ is invertible if and only if $\det(A)\ne0$
+\end{theorem}
+\begin{proof} To find the inverse of the matrix $A$, we augment $A$ with the identity matrix with the same shape:
+\[
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} & 1 & 0 &\cdots &0\\
+a_{21} & a_{22} & \cdots & a_{12} & 0 & 1 &\cdots &0\\
+\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn} & 0 & 0 &\cdots &1\\
+\end{bmatrix}
+\]
+
+We then perform elementary row operations attempting to reduce the matrix on the left to the identity. Notice that, in doing so, whenever we use a Type 2 row operation, the scalar by which we multiply a row is nonzero. At the end, we get a matrix like:
+\[
+\begin{bmatrix}
+ d_1 & 0 &\cdots & 0 & a_{11}' & a_{12}' & \cdots & a_{1n}' \\
+ 0 & d_2 &\cdots & 0 & a_{21}' & a_{22}' & \cdots & a_{12}' \\
+\vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \ddots & \vdots\\
+ 0 & 0 &\cdots & d_n &a_{n1}' & a_{n2}' & \cdots & a_{nn}' \\
+\end{bmatrix}
+\]
+In this matrix, each diagonal element $d_i$ is either $0$ or $1$. Since we only used elementary row operations, the properties of the determinant guarantee that:
+\[
+\det
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{12} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn} \\
+\end{bmatrix}
+=c
+\det
+\begin{bmatrix}
+ d_1 & 0 &\cdots & 0  \\
+ 0 & d_2 &\cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+ 0 & 0 &\cdots & d_n  \\
+\end{bmatrix}=cd_1d_2\cdots d_n.
+\]
+where $c$ is a nonzero constant. We now consider two cases:
+
+\begin{itemize}
+\item If $A$ is invertible, then the matrix at the end of the inversion algorithm is the identity, so that $d_1=d_2=\cdots=d_n=1$, so that $\det(A)=c\ne 0$.
+\item If $A$ is not invertible, then the matrix at the end of the inversion algorithm will have zero rows, and at least one of the $d_i$ is zero. The formula above implies $\det(A)=0$.
+\end{itemize}
+This finishes the proof.
+\end{proof}
+
+\begin{example} Determine if the matrix:
+A=\[
+\begin{bmatrix*}[r]
+2 & 0 & 1\\-3&2&0\\1&2&1
+\end{bmatrix*}
+\]
+is invertible.
+
+\emph{Solution} We can compute the determinant of the matrix by using the trick for $3\times 3$ matrices:
+\begin{multline*}
+\begin{bmatrix*}[r]
+2 & 0 & 1 \\-3&2&0\\1&2&1
+\end{bmatrix*}
+\begin{matrix*}[r]
+2 & 0 \\-3&2\\1&2
+\end{matrix*}
+\quad\rightarrow\\
+\det(A) = (2)(2)(1)+(0)(0)(1)+(1)(-3)(2)-(1)(2)(1)-(2)(0)(2)-(0)(-3)(1)=-6
+\end{multline*}
+Since the determinant is nonzero, the matrix is invertible.
+\end{example}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

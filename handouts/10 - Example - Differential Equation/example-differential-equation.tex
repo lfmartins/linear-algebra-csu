@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}
+
+\input{../../../../fimacros.tex}
+
+\setheadings{MTH288 --- Solving a Differential Equation with Linear Algebra}
+
+\begin{document}
+\section{Linearity of a Differential Operator}
+In this handout we present an example of a linear transformation in a space of functions:
+\[
+V=\left\{c_1\sin x+c_2\cos x\;:\; x_1, c_2\in \R\right\}
+\]
+To check that this is a vector space, we have to verify that wen we add two functions in the set, or multiply a function by a scalar, we remain inside $V$:
+\[
+(c_1\sin x+c_2\cos x) + (d_1\sin x+d_2\cos x) = (c_1+d_1)\sin x+(c_2+d_2)\cos x
+\]
+\[
+r(c_1\sin x+c_2\cos x)=(rc_1)\sin x+(rc_2)\cos x
+\]
+Once this is done, checking all the other properties in the definition of vector space follow easily. Notice that the zero function is in the set:
+\[
+0=0\sin x+ 0\cos x
+\]
+Let's now define a transformation on $V$ by:
+\[
+L(f)=\frac{df}{dx}+f
+\]
+This means that, to compute $L(f)$ we must compute its derivative and add it to $f$ itself.
+
+The operator $L$ has an important property:
+
+\begin{proposition} 
+$L$ is a linear transformation.
+\end{proposition}
+
+\begin{proof} All we need to do is to show the linearity property. Let $f$ and $g$ be differentiable functions and $r$, $s$ be scalars. Then:
+\begin{align*}
+L(rf+sg)&=\frac{d}{dx}(rf+sg)+(rf+sg)=r\frac{df}{dx}+s\frac{dg}{dx}+rf+sg\\
+&=r\left(\frac{df}{dx}+f\right)+s\left(\frac{dg}{dx}+g\right)=rL(f)+sL(g)
+\end{align*}
+\end{proof}
+
+\section{Computation of $L$ in $V$}
+
+We now want to find a simple way to represent the operator $L$ in the vector space $V$. We start by computing:
+\[
+L(\sin x)=\frac{d}{dx}[\sin x] + \sin x=\cos x + \sin x
+\]
+\[
+L(\cos x)=\frac{d}{dx}[\cos x] + \cos x = -\sin x + \cos x
+\]
+Then, using linearity, we can compute $L$ for a generic element of $V$:
+\begin{align*}
+L(c_1\sin x + c_2\cos x)&=c_1 L(\sin x) + c_2 L(\cos x)\\
+&=c_1(\cos x + \sin x)+c_2(-\sin x + \cos x)\\
+&=(c_1-c_2)\sin x + (c_1+c_2) \cos x
+\end{align*}
+Summarizing, we have the following simple formula to compute $L$ for an element of $V$:
+\[
+L(c_1\sin x + c_2\cos x) = (c_1-c_2)\sin x + (c_1+c_2)\cos x
+\]
+
+\section{Matrix Representation}
+Let's now simplify the representation of the elements in $V$. The generic element of $V$ is:
+\[
+f = c_1\sin x + c_2\cos x
+\]
+The essential information needed to identify this element is contained in the pair $c_1$, $c_2$, so we can represent the function above simply by the vector:
+\[
+\begin{bmatrix}c_1\\c_2\end{bmatrix}
+\]
+Using this representation, how can we express $L$? The application of $L$ to $f$ is, as computed in the previous section:
+\[
+L(f)=(c_1-c_2)\sin x + (c_1+c_2)\cos x
+\]
+According to the convention we made, we represent this by the vector:
+\[
+\begin{bmatrix}c_1-c_2\\c_1+c_2\end{bmatrix}
+\]
+This, in turn, can be written as a matrix multiplication:
+\[
+\begin{bmatrix*}[r]1&-1\\1&1\end{bmatrix*}\begin{bmatrix}c_1\\c_2\end{bmatrix}
+\]
+Let's summarize all the information we have in a table:
+\begin{center}
+\begin{tabular}{|c|c|}\hline
+$V$ & $\mathbb{R}^2$\\\hline
+&\\
+$f=c_1\sin x+c_2\cos x$ & $\displaystyle\begin{bmatrix}c_1\\c_2\end{bmatrix}$\\
+&\\\hline&\\
+$L(f)$ & $\displaystyle\begin{bmatrix*}[r]1&-1\\1&1\end{bmatrix*}\begin{bmatrix}c_1\\c_2\end{bmatrix}$\\
+&\\\hline
+\end{tabular}
+\end{center}
+
+\section{Solving a Differential Equation}
+Let's now solve the differential equation:
+\[
+\frac{df}{dx}+f=-\sin x + 5\cos x
+\]
+In terms of the operator $L$, we want to find a function $f$ such that:
+\[
+L(f)=-\sin x + 5\cos x
+\]
+The vector representation of the function $-\sin x+5\cos x$ is:
+\[
+\begin{bmatrix*}[r]-1\\5\end{bmatrix*}
+\]
+So, the differential equation is equivalent to the linear system:
+\[
+\begin{bmatrix*}[r]1&-1\\1&1\end{bmatrix*}
+\begin{bmatrix}c_1\\c_2\end{bmatrix}=
+\begin{bmatrix*}[r]-1\\5\end{bmatrix*}
+\]
+We can solve this using Gaussian Elimination:
+\[
+\begin{bmatrix*}[r] 1& -1& -1\\ 1& 1& 5\end{bmatrix*}
+\sim\begin{bmatrix*}[r] 1& -1& -1\\ 0& 2& 6\end{bmatrix*}
+\sim\begin{bmatrix*}[r] 1& -1& -1\\ 0& 1& 3\end{bmatrix*}
+\sim\begin{bmatrix*}[r] 1& 0& 2\\ 0& 1& 3\end{bmatrix*}
+\]
+So, the solution of the linear system is:
+\[
+\begin{bmatrix}c_1\\c_2\end{bmatrix}=
+\begin{bmatrix}2\\3\end{bmatrix}
+\]
+Going back to the function representation, we get the solution of the differential equation:
+\[
+f(x)=2\sin x+3\cos x
+\]
+
+\emph{Important note}: If you know about differential equations, you know that any differential equation will have infinitely many solutions. So, how come we got only one solution? The answer is that we are only seeking solutions that are in the vector space $V$. When restricted to the space $V$, the operator $L$ is one-to-one and onto, which is equivalent to the fact that the matrix
+\[
+\begin{bmatrix*}[r]1&-1\\1&1\end{bmatrix*}
+\]
+is invertible. So, any differential equation of the type:
+\[
+\frac{df}{dx}+f=g
+\]
+where $g\in V$ will have a unique solution.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

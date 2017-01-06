@@ -1,0 +1,12 @@
+# Untracked directories
+/grades
+/handouts/previous-semesters
+/notebooks/preparation
+/notebooks/previous-semesters
+/homework-scores
+/textbook
+# Do not track tex output files
+*.aux
+*.log
+*.out
+*.synctex.gz
